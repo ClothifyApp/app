@@ -14,7 +14,17 @@ export const Button = styled.button`
 export const OutlinedButton = styled(Button)`
   border: 2px solid ${getColor('gradient')};
   background: transparent;
-  color: ${getColor('gradient')};
+  color: ${getColor('primary')};
+`;
+
+export const SolidButton = styled(Button)`
+  background: ${getColor('white')};
+  color: ${getColor('primary')};
+  box-shadow: ${({ theme }) => theme.shadows.regular};
+  border-radius: 8px;
+  &:hover {
+    box-shadow: ${({ theme }) => theme.shadows.large};
+  }
 `;
 
 export const FlatButton = styled.button`
