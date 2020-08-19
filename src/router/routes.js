@@ -1,4 +1,5 @@
 import Login from './../pages/Login';
+import Posts from './../pages/Posts';
 
 // Este es un arreglo donde irán todas las rutas de nuestra App ;)
 const ROUTES = [
@@ -7,6 +8,13 @@ const ROUTES = [
     key: 'LOGIN',
     exact: true,
     component: Login,
+    auth: false,
+  },
+  {
+    path: ['/posts'],
+    key: 'POSTS',
+    exact: true,
+    component: Posts,
     auth: false,
   },
 ];

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import BaseModal from '../components/modals/Base';
 import { Button } from '../components/base/Buttons';
@@ -15,8 +16,9 @@ import Tags from '../components/modals/Tags';
 import LoginIlustration from '../assets/images/login.svg';
 
 export default function Main() {
-  const [isModalOpen, setIsModalOpen] = useState(true);
-  const [step, setStep] = useState(4);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [step, setStep] = useState(1);
+  const router = useHistory();
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
@@ -26,6 +28,10 @@ export default function Main() {
   const handleOpenModal = () => setIsModalOpen(true);
   const handleContinue = () => setStep(step + 1);
   const handleBack = () => setStep(step - 1);
+
+  const handleCreate = () => {
+    router.push('/posts');
+  };
 
   return (
     <>
@@ -39,7 +45,7 @@ export default function Main() {
         {step === 1 && <AskNumber onContinue={handleContinue} />}
         {step === 2 && <VerifyCode onContinue={handleContinue} />}
         {step === 3 && <ProfileCompletion onContinue={handleContinue} />}
-        {step === 4 && <Tags onContinue={handleContinue} />}
+        {step === 4 && <Tags onEnds={handleCreate} />}
       </BaseModal>
       <MainWrapper>
         <MainImageWrapper>
