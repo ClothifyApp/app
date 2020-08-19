@@ -10,12 +10,13 @@ import {
 import AskNumber from '../components/modals/AskNumber';
 import VerifyCode from '../components/modals/VerifyCode';
 import ProfileCompletion from '../components/modals/ProfileCompletion';
+import Tags from '../components/modals/Tags';
 
 import LoginIlustration from '../assets/images/login.svg';
 
 export default function Main() {
   const [isModalOpen, setIsModalOpen] = useState(true);
-  const [step, setStep] = useState(3);
+  const [step, setStep] = useState(4);
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
@@ -33,11 +34,12 @@ export default function Main() {
         onClose={handleCloseModal}
         onBack={handleBack}
         showClose={step < 3}
-        showBack={step === 2}
+        showBack={[2, 4].includes(step)}
       >
         {step === 1 && <AskNumber onContinue={handleContinue} />}
         {step === 2 && <VerifyCode onContinue={handleContinue} />}
         {step === 3 && <ProfileCompletion onContinue={handleContinue} />}
+        {step === 4 && <Tags onContinue={handleContinue} />}
       </BaseModal>
       <MainWrapper>
         <MainImageWrapper>
