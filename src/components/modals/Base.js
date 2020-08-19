@@ -8,6 +8,8 @@ import { flexCenter } from '../base/Mixins';
 
 const Overlay = styled.dialog`
   ${flexCenter};
+  visibility: ${({ open }) => (open ? 'visible' : 'hidden')};
+  opacity: ${({ open }) => (open ? '1' : '0')};
   position: fixed;
   top: 0;
   left: 0;
@@ -17,6 +19,7 @@ const Overlay = styled.dialog`
   backdrop-filter: blur(5px);
   border: 0;
   cursor: pointer;
+  transition: 0.3s;
 `;
 
 const Modal = styled.div`
