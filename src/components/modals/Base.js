@@ -1,15 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+
+import { TopButton } from '../base/Buttons';
+import { flexCenter } from '../base/Mixins';
 
 const Overlay = styled.dialog`
+  ${flexCenter};
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(5px);
   border: 0;
@@ -30,10 +33,29 @@ const Modal = styled.div`
   cursor: auto;
 `;
 
-export default function Base({ children, isOpen }) {
+export default function Base({
+  children,
+  isOpen,
+  onBack,
+  onClose,
+  showClose,
+  showBack,
+}) {
   return (
     <Overlay open={isOpen}>
-      <Modal>{children}</Modal>
+      <Modal>
+        {showBack && (
+          <TopButton position='left' onClick={onBack}>
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </TopButton>
+        )}
+        {showClose && (
+          <TopButton position='right' onClick={onClose}>
+            <FontAwesomeIcon icon={faTimes} />
+          </TopButton>
+        )}
+        {children}
+      </Modal>
     </Overlay>
   );
 }
