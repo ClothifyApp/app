@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { flexCenter } from './Mixins';
+import { mainTheme } from '../../themes/main';
 
-const height = ' calc(100vh - 70px)';
+const height = `calc(100vh - ${mainTheme.sizes.navbarHeight}px)`;
 
 export const MainWrapper = styled.main`
   width: 100%;
@@ -25,6 +26,7 @@ export const MainImageWrapper = styled.div`
   ${flexCenter};
   width: 100%;
   height: ${height};
+  z-index: -1;
   background: #f6f6f6;
   & img {
     height: 60%;

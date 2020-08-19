@@ -14,6 +14,9 @@ export const mainTheme = {
     regular: '0px 4px 8px rgba(26, 22, 32, 0.2);',
     large: '2px 8px 16px rgba(26, 22, 32, 0.25)',
   },
+  sizes: {
+    navbarHeight: 70,
+  },
   fonts: ['Proxima Nova', 'sans-serif', 'Arial'],
   fontSizes: {
     small: '1em',
