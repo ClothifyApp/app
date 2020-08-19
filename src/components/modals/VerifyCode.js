@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function VerifyCode() {
+export default function VerifyCode({ onContinue }) {
   return (
     <>
       <h2>Introduce el código</h2>
@@ -36,7 +36,7 @@ export default function VerifyCode() {
         However, let me know if you read it all.
       </InfoText>
 
-      <Button>Continuar</Button>
+      <Button onClick={onContinue}>Continuar</Button>
     </>
   );
 }

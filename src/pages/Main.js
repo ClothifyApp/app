@@ -14,22 +14,28 @@ import LoginIlustration from '../assets/images/login.svg';
 
 export default function Main() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [showClose, setShowClose] = useState(true);
-  const [showBack, setShowBack] = useState(false);
+  const [step, setStep] = useState(1);
 
-  const handleCloseModal = () => setIsModalOpen(false);
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setStep(1);
+  };
+
   const handleOpenModal = () => setIsModalOpen(true);
+  const handleContinue = () => setStep(step + 1);
+  const handleBack = () => setStep(step - 1);
 
   return (
     <>
       <BaseModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
-        showClose={showClose}
-        showBack={showBack}
+        onBack={handleBack}
+        showClose={step < 3}
+        showBack={step === 2}
       >
-        {/* <AskNumber /> */}
-        <VerifyCode />
+        {step === 1 && <AskNumber onContinue={handleContinue} />}
+        {step === 2 && <VerifyCode onContinue={handleContinue} />}
       </BaseModal>
       <MainWrapper>
         <MainImageWrapper>

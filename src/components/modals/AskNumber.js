@@ -15,7 +15,7 @@ const Wraper = styled.div`
   }
 `;
 
-export default function AskNumber() {
+export default function AskNumber({ onContinue }) {
   return (
     <>
       <h2>Introduce tu número móvil</h2>
@@ -35,7 +35,7 @@ export default function AskNumber() {
         but so far let's pu this test text. I think that is going to work.
         However, let me know if you read it all.
       </InfoText>
-      <Button>Continuar</Button>
+      <Button onClick={onContinue}>Continuar</Button>
     </>
   );
 }
