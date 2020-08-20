@@ -1,6 +1,6 @@
 export const mainTheme = {
   colors: {
-    primary: '#FC497B',
+    primary: '#B71AB7',
     secondary: '#49C0FF',
     white: '#FFFFFF',
     black: '#191919',
@@ -13,6 +13,9 @@ export const mainTheme = {
     small: '0px 2px 4px rgba(26, 22, 32, 0.1)',
     regular: '0px 4px 8px rgba(26, 22, 32, 0.2);',
     large: '2px 8px 16px rgba(26, 22, 32, 0.25)',
+  },
+  sizes: {
+    navbarHeight: 70,
   },
   fonts: ['Proxima Nova', 'sans-serif', 'Arial'],
   fontSizes: {
