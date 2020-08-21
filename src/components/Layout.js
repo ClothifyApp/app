@@ -18,7 +18,7 @@ const Header = styled.header`
   justify-content: space-between;
   align-items: center;
   height: ${({ theme }) => theme.sizes.navbarHeight}px;
-  box-shadow: ${({ theme }) => theme.shadows.regular};
+  box-shadow: ${({ theme }) => theme.shadows.small};
   background: ${({ theme }) => theme.colors.white};
   & img {
     height: ${({ theme }) => theme.sizes.navbarHeight - 15}px;
@@ -52,7 +52,7 @@ export default function Layout({ children, isAuth }) {
           <img src={Logo} alt='Clothify' />
         </Link>
         <nav>
-          <SolidButton as={Link} to={'/whatever'}>
+          <SolidButton as={Link} to={'/posts'}>
             Mis Posts
           </SolidButton>
           <FlatButton color='primary' onClick={openDrawer}>

@@ -1,9 +1,10 @@
 import React from 'react';
+import { CreateCardPost } from '../components/posts/create-card-post/CreateCardPost';
 
 export default function Posts() {
   return (
     <div>
-      <h1>Posts view</h1>
+      <CreateCardPost />
     </div>
   );
 }
