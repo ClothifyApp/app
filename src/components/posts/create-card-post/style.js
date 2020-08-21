@@ -30,7 +30,7 @@ export const Contain = styled.div`
     height: 620px;
   }
   @media ${device.desktop} {
-    width: 17%;
+    width: 20%;
     height: 620px;
   }
 `;
