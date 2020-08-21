@@ -16,6 +16,7 @@ export const LetsGoWrapper = styled.section`
   justify-content: center;
   align-items: center;
   text-align: center;
+  background-color: #fff;
 `;
 
 export const MainImageWrapper = styled.div`
@@ -23,7 +24,6 @@ export const MainImageWrapper = styled.div`
   width: 100%;
   height: 100vh;
   z-index: -1;
-  background: #f6f6f6;
   & img {
     height: 60%;
     max-width: 100%;

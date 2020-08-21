@@ -39,15 +39,15 @@ export const FlatButton = styled.button`
 export const TopButton = styled.button`
   ${buttonMixin};
   ${flexCenter};
-  position: absolute;
+  position: ${(props) => props.z_index || 'absolute'};
   top: 0;
   ${(props) => props.position || 'left'}: 0;
-  margin: 20px;
+  margin: ${(props) => props.margin || '20px'};
   width: 30px;
   height: 30px;
   border-radius: 50%;
   color: ${getColor('black')};
-  border: 2px solid ${getColor('black')};
+  border: 2px solid ${getColor('greyLighter')};
   background: transparent;
 `;
 

@@ -21,14 +21,14 @@ body {
   font-family: 'Proxima Nova', 'Roboto', 'Ubuntu', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #4A4A4A;
+  color: #4a4a4a;
+  background-color: #f6f6f6;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
 
 /* MARGIN HELPERS */
 
@@ -64,7 +64,6 @@ code {
   margin-right: var(--sm);
 }
 
-
 .m-top-md {
   margin-top: var(--md);
 }
@@ -80,7 +79,6 @@ code {
 .m-right-md {
   margin-right: var(--md);
 }
-
 
 .m-top-lg {
   margin-top: var(--lg);
