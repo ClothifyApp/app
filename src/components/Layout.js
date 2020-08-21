@@ -40,6 +40,10 @@ const Drawer = styled.aside`
   transition: 0.3s;
 `;
 
+const Main = styled.main`
+  margin-top: ${({ theme }) => theme.sizes.navbarHeight}px;
+`;
+
 export default function Layout({ children, isAuth }) {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
 
@@ -63,7 +67,7 @@ export default function Layout({ children, isAuth }) {
           </FlatButton>
         </nav>
       </Header>
-      {children}
+      <Main>{children}</Main>
       <Drawer open={isDrawerOpen}></Drawer>
     </>
   );
