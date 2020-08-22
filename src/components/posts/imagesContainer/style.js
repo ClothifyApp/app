@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { device } from '../device.js';
 
 export const Wrapper = styled.div`
   display: grid;
@@ -19,6 +20,25 @@ export const Pictures = styled.div`
   box-shadow: 1px 2px 2px rgba(26, 22, 32, 0.25);
   text-align: center;
   position: relative;
+  &:hover{
+    background: rgba(235, 235, 235, 1);
+  }
+  @media ${device.mobileM} {
+    width: 95px;
+    height: 125px;
+  }
+  @media ${device.mobileL} {
+    width: 110px;
+    height: 135px;
+  }
+  @media ${device.laptop} {
+    width: 130px;
+    height: 155px;
+  }
+  @media ${device.desktop} {
+    width: 140px;
+    height: 160px;
+  }
 `;
 
 export const Input = styled.input`
@@ -32,6 +52,18 @@ export const Input = styled.input`
   cursor: pointer;
   position: absolute;
   justify-content: center;
+  @media ${device.mobileM} {
+    width: 95px;
+    height: 125px;
+  }
+  @media ${device.mobileL} {
+    width: 110px;
+    height: 135px;
+  }
+  @media ${device.laptop} {
+    width: 120px;
+    height: 145px;
+  }
 `;
 
 export const Icon = styled(FontAwesomeIcon)`
