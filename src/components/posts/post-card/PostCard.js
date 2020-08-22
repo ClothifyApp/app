@@ -30,7 +30,7 @@ export const PostCard = (props) => {
         <Button onClick={handleOpenModal}>
           <Icon icon={faTrash} />
         </Button>
-        <Touch href='instagram' onClick={handleOpenModal}>
+        <Touch href='instagram'>
           <Img src={props.url} id={props.id} />
         </Touch>
       </ImgWrapper>

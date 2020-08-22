@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { ImgWrapper, IconPlus, PlusCircle } from './style';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { CreateCardPost } from '../create-card-post/CreateCardPost' 
+import { ImgWrapper, IconPlus, PlusCircle, Title } from './style';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 //Import ModalBase
 import BaseModal from '../../modals/Base';
+
+
 
 export const CreatePost = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,15 +19,21 @@ export const CreatePost = (props) => {
   };
   return (
     <>
-      <ImgWrapper>
+      <ImgWrapper direction='column' align='center'>
         <BaseModal
-          position='absolute'
+          position='fixed'
+          overflow='auto'
           isOpen={isModalOpen}
           onClose={handleCloseModal}
-          showClose></BaseModal>
-        <PlusCircle>
-          <IconPlus icon={faPlusCircle} />
+          showClose>  
+            <CreateCardPost />
+          </BaseModal>
+        <PlusCircle onClick={handleOpenModal}>
+          <IconPlus icon={faPlus} />
         </PlusCircle>
+        <Title>
+          Crear Publicación
+        </Title>
       </ImgWrapper>
     </>
   );

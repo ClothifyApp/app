@@ -20,6 +20,7 @@ const Overlay = styled.dialog`
   border: 0;
   cursor: pointer;
   transition: 0.3s;
+  overflow: ${(props) => props.overflow || '' };
   z-index: 10;
 `;
 
@@ -45,9 +46,10 @@ export default function Base({
   showClose,
   showBack,
   position,
+  overflow
 }) {
   return (
-    <Overlay position={position} open={isOpen}>
+    <Overlay overflow={overflow} position={position} open={isOpen}>
       <Modal>
         {showBack && (
           <TopButton position='left' onClick={onBack}>

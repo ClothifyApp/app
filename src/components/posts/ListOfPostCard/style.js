@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { device } from '../device.js';
 
 export const Contain = styled.div`
-  width: 80%;
-  height: 800px;
+  width: 90%;
+  height: 900px;
   overflow: auto;
   margin: 100px auto;
 `;

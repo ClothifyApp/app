@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { device } from '../device.js';
 
 export const Wrapper = styled.div`
   display: grid;
@@ -19,6 +20,14 @@ export const Pictures = styled.div`
   box-shadow: 1px 2px 2px rgba(26, 22, 32, 0.25);
   text-align: center;
   position: relative;
+  &:hover{
+    background: rgba(235, 235, 235, 1);
+  }
+  @media ${device.mobileM} {
+    width: 100px;
+    height: 135px;
+  }
+
 `;
 
 export const Input = styled.input`

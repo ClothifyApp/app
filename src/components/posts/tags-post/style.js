@@ -15,9 +15,6 @@ export const Tag = styled.div`
   background: ${getColor('white')};
   color: ${getColor('grey', 'white')};
   cursor: pointer;
-  &:nth-last-child(-n + 5) {
-    margin-bottom: 50px;
-  }
 `;
 
 function getColor(inactiveColor, activeColor = 'gradient') {
