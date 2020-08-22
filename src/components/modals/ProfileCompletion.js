@@ -13,7 +13,7 @@ import { ProfileInput } from '../ProfileInput';
 const DataWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 20px 30px;
+  margin: 20px ${({ margin }) => (margin ? '30px' : 0)};
   padding-top: 20px;
   border-top: 1px solid ${({ theme }) => theme.colors.grey};
 `;
@@ -21,11 +21,11 @@ const DataWrapper = styled.div`
 export default function ProfileCompletion({ onContinue }) {
   return (
     <>
-      <h2>Completa tu perfil</h2>
+      {onContinue && <h2>Completa tu perfil</h2>}
       <CircularPhotoSelector>
         <input type='file' />
       </CircularPhotoSelector>
-      <DataWrapper>
+      <DataWrapper margin={!!onContinue}>
         <ProfileInput icon={faUser} text='Nombre'>
           <input type='text' placeholder='Escribe tu nombre' />
         </ProfileInput>
@@ -41,7 +41,7 @@ export default function ProfileCompletion({ onContinue }) {
           </select>
         </ProfileInput>
       </DataWrapper>
-      <Button onClick={onContinue}>Continuar</Button>
+      {onContinue && <Button onClick={onContinue}>Continuar</Button>}
     </>
   );
 }

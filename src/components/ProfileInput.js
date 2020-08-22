@@ -22,6 +22,9 @@ const InputWrapper = styled.div`
     cursor: auto;
     appearance: none;
   }
+  & input::placeholder {
+    color: ${({ theme }) => theme.colors.greyLigther};
+  }
 `;
 
 export function ProfileInput({ icon, text, children }) {
