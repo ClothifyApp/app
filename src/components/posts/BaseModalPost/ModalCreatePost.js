@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
-import { TopButton } from '../base/Buttons';
-import { flexCenter } from '../base/Mixins';
+import { TopButton } from '../../base/Buttons';
+import { flexCenter } from '../../base/Mixins';
+
+import { device } from '../device'
 
 const Overlay = styled.dialog`
   ${flexCenter};
@@ -26,9 +28,7 @@ const Overlay = styled.dialog`
 
 const Modal = styled.div`
   position: relative;
-  width:  100% ;
-  max-width: 500px;
-  margin: 15px;
+  width:  400px;
   padding: 35px 25px;
   padding-top: 60px;
   background: ${(props) => props.theme.colors.white};
@@ -36,6 +36,26 @@ const Modal = styled.div`
   text-align: center;
   border-radius: 10px;
   cursor: auto;
+  @media ${device.mobileM}{
+    width:  100%;
+    height: 700px;
+    margin-top: 70px;
+    overflow: auto;
+  }
+  @media ${device.laptop}{
+    width:  460px;
+    height: 700px;
+    margin-top: 70px;
+    overflow: auto;
+  }
+  @media ${device.desktop}{
+    width:  100%;
+    max-width: 500px;
+    height: 90%;
+    margin-top: 70px;
+  }
+
+
 `;
 
 export default function Base({

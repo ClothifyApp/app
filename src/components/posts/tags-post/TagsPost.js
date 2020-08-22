@@ -20,7 +20,7 @@ export default function TagsPost({ onEnds }) {
         <Tag>skirt</Tag>
         <Tag>shoes</Tag>
         <Tag>tie</Tag>
-        <Button onClick={onEnds}>Guardar</Button>
+        <Button margin='10px' onClick={onEnds}>Guardar</Button>
       </Wrapper>
     </>
   );
