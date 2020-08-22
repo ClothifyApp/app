@@ -1,10 +1,10 @@
-import React from 'react';
-import { CreateCardPost } from '../components/posts/create-card-post/CreateCardPost';
+import React, { useState } from 'react';
+import { ListOfPostCard } from '../components/posts/ListOfPostCard/ListOfPostCard';
 
 export default function Posts() {
   return (
     <div>
-      <CreateCardPost />
+      <ListOfPostCard />
     </div>
   );
 }

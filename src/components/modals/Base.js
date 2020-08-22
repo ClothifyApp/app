@@ -10,7 +10,7 @@ const Overlay = styled.dialog`
   ${flexCenter};
   visibility: ${({ open }) => (open ? 'visible' : 'hidden')};
   opacity: ${({ open }) => (open ? '1' : '0')};
-  position: fixed;
+  position: ${(props) => props.position || 'fixed'};
   top: 0;
   left: 0;
   width: 100%;
@@ -20,6 +20,7 @@ const Overlay = styled.dialog`
   border: 0;
   cursor: pointer;
   transition: 0.3s;
+  z-index: 10;
 `;
 
 const Modal = styled.div`
@@ -43,9 +44,10 @@ export default function Base({
   onClose,
   showClose,
   showBack,
+  position,
 }) {
   return (
-    <Overlay open={isOpen}>
+    <Overlay position={position} open={isOpen}>
       <Modal>
         {showBack && (
           <TopButton position='left' onClick={onBack}>
