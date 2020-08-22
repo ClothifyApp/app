@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { flexCenter } from './Mixins';
-export const MainWrapper = styled.main`
-  width: 100%;
-  height: 100vh;
+export const MainWrapper = styled.section`
+  width: 100vw;
+  min-height: calc(100vh - ${({ theme }) => theme.sizes.navbarHeight}px);
   display: grid;
   grid-template-columns: 1fr 500px;
 `;
