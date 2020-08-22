@@ -5,7 +5,7 @@ import { Button } from '../base/Buttons';
 import Tags from '../modals/Tags';
 import { Wrapper, Actions } from './styles';
 
-export default function EditProfileContent({}) {
+export default function EditProfileContent() {
   return (
     <Wrapper>
       <h2>Perfil</h2>
