@@ -37,6 +37,7 @@ const Drawer = styled.aside`
   right: ${({ open }) => (open ? 0 : '-300px')};
   width: 270px;
   box-shadow: ${({ theme }) => theme.shadows.regular};
+  z-index: 10;
   transition: 0.3s;
 `;
 

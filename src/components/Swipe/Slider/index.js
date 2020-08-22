@@ -23,7 +23,7 @@ export default function Slider({ imageUrls, onClick }) {
     <Wrapper>
       <ImageSlider current={currentImage} total={imageUrls.length}>
         {imageUrls.map((url, index) => (
-          <img onClick={onClick} src={url} key={index} alt='Cloth' />
+          <img onClick={onClick} src={url} key={index} alt='Clothe' />
         ))}
       </ImageSlider>
       <ImageIndicator
