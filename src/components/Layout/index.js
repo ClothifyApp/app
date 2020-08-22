@@ -14,7 +14,7 @@ export default function Layout({ children, isAuth }) {
   const [drawerOptions, setDrawerOptions] = useState({});
 
   const handleOpenDrawer = (content, title) => {
-    setDrawerOptions({ title, content: content });
+    setDrawerOptions({ title, content });
   };
 
   const handleCloseDrawer = () => setDrawerOptions({});

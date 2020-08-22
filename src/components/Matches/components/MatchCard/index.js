@@ -1,19 +1,19 @@
 import React from 'react';
-import { CardContainer, Title, Tag } from './styled';
+import { Link } from 'react-router-dom';
+import { CardContainer, Title, Tag, InfoText, DescriptionContainer } from './styled';
 import { Avatar } from '../../../base/Images';
-import { InfoText } from '../../../base/Texts';
-const MatchCard = ({ avatarUrl, name, description }) => {
+const MatchCard = ({ photoUrl, title, description, tag }) => {
   return (
-    <CardContainer>
-      <Avatar src='https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500' />
-      <div style={{marginLeft: 10}}>
-        <Title>Jairo de las Priella</Title>
-        <Tag>T-shirt</Tag>
-        <InfoText>
-          Lorem ipsum dolor sit amet..Lorem ipsum..
-        </InfoText>
-      </div>
-    </CardContainer>
+    <Link to='/swipe' style={{ textDecoration: 'none' }}>
+      <CardContainer>
+        <Avatar src={photoUrl} alt={title} />
+        <DescriptionContainer>
+          <Title>{title}</Title>
+          <Tag>{tag}</Tag>
+          <InfoText>{description}</InfoText>
+        </DescriptionContainer>
+      </CardContainer>
+    </Link>
   );
 };
 

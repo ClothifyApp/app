@@ -18,8 +18,8 @@ export const CloseArrow = styled.div`
   cursor: pointer;
   & > * {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 20px;
+    left: 15px;
     color: ${({ theme }) => theme.colors.primary};
   }
 `;
@@ -29,6 +29,6 @@ export const ContentContainer = styled.div`
 `;
 
 export const Title = styled.h2`
-  margin-top: 50px;
-  text-align: center;
+margin-top: 15px;
+text-align: center;
 `;
