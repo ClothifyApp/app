@@ -5,8 +5,7 @@ export const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 500px;
-  overflow: hidden;
+  max-width: 450px;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.white};
 `;
