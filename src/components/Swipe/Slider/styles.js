@@ -10,17 +10,26 @@ export const Wrapper = styled.div`
   border-radius: 8px;
   overflow: hidden;
   box-shadow: ${({ theme }) => theme.shadows.regular};
+`;
+
+export const ImageSlider = styled.div`
+  position: absolute;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: ${({ total }) => total * 100}%;
+  top: 0;
+  left: ${({ current }) => (current - 1) * -100}%;
+  transition: 0.4s;
   & img {
-    position: absolute;
     display: block;
-    width: 100%;
     height: ${imageHeight}px;
+    width: 100%;
     object-fit: cover;
     background: ${({ theme }) => theme.colors.whiteOpacity};
     cursor: pointer;
     transition: 0.3s;
     &:hover {
-      opacity: 0.8;
+      opacity: 0.9;
     }
   }
 `;

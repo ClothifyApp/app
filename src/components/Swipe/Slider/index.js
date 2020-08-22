@@ -1,28 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChevronLeft,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { Wrapper, Control } from './styles';
+import { Wrapper, Control, ImageSlider } from './styles';
 import ImageIndicator from './ImageIndicator';
 
-export default function Slider({ imgeUrls, onClick }) {
+export default function Slider({ imageUrls, onClick }) {
+  const [currentImage, setCurrentImage] = useState(1);
+
+  const handleMoveSlideLeft = () => {
+    setCurrentImage(currentImage - 1);
+  };
+
+  const handleMoveSlideRight = () => {
+    setCurrentImage(currentImage + 1);
+  };
+
   return (
     <Wrapper>
-      <img
-        onClick={onClick}
-        src='https://i.pinimg.com/originals/1c/8f/3d/1c8f3deb5a43a45348993bb532f04ccf.jpg'
-        alt=''
+      <ImageSlider current={currentImage} total={imageUrls.length}>
+        {imageUrls.map((url, index) => (
+          <img onClick={onClick} src={url} key={index} />
+        ))}
+      </ImageSlider>
+      <ImageIndicator
+        currentPage={currentImage}
+        totalPages={imageUrls.length}
       />
-      <ImageIndicator currentPage={1} totalPages={3} />
-      <Control position='left'>
-        <FontAwesomeIcon icon={faChevronLeft} size='lg' />
-      </Control>
-      <Control position='right'>
-        <FontAwesomeIcon icon={faChevronRight} size='lg' />
-      </Control>
+      {currentImage > 1 && (
+        <Control position='left' onClick={handleMoveSlideLeft}>
+          <FontAwesomeIcon icon={faChevronLeft} size='lg' />
+        </Control>
+      )}
+      {currentImage < imageUrls.length && (
+        <Control position='right' onClick={handleMoveSlideRight}>
+          <FontAwesomeIcon icon={faChevronRight} size='lg' />
+        </Control>
+      )}
     </Wrapper>
   );
 }
