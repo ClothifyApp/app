@@ -4,7 +4,7 @@ import { ImgWrapper, IconPlus, PlusCircle, Title } from './style';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 //Import ModalBase
-import BaseModal from '../../modals/Base';
+import ModalCreatePost from '../BaseModalPost/ModalCreatePost';
 
 
 
@@ -20,14 +20,13 @@ export const CreatePost = (props) => {
   return (
     <>
       <ImgWrapper direction='column' align='center'>
-        <BaseModal
+        <ModalCreatePost
           position='fixed'
-          overflow='auto'
           isOpen={isModalOpen}
           onClose={handleCloseModal}
           showClose>  
             <CreateCardPost />
-          </BaseModal>
+          </ModalCreatePost>
         <PlusCircle onClick={handleOpenModal}>
           <IconPlus icon={faPlus} />
         </PlusCircle>

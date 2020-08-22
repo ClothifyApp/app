@@ -4,6 +4,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  text-align: left;
 `;
 
 export const Tag = styled.div`
