@@ -8,6 +8,9 @@ export const mainTheme = {
     grey: '#4A4A4A',
     greyLigther: '#C0C0C0',
     pink: '#FC497B',
+    green: '#25D366',
+    greenLigth: '#2dda6d',
+    yellow: '#FFC850',
     gradient: 'linear-gradient(0deg, #B71AB7 0%, #DA0B9F 100%);',
   },
   shadows: {

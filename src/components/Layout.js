@@ -37,7 +37,12 @@ const Drawer = styled.aside`
   right: ${({ open }) => (open ? 0 : '-300px')};
   width: 270px;
   box-shadow: ${({ theme }) => theme.shadows.regular};
+  z-index: 10;
   transition: 0.3s;
+`;
+
+const Main = styled.main`
+  margin-top: ${({ theme }) => theme.sizes.navbarHeight}px;
 `;
 
 export default function Layout({ children, isAuth }) {
@@ -63,7 +68,7 @@ export default function Layout({ children, isAuth }) {
           </FlatButton>
         </nav>
       </Header>
-      {children}
+      <Main>{children}</Main>
       <Drawer open={isDrawerOpen}></Drawer>
     </>
   );
