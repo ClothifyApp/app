@@ -10,7 +10,7 @@ export default function Swipe() {
     <Wrapper>
       <Slider />
       <ButtonsContainer showReactions />
-      {/* <Info /> */}
+      <Info />
       <BgCard index={1} />
       <BgCard index={2} />
     </Wrapper>

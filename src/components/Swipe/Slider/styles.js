@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { imageHeight, textHeight, totalHeight } from '../constants';
+import { imageHeight } from '../constants';
 
 import { buttonMixin } from '../../base/Mixins';
 
 export const Wrapper = styled.div`
   position: relative;
-  height: ${totalHeight}px;
+  height: 355px;
   width: 100%;
   border-radius: 8px;
   overflow: hidden;
@@ -17,19 +17,6 @@ export const Wrapper = styled.div`
     height: ${imageHeight}px;
     object-fit: cover;
     background: ${({ theme }) => theme.colors.whiteOpacity};
-  }
-  & > .info {
-    height: ${textHeight}px;
-    margin-top: ${imageHeight}px;
-    padding-top: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    & h2,
-    & p {
-      margin: 0;
-    }
   }
 `;
 

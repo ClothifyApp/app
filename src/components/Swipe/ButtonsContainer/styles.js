@@ -13,6 +13,7 @@ export const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
   & button {
     margin: 0 5px;
   }

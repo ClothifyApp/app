@@ -16,10 +16,6 @@ export default function Slider({ imgeUrls }) {
         alt=''
       />
       <ImageIndicator currentPage={1} totalPages={3} />
-      <div className='info'>
-        <h2>Image title</h2>
-        <p>Some description</p>
-      </div>
       <Control position='left'>
         <FontAwesomeIcon icon={faChevronLeft} size='lg' />
       </Control>
