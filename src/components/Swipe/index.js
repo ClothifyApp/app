@@ -9,7 +9,7 @@ export default function Swipe() {
   return (
     <Wrapper>
       <Slider />
-      <ButtonsContainer />
+      <ButtonsContainer showReactions />
       <Info />
     </Wrapper>
   );

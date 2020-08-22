@@ -1,9 +1,7 @@
 import styled from 'styled-components';
-import { buttonMixin } from '../../base/Mixins';
+import { imageHeight, textHeight, totalHeight } from '../constants';
 
-const totalHeight = 420;
-const textHeight = 100;
-const imageHeight = totalHeight - textHeight;
+import { buttonMixin } from '../../base/Mixins';
 
 export const Wrapper = styled.div`
   position: relative;
@@ -22,6 +20,7 @@ export const Wrapper = styled.div`
   & > .info {
     height: ${textHeight}px;
     margin-top: ${imageHeight}px;
+    padding-top: 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;

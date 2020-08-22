@@ -27,6 +27,32 @@ export const SolidButton = styled(Button)`
   }
 `;
 
+export const WhatsAppButton = styled(Button)`
+  color: ${getColor('white')};
+  background: ${getColor('green')};
+  &:hover {
+    background: ${getColor('greenLigth')};
+  }
+  & svg {
+    margin-left: 5px;
+  }
+`;
+
+export const ReactionButton = styled.button`
+  ${buttonMixin};
+  ${flexCenter};
+  width: ${({ size }) => (size === 'sm' ? '40px' : '60px')};
+  height: ${({ size }) => (size === 'sm' ? '40px' : '60px')};
+  color: ${getColor('primary')};
+  box-shadow: ${({ theme }) => theme.shadows.regular};
+  text-shadow: ${({ theme }) => theme.shadows.regular};
+  border-radius: 50%;
+  &:hover {
+    opacity: 0.97;
+    box-shadow: ${({ theme }) => theme.shadows.large};
+  }
+`;
+
 export const FlatButton = styled.button`
   ${buttonMixin};
   padding: 10px;
@@ -48,7 +74,6 @@ export const TopButton = styled.button`
   border-radius: 50%;
   color: ${getColor('black')};
   border: 2px solid ${getColor('greyLighter')};
-  background: transparent;
 `;
 
 function getColor(defaultColor) {

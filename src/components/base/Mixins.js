@@ -13,4 +13,5 @@ export const buttonMixin = css`
   font-weight: bold;
   transition: 0.3s;
   text-decoration: none;
+  background: ${({ theme }) => theme.colors.white};
 `;
