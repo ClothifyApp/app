@@ -5,8 +5,8 @@ export const DrawerContainer = styled.aside`
   top: ${({ theme }) => theme.sizes.navbarHeight}px;
   background: ${({ theme }) => theme.colors.white};
   bottom: 0;
-  right: ${({ open }) => (open ? 0 : '-300px')};
-  width: 270px;
+  right: ${({ open }) => (open ? 0 : '-350px')};
+  width: 350px;
   box-shadow: ${({ theme }) => theme.shadows.regular}!important;
   z-index: 10;
   transition: 0.3s;

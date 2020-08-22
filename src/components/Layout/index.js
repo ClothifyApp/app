@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -14,11 +14,11 @@ export default function Layout({ children, isAuth }) {
   const [drawerOptions, setDrawerOptions] = useState({});
 
   const handleOpenDrawer = (content, title) => {
-    setDrawerOptions({ title, content });
+    setDrawerOptions({ title, content: content });
   };
 
   const handleCloseDrawer = () => setDrawerOptions({});
-
+  console.log(drawerOptions.content);
   return (
     <>
       <Header>
@@ -31,6 +31,7 @@ export default function Layout({ children, isAuth }) {
           </SolidButton>
           {headerIconButtons.map(({ icon, color, component, title }) => (
             <FlatButton
+              key={title}
               color={color}
               onClick={() => handleOpenDrawer(component, title)}
             >
@@ -45,7 +46,7 @@ export default function Layout({ children, isAuth }) {
         onClose={handleCloseDrawer}
         title={drawerOptions.title}
       >
-        {drawerOptions.content}
+        {drawerOptions.content && <drawerOptions.content />}
       </Drawer>
     </>
   );
