@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
 export const ImageSlider = styled.div`
   position: absolute;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(${({ total }) => total}, 1fr);
   width: ${({ total }) => total * 100}%;
   top: 0;
   left: ${({ current }) => (current - 1) * -100}%;
@@ -47,7 +47,7 @@ export const Control = styled.button`
   transition: 0.3s;
   background: transparent;
   color: ${({ theme }) => theme.colors.white};
-  text-shadow: ${({ theme }) => theme.shadows.regular};
+  filter: drop-shadow(1px 1px 1px #666);
   &:hover {
     color: ${({ theme }) => theme.colors.primary};
   }

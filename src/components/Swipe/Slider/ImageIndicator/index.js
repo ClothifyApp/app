@@ -1,7 +1,7 @@
 import React from 'react';
 import { IndicatorWrapper, IndicatorElement } from './styles';
 
-export default function ImageIndicator({ currentPage, totalPages }) {
+export default function ImageIndicator({ currentPage, totalPages, color }) {
   return (
     <IndicatorWrapper>
       {new Array(totalPages).fill(null).map((_, index) => (
@@ -9,6 +9,7 @@ export default function ImageIndicator({ currentPage, totalPages }) {
           key={index}
           isActive={currentPage === index + 1}
           totalElements={totalPages}
+          color={color}
         />
       ))}
     </IndicatorWrapper>

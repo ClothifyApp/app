@@ -23,12 +23,13 @@ export default function Slider({ imageUrls, onClick }) {
     <Wrapper>
       <ImageSlider current={currentImage} total={imageUrls.length}>
         {imageUrls.map((url, index) => (
-          <img onClick={onClick} src={url} key={index} />
+          <img onClick={onClick} src={url} key={index} alt='Cloth' />
         ))}
       </ImageSlider>
       <ImageIndicator
         currentPage={currentImage}
         totalPages={imageUrls.length}
+        color='greyLigther'
       />
       {currentImage > 1 && (
         <Control position='left' onClick={handleMoveSlideLeft}>

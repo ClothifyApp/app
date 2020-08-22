@@ -14,7 +14,8 @@ export const IndicatorElement = styled.div`
   width: ${({ totalElements }) => 80 / totalElements}%;
   height: 3px;
   margin: 0 2px;
-  background: #ffffff;
-  opacity: ${({ isActive }) => (isActive ? 1 : 0.45)};
+  background: ${({ theme, color }) => theme.colors[color || 'white']};
+  opacity: ${({ isActive }) => (isActive ? 1 : 0.55)};
   border-radius: 1px;
+  box-shadow: 1px 1px 2px #444;
 `;
