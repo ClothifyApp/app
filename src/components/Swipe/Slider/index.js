@@ -8,10 +8,11 @@ import {
 import { Wrapper, Control } from './styles';
 import ImageIndicator from './ImageIndicator';
 
-export default function Slider({ imgeUrls }) {
+export default function Slider({ imgeUrls, onClick }) {
   return (
     <Wrapper>
       <img
+        onClick={onClick}
         src='https://i.pinimg.com/originals/1c/8f/3d/1c8f3deb5a43a45348993bb532f04ccf.jpg'
         alt=''
       />

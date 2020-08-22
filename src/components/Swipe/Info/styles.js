@@ -14,7 +14,7 @@ export const InfoWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    transition: 0.4s;
+    transition: 0.3s;
   }
   & > .info {
     height: ${({ isOpen }) => (isOpen ? 0 : textHeight)}px;

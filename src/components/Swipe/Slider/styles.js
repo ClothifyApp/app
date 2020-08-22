@@ -17,6 +17,11 @@ export const Wrapper = styled.div`
     height: ${imageHeight}px;
     object-fit: cover;
     background: ${({ theme }) => theme.colors.whiteOpacity};
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+      opacity: 0.8;
+    }
   }
 `;
 
