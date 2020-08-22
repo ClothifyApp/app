@@ -1,5 +1,6 @@
 import React from 'react';
+import { InfoWrapper } from './styles';
 
 export default function Info() {
-  return <div>I'm an informative component</div>;
+  return <InfoWrapper>I'm an informative component</InfoWrapper>;
 }

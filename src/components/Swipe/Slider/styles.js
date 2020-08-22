@@ -6,6 +6,7 @@ import { buttonMixin } from '../../base/Mixins';
 export const Wrapper = styled.div`
   position: relative;
   height: ${totalHeight}px;
+  width: 100%;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: ${({ theme }) => theme.shadows.regular};
