@@ -28,7 +28,7 @@ export const ContentContainer = styled.div`
   padding: 0 15px;
 `;
 
-export const Title = styled.h3`
+export const Title = styled.h2`
   margin-top: 50px;
   text-align: center;
 `;

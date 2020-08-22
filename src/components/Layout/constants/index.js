@@ -1,6 +1,6 @@
 import { faBell, faUser } from '@fortawesome/free-solid-svg-icons';
 import Matches from '../../Matches';
-import ProfileEdition from '../../ProfileEdition';
+import EditProfileContent from '../../EditProfileContent';
 
 export const headerIconButtons = [
   {
@@ -12,7 +12,7 @@ export const headerIconButtons = [
   {
     icon: faUser,
     color: 'primary',
-    component: ProfileEdition,
+    component: EditProfileContent,
     title: 'Perfil',
   },
 ];
