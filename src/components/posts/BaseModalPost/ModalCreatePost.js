@@ -38,20 +38,26 @@ const Modal = styled.div`
   cursor: auto;
   @media ${device.mobileM}{
     width:  100%;
-    height: 700px;
+    height: auto;
+    margin-top: 70px;
+    overflow: auto;
+  }
+  @media ${device.mobileL}{
+    width:  100%;
+    height: auto;
     margin-top: 70px;
     overflow: auto;
   }
   @media ${device.laptop}{
     width:  460px;
-    height: 700px;
+    height: auto;
     margin-top: 70px;
     overflow: auto;
   }
   @media ${device.desktop}{
     width:  100%;
     max-width: 500px;
-    height: 90%;
+    height: auto;
     margin-top: 70px;
   }
 

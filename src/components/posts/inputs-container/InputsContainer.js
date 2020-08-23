@@ -1,5 +1,4 @@
 import React from 'react';
-import TagsPost from '../tags-post/TagsPost';
 import { Name, Entry, Text } from './style';
 
 export const InputsContainer = () => {
@@ -9,7 +8,6 @@ export const InputsContainer = () => {
       <Entry type='text' placeholder='name' />
       <Name>Descripcion</Name>
       <Text></Text>
-      <TagsPost />
     </div>
   );
 };
