@@ -4,7 +4,7 @@ import CreateCardPost from '../CreateCardPost';
 import {
   ImgWrapper, IconPlus, PlusCircle, Title,
 } from './styled';
-import { TagsPost } from '../tags-post/TagsPost';
+import TagsPost from '../TagPost';
 
 // Import ModalBase
 import BaseModalPost from '../BaseModalPost';
