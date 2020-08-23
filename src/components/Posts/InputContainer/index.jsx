@@ -1,5 +1,4 @@
 import React from 'react';
-import TagsPost from '../TagPost';
 import { Name, Entry, Text } from './styled';
 
 const InputsContainer = () => (
@@ -8,7 +7,6 @@ const InputsContainer = () => (
     <Entry type="text" placeholder="name" />
     <Name>Descripcion</Name>
     <Text />
-    <TagsPost />
   </div>
 );
 
