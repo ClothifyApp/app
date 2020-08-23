@@ -1,5 +1,6 @@
+// eslint-disable react/jsx-filename-extension
 import React from 'react';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import { AuthenticatedRoute, UnauthenticatedRoute } from './AuthRoutes';
 import NotFound from '../pages/NotFound';
@@ -15,24 +16,25 @@ const routes = ROUTES.map((route) => {
   return route;
 }).flat();
 
+// eslint-disable-next-line import/prefer-default-export
 export function Router() {
   return (
-    <BrowserRouter>
-      <Switch>
-        {routes.map(({ auth, exact, key, path, redirect, component }) => {
-          const AuthRoute = auth ? AuthenticatedRoute : UnauthenticatedRoute;
-          return (
-            <AuthRoute
-              key={key}
-              exact={exact}
-              component={component}
-              path={path}
-              redirect={redirect}
-            />
-          );
-        })}
-        <Route component={NotFound} />
-      </Switch>
-    </BrowserRouter>
+    <Switch>
+      {routes.map(({
+        auth, exact, key, path, redirect, component,
+      }) => {
+        const AuthRoute = auth ? AuthenticatedRoute : UnauthenticatedRoute;
+        return (
+          <AuthRoute
+            key={key}
+            exact={exact}
+            component={component}
+            path={path}
+            redirect={redirect}
+          />
+        );
+      })}
+      <Route component={NotFound} />
+    </Switch>
   );
 }
