@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { flexCenter } from './Mixins';
+
 export const MainWrapper = styled.section`
   width: 100vw;
   min-height: calc(100vh - ${({ theme }) => theme.sizes.navbarHeight}px);

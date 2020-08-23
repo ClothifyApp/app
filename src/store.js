@@ -7,8 +7,9 @@ const initialStore = {
   user: null,
 };
 
+// eslint-disable-next-line import/prefer-default-export
 export const store = createStore(
   rootReducer,
   initialStore,
-  applyMiddleware(thunk)
+  applyMiddleware(thunk),
 );

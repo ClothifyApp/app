@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { flexCenter, buttonMixin } from '../base/Mixins';
+import { flexCenter, buttonMixin } from './Mixins';
+
+const getColor = (defaultColor) => (props) => (props.color
+  ? props.theme.colors[props.color]
+  : props.theme.colors[defaultColor]);
 
 export const Button = styled.button`
   ${buttonMixin};
@@ -32,7 +36,7 @@ export const WhatsAppButton = styled(Button)`
   color: ${getColor('white')};
   background: ${getColor('green')};
   &:hover {
-    background: ${getColor('greenLigth')};
+    background: ${getColor('greenLight')};
   }
   & svg {
     margin-left: 5px;
@@ -76,10 +80,3 @@ export const TopButton = styled.button`
   color: ${getColor('black')};
   border: 2px solid ${getColor('greyLighter')};
 `;
-
-function getColor(defaultColor) {
-  return (props) =>
-    props.color
-      ? props.theme.colors[props.color]
-      : props.theme.colors[defaultColor];
-}

@@ -1,6 +1,6 @@
-import Login from './../pages/Login';
-import Posts from './../pages/Posts';
-import Swipe from './../pages/Swipe';
+import Login from '../pages/Login';
+import Posts from '../pages/Posts';
+import Swipe from '../pages/Swipe';
 
 // Este es un arreglo donde irán todas las rutas de nuestra App ;)
 const ROUTES = [
