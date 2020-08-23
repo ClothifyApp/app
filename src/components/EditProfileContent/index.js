@@ -8,7 +8,6 @@ import { Wrapper, Actions } from './styles';
 export default function EditProfileContent() {
   return (
     <Wrapper>
-      <h2>Perfil</h2>
       <ProfileCompletion />
       <Tags />
 

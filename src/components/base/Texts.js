@@ -5,4 +5,5 @@ export const InfoText = styled.p`
   font-size: 12px;
   text-align: justify;
   color: ${(props) => props.theme.colors.greyLigther};
+  line-height: 1.1em;
 `;

@@ -21,18 +21,6 @@ export const Header = styled.header`
   }
 `;
 
-export const Drawer = styled.aside`
-  position: fixed;
-  top: ${({ theme }) => theme.sizes.navbarHeight}px;
-  background: ${({ theme }) => theme.colors.white};
-  bottom: 0;
-  right: ${({ open }) => (open ? 0 : '-350px')};
-  width: 320px;
-  box-shadow: ${({ theme }) => theme.shadows.regular};
-  z-index: 10;
-  transition: 0.3s;
-`;
-
 export const Main = styled.main`
   margin-top: ${({ theme }) => theme.sizes.navbarHeight}px;
 `;
