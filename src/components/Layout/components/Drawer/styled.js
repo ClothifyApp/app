@@ -29,6 +29,6 @@ export const ContentContainer = styled.div`
 `;
 
 export const Title = styled.h2`
-margin-top: 15px;
-text-align: center;
+  margin-top: 15px;
+  text-align: center;
 `;

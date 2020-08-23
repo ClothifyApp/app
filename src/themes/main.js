@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/prefer-default-export
 export const mainTheme = {
   colors: {
     primary: '#B71AB7',
@@ -6,12 +7,13 @@ export const mainTheme = {
     whiteOpacity: '#F6F6F6',
     black: '#191919',
     grey: '#4A4A4A',
-    greyLigther: '#C0C0C0',
+    greyLighter: '#C0C0C0',
     pink: '#FC497B',
     green: '#25D366',
-    greenLigth: '#2dda6d',
+    greenLight: '#2dda6d',
     yellow: '#FFC850',
     gradient: 'linear-gradient(0deg, #B71AB7 0%, #DA0B9F 100%);',
+    pinkLighter: '#DA0B9F',
   },
   shadows: {
     small: '0px 2px 2px rgba(26, 22, 32, 0.1)',

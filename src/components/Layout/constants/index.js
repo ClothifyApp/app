@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import { faBell, faUser } from '@fortawesome/free-solid-svg-icons';
 import Matches from '../../Matches';
 import EditProfileContent from '../../EditProfileContent';

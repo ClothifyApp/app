@@ -7,10 +7,10 @@ export const FormField = styled.div`
   padding: 10px 0;
   margin-bottom: 15px;
   color: ${(props) => props.theme.colors.grey};
-  border-bottom: 1px solid ${(props) => props.theme.colors.greyLigther};
+  border-bottom: 1px solid ${(props) => props.theme.colors.greyLighter};
   outline: none;
   & .prefix {
-    border-right: 1px solid ${(props) => props.theme.colors.greyLigther};
+    border-right: 1px solid ${(props) => props.theme.colors.greyLighter};
   }
   & input,
   & select {
