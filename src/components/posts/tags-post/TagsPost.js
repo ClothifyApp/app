@@ -3,7 +3,7 @@ import { Button } from '../../base/Buttons';
 
 import { Tag, Wrapper } from './style';
 
-export default function TagsPost({ onEnds }) {
+export const  TagsPost = ({ onEnds }) => {
   return (
     <>
       <h2>Preferencias</h2>
