@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ListOfPostCard from '../components/Posts/ListOfPostCard';
 
-import PostIlustration from '../assets/images/newPost.svg';
+import PostIlustration from '../assets/images/new-post.svg';
 
 import { device } from '../components/base/device';
 
