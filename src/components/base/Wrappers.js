@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 import { flexCenter } from './Mixins';
+import device from './device';
 
 export const MainWrapper = styled.section`
   width: 100vw;
   min-height: calc(100vh - ${({ theme }) => theme.sizes.navbarHeight}px);
   display: grid;
-  grid-template-columns: 1fr 500px;
+  grid-template-columns: 1fr;
+  @media ${device.mobileL} {
+    grid-template-columns: 1fr 500px;
+  }
 `;
 
 export const LetsGoWrapper = styled.section`
@@ -22,12 +26,19 @@ export const LetsGoWrapper = styled.section`
 
 export const MainImageWrapper = styled.div`
   ${flexCenter};
+  height: auto;
   width: 100%;
-  height: 100vh;
-  z-index: -1;
   & img {
-    height: 60%;
-    max-width: 100%;
+    height: auto;
+    max-width: 300px;
     object-fit: contain;
+  }
+  @media ${device.mobileL} {
+    width: 100%;
+    height: 100vh;
+    & img {
+      height: 60%;
+      max-width: 100%;
+    }
   }
 `;
