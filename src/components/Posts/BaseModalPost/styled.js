@@ -36,22 +36,20 @@ export const Modal = styled.div`
     margin-top: 70px;
     overflow: auto;
   }
-  @media ${device.laptop} {
-    width: 460px;
-    height: auto;
-    margin-top: 70px;
-    overflow: auto;
-  }
   @media ${device.mobileL}{
     width:  100%;
     height: auto;
     margin-top: 70px;
     overflow: auto;
   }
+  @media ${device.laptop} {
+    width: 460px;
+    margin-top: 70px;
+    overflow: auto;
+  }
   @media ${device.desktop} {
-    width: 100%;
+    width: 500px;
     max-width: 500px;
-    height: auto;
     margin-top: 70px;
   }
 `;
