@@ -38,7 +38,11 @@ const ProfileCompletion = ({ onContinue }) => (
 );
 
 ProfileCompletion.propTypes = {
-  onContinue: PropTypes.func.isRequired,
+  onContinue: PropTypes.func,
+};
+
+ProfileCompletion.defaultProps = {
+  onContinue: null,
 };
 
 export default ProfileCompletion;

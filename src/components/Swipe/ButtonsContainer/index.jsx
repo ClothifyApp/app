@@ -43,15 +43,19 @@ const ButtonsContainer = ({
 ButtonsContainer.propTypes = {
   showWhatsapp: PropTypes.bool,
   showReactions: PropTypes.bool,
-  onDislike: PropTypes.func.isRequired,
-  onSuperLike: PropTypes.func.isRequired,
-  onLike: PropTypes.func.isRequired,
-  onWhatsapp: PropTypes.func.isRequired,
+  onDislike: PropTypes.func,
+  onSuperLike: PropTypes.func,
+  onLike: PropTypes.func,
+  onWhatsapp: PropTypes.func,
 };
 
 ButtonsContainer.defaultProps = {
   showWhatsapp: false,
   showReactions: false,
+  onDislike: null,
+  onSuperLike: null,
+  onLike: null,
+  onWhatsapp: null,
 };
 
 export default ButtonsContainer;

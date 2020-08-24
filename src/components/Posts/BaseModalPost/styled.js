@@ -22,7 +22,7 @@ export const Overlay = styled.dialog`
 
 export const Modal = styled.div`
   position: relative;
-  width: 400px;
+  width: 100%;
   padding: 35px 25px;
   padding-top: 60px;
   background: ${(props) => props.theme.colors.white};
@@ -31,27 +31,22 @@ export const Modal = styled.div`
   border-radius: 10px;
   cursor: auto;
   @media ${device.mobileM} {
-    width: 100%;
-    height: 700px;
+    margin-top: 70px;
+    overflow: auto;
+  }
+  @media ${device.mobileL}{
     margin-top: 70px;
     overflow: auto;
   }
   @media ${device.laptop} {
     width: 460px;
-    height: auto;
-    margin-top: 70px;
-    overflow: auto;
-  }
-  @media ${device.mobileL}{
-    width:  100%;
-    height: auto;
+    max-height: 90%;
     margin-top: 70px;
     overflow: auto;
   }
   @media ${device.desktop} {
-    width: 100%;
+    width: 500px;
     max-width: 500px;
-    height: auto;
     margin-top: 70px;
   }
 `;

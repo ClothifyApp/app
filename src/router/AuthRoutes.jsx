@@ -31,10 +31,14 @@ const NoAuthComponent = ({
 };
 
 NoAuthComponent.propTypes = {
-  component: PropTypes.element.isRequired,
+  component: PropTypes.func,
   path: PropTypes.string.isRequired,
   exact: PropTypes.bool.isRequired,
   authorized: PropTypes.bool.isRequired,
+};
+
+NoAuthComponent.defaultProps = {
+  component: null,
 };
 
 function mapStateToProps({ token }) {
