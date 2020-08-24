@@ -28,7 +28,11 @@ const TagsPost = ({ onEnds }) => (
 );
 
 TagsPost.propTypes = {
-  onEnds: PropTypes.func.isRequired,
+  onEnds: PropTypes.func,
+};
+
+TagsPost.defaultProps = {
+  onEnds: null,
 };
 
 export default TagsPost;
