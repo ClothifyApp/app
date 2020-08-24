@@ -20,10 +20,10 @@ const TagsPost = ({ onEnds }) => (
       <Tag>skirt</Tag>
       <Tag>shoes</Tag>
       <Tag>tie</Tag>
-      <Button margin="10px" onClick={onEnds}>
-        Guardar
-      </Button>
     </Wrapper>
+    <Button margin="10px" onClick={onEnds}>
+      Guardar
+    </Button>
   </>
 );
 

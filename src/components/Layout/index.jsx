@@ -7,9 +7,10 @@ import { SolidButton, FlatButton } from '../base/Buttons';
 import Drawer from './components/Drawer';
 import { headerIconButtons } from './constants';
 
-import { Header, Main } from './styled';
+import { Header, Main, LogoComplement } from './styled';
 
 import Logo from '../../assets/images/logo.svg';
+import LogoText from '../../assets/images/Clothify.svg';
 
 const Layout = ({ children }) => {
   const [drawerOptions, setDrawerOptions] = useState({});
@@ -23,7 +24,8 @@ const Layout = ({ children }) => {
     <>
       <Header>
         <Link to="/">
-          <img src={Logo} alt="Clothify" />
+          <img src={Logo} alt="ClothifyLogo" height="120" />
+          <LogoComplement src={LogoText} alt="Clothify" width="100" />
         </Link>
         <nav>
           <SolidButton as={Link} to="/posts">
