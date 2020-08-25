@@ -26,7 +26,6 @@ const Pic = () => {
       }
     })
       .then((response) => {
-
         setImage({ src: response.data.data.imagePath, alt: image.name })
       }).catch((error) => {
         //handle error
