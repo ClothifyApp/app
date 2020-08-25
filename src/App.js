@@ -9,6 +9,7 @@ import Layout from './components/Layout';
 import { mainTheme } from './themes/main';
 import { Router } from './router';
 import { store } from './store';
+import Loader from './components/base/Loader';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Layout>
             <Router />
           </Layout>
+          <Loader />
         </BrowserRouter>
       </ThemeProvider>
     </Provider>
