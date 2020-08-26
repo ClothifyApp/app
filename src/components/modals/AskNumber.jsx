@@ -36,7 +36,7 @@ const AskNumber = ({ onContinue, value, onChange }) => {
           <input
             type="text"
             pattern="\d*"
-            maxLength={11}
+            maxLength={10}
             placeholder="Eg: 3201234455"
             value={value}
             onChange={onChange}
