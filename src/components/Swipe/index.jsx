@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -12,12 +13,12 @@ function Swipe({
   onDislike,
   onSuperLike,
   user,
-  garments: {
-    name,
-    description,
-    photos,
-    tags
-  }
+  garment = {
+    name: '',
+    description: '',
+    photos: [],
+    tags: [],
+  },
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -25,7 +26,12 @@ function Swipe({
 
   return (
     <Wrapper>
-      <Slider onClick={handleImageClick} imageUrls={images} user={user} garments={...garments} />
+      <Slider
+        onClick={handleImageClick}
+        imageUrls={garment.photos}
+        user={user}
+        garments={garment}
+      />
       <ButtonsContainer
         onWhatsapp={onWhatsapp}
         onLike={onLike}
@@ -44,9 +50,8 @@ Swipe.propTypes = {
   onSuperLike: PropTypes.func,
   onLike: PropTypes.func,
   onWhatsapp: PropTypes.func,
-  // eslint-disable-next-line react/forbid-prop-types
-  images: PropTypes.array.isRequired,
-  garments: PropTypes.object.isRequired,
+  garment: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 Swipe.defaultProps = {

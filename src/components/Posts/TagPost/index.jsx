@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Tag, WrapperTag } from './styled';
+import { Button } from '../../base/Buttons';
 
-const TagsPost = () => (
+const TagsPost = ({ onEnds }) => (
   <>
     <h2>Preferencias</h2>
     <WrapperTag>
