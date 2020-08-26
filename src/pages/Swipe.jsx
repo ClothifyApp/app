@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -6,7 +7,7 @@ import { bindActionCreators } from 'redux';
 
 import {
   getGarments as getGarmentsAction,
-  getTopGarment as getTopGarmentsAction,
+  makeReactionAction,
 } from '../actions/swipeActions';
 import SwipeComponent from '../components/Swipe';
 
@@ -26,44 +27,52 @@ const images = [
 
 function Swipe({
   getGarments,
-  getTopGarment,
-  garments,
+  makeReaction,
   topGarment,
 }) {
   useEffect(() => {
     getGarments();
   }, []);
 
-  console.log(garments.length, topGarment);
   const handleLike = () => {
-    getTopGarment();
+    makeReaction('like', topGarment._id);
+  };
+
+  const handleSuperlike = () => {
+    makeReaction('superlike', topGarment._id);
+  };
+
+  const handleDisLike = () => {
+    makeReaction('dislike', topGarment._id);
   };
 
   return (
     <Wrapper>
-      <SwipeComponent garment={{ user: {}, ...topGarment, photos: images }} onLike={handleLike} />
+      <SwipeComponent
+        garment={{ user: {}, ...topGarment, photos: images }}
+        onLike={handleLike}
+        onSuperLike={handleSuperlike}
+        onDislike={handleDisLike}
+      />
     </Wrapper>
   );
 }
 
 Swipe.propTypes = {
   getGarments: PropTypes.func.isRequired,
-  getTopGarment: PropTypes.func.isRequired,
+  makeReaction: PropTypes.func.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   topGarment: PropTypes.object.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  garments: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  garments: state.garments,
   topGarment: state.topGarment,
 });
 
 const mapDispatchToProps = (dispatch) => (
   bindActionCreators({
     getGarments: getGarmentsAction,
-    getTopGarment: getTopGarmentsAction,
+    makeReaction: makeReactionAction,
   }, dispatch)
 );
 

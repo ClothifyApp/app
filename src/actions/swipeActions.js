@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import api, { setToken, getUser } from '../api';
+import api, { setToken, getUser, doReaction } from '../api';
 import { setLoading } from './globalActions';
 import { GET_GARMENTS, GET_TOP_GARMENT } from './actionTypes';
 
@@ -28,6 +28,12 @@ export const getTopGarment = () => async (dispatch, getState) => {
     topGarment,
   }));
   dispatch(setLoading(false));
+};
+
+export const makeReactionAction = (type, garmentId) => async (dispatch) => {
+  dispatch(setLoading(true));
+  await doReaction(type, garmentId);
+  dispatch(getTopGarment());
 };
 
 export const getGarments = () => async (dispatch) => {

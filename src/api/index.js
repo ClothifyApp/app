@@ -13,6 +13,14 @@ export const getUser = async (userId) => {
   return data.data.user;
 };
 
-console.log('process.env.REACT_APP_CLOTHIFY_API_URL', process.env.REACT_APP_CLOTHIFY_API_URL);
+export const doReaction = async (type, garmentId) => {
+  const reaction = {
+    type,
+    garmentId,
+  };
+  const { data } = await clothifyService.post('/reactions', reaction);
+
+  return data.data.reaction;
+};
 
 export default clothifyService;
