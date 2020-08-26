@@ -29,7 +29,11 @@ const VerifyCode = ({ onEnds }) => (
 );
 
 VerifyCode.propTypes = {
-  onEnds: PropTypes.func.isRequired,
+  onEnds: PropTypes.func,
+};
+
+VerifyCode.defaultProps = {
+  onEnds: null,
 };
 
 export default VerifyCode;

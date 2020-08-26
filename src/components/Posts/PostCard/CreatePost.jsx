@@ -34,8 +34,10 @@ export const CreatePost = () => {
           onBack={handleBack}
           showClose
         >
-          {step === 1 && <CreateCardPost onContinue={handleContinue} />}
-          {step === 2 && <TagsPost />}
+          <>
+            {step === 1 && <CreateCardPost onContinue={handleContinue} />}
+            {step === 2 && <TagsPost />}
+          </>
         </BaseModalPost>
         <PlusCircle onClick={handleOpenModal}>
           <IconPlus icon={faPlus} />

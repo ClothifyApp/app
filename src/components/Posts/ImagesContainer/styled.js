@@ -10,8 +10,8 @@ export const Wrapper = styled.div`
 `;
 
 export const Pictures = styled.div`
-  width: 112px;
-  height: 135px;
+  width: 80px;
+  height: 100px;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
