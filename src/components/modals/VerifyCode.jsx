@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { FormField } from '../base/FormFields';
@@ -6,30 +6,71 @@ import { FlatButton, Button } from '../base/Buttons';
 import { InfoText } from '../base/Texts';
 import { VerifyCodeWrapper, Strong } from './styled';
 
-const VerifyCode = ({ onContinue }) => (
-  <>
-    <h2>Introduce el código</h2>
-    <VerifyCodeWrapper>
-      <FormField>
-        <input type="number" />
-      </FormField>
-      <Strong className="m-bottom-xs">
-        Introduce el número enviado a +573222497943
-      </Strong>
-    </VerifyCodeWrapper>
-    <FlatButton>Reenviar</FlatButton>
-    <InfoText>
-      Heres going to be some amazing text describing exactly whats happeing,
-      but so far lets pu this test text. I think that is going to work.
-      However, let me know if you read it all.
-    </InfoText>
+import { firebase } from '../../services/firebase';
 
-    <Button onClick={onContinue}>Continuar</Button>
-  </>
-);
+const VerifyCode = ({
+  value, phoneNumber, onChange, onContinue, onResend,
+}) => {
+  const [recaptchaVerifier, setRechaptchaVerifier] = useState(null);
+
+  useEffect(() => {
+    const recaptcha = new firebase.auth.RecaptchaVerifier('resend-button', {
+      size: 'invisible',
+    });
+
+    setRechaptchaVerifier(recaptcha);
+  }, []);
+
+  const handleResend = () => onResend(recaptchaVerifier);
+
+  const submitDisabled = value.length !== 6;
+  return (
+    <>
+      <h2>Introduce el código</h2>
+      <VerifyCodeWrapper>
+        <FormField>
+          <input
+            type="text"
+            pattern="\d*"
+            maxLength={6}
+            placeholder="Eg: 444555"
+            value={value}
+            onChange={onChange}
+          />
+        </FormField>
+        <Strong className="m-bottom-xs">
+          ¡Te enviamos el código al +57
+          {phoneNumber}
+          !
+        </Strong>
+      </VerifyCodeWrapper>
+      <FlatButton id="resend-button" onClick={handleResend}>
+        Reenviar
+      </FlatButton>
+      <InfoText>
+        Introduce arriba el código que te llegó por SMS para poder verificar que
+        el número es válido y tuyo. ¡Cada vez falta menos para encontrar el amor
+        en tu próxima prenda!
+      </InfoText>
+
+      <Button onClick={onContinue} disabled={submitDisabled}>
+        Continuar
+      </Button>
+    </>
+  );
+};
 
 VerifyCode.propTypes = {
+  value: PropTypes.string,
+  phoneNumber: PropTypes.string,
   onContinue: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onResend: PropTypes.func.isRequired,
+};
+
+VerifyCode.defaultProps = {
+  value: '',
+  phoneNumber: '',
 };
 
 export default VerifyCode;

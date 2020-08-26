@@ -19,16 +19,19 @@ const ProgressIndicator = styled.div`
   width: 80px;
   height: 80px;
   margin: auto;
-  border: 8px solid ${({ theme }) => theme.colors.greyLighter};
+  border: 8px solid ${({ theme }) => theme.colors.white};
   border-radius: 50%;
   border-top: 8px solid ${({ theme }) => theme.colors.primary};
   animation: ${rotate} 1s linear infinite;
+  & ~ * {
+    color: ${({ theme }) => theme.colors.white};
+  }
 `;
 
 const Loader = ({ isLoading }) => (
-  <BaseModal isOpen={isLoading}>
+  <BaseModal isOpen={isLoading} transparent>
     <ProgressIndicator />
-    <h3>Por favor esperanos...</h3>
+    <h3>Cargando...</h3>
   </BaseModal>
 );
 

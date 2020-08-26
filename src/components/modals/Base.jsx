@@ -14,18 +14,19 @@ const Base = ({
   showClose,
   showBack,
   position,
+  transparent,
 }) => (
   <Overlay position={position} open={isOpen}>
-    <Modal>
+    <Modal transparent={transparent}>
       {showBack && (
-      <TopButton position="left" onClick={onBack}>
-        <FontAwesomeIcon icon={faChevronLeft} />
-      </TopButton>
+        <TopButton position="left" onClick={onBack}>
+          <FontAwesomeIcon icon={faChevronLeft} />
+        </TopButton>
       )}
       {showClose && (
-      <TopButton position="right" onClick={onClose}>
-        <FontAwesomeIcon icon={faTimes} />
-      </TopButton>
+        <TopButton position="right" onClick={onClose}>
+          <FontAwesomeIcon icon={faTimes} />
+        </TopButton>
       )}
       {children}
     </Modal>
@@ -40,6 +41,7 @@ Base.propTypes = {
   showClose: PropTypes.bool.isRequired,
   showBack: PropTypes.bool,
   position: PropTypes.string,
+  transparent: PropTypes.bool,
 };
 
 Base.defaultProps = {
@@ -48,6 +50,7 @@ Base.defaultProps = {
   position: 'absolute',
   children: null,
   onBack: null,
+  transparent: false,
 };
 
 export default Base;
