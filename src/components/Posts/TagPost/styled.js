@@ -7,7 +7,7 @@ const getColor = (inactiveColor, activeColor = 'gradient') => (props) => {
   return props.theme.colors[inactiveColor];
 };
 
-export const Wrapper = styled.div`
+export const WrapperTag = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
