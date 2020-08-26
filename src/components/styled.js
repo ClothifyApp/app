@@ -23,5 +23,6 @@ export const InputWrapper = styled.div`
   }
   & input::placeholder {
     color: ${({ theme }) => theme.colors.greyLighter};
+    font-size: 14px;
   }
 `;
