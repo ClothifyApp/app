@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,23 +7,25 @@ import { faCheckCircle, faVenusMars } from '@fortawesome/free-solid-svg-icons';
 import { Tag } from '../../base/Tag';
 import { InfoWrapper, Heading, Body } from './styled';
 
-const Info = ({ isOpen, userName, name, description }) => (
+
+const Info = ({ isOpen, garment }) => (
   <InfoWrapper isOpen={isOpen}>
     <div className="info">
-      <h2>Image title</h2>
-      <p>Some description</p>
+      <h2>{garment.name}</h2>
+      <p>{garment.user.name}</p>
     </div>
     <div className="open-info">
       <Heading>
         <div className="avatar">
           <img
-            src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-            alt=""
+            src={garment.user.avatar}
+            alt={garment.user.name}
           />
         </div>
         <div className="name-gender">
           <h3>
-            {userName}
+            {garment.user.name}
+            {' '}
             <FontAwesomeIcon icon={faCheckCircle} />
           </h3>
           <p>
@@ -34,10 +37,13 @@ const Info = ({ isOpen, userName, name, description }) => (
       <Body>
         <h3>{name}</h3>
         <p>{description}</p>
+        <h3>{garment.name}</h3>
+        <p>
+          {garment.description}
+        </p>
         <div className="tags-container">
-          <Tag active>Stuff</Tag>
-          <Tag active>tie</Tag>
-          <Tag active>t-shirt</Tag>
+          {garment.tags && garment.tags.map((tag) => <Tag active key={tag}>{tag}</Tag>)}
+          {(!garment.tags || !garment.tags.length) && <span>Ninguna categoría :(</span>}
         </div>
       </Body>
     </div>
@@ -46,6 +52,7 @@ const Info = ({ isOpen, userName, name, description }) => (
 
 Info.propTypes = {
   isOpen: PropTypes.bool,
+  garment: PropTypes.object.isRequired,
 };
 
 Info.defaultProps = {

@@ -27,9 +27,7 @@ export const CreatePost = ({ onEnds }) => {
         <BaseModalPost
           position="fixed"
           isOpen={isModalOpen}
-          onClose={handleCloseModal}
-          showClose>
-          <CreateCardPost />
+          onClose={handleCloseModal}>
         </BaseModalPost>
         <PlusCircle onClick={handleOpenModal}>
           <IconPlus icon={faPlus} />

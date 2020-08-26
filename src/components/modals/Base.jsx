@@ -53,7 +53,6 @@ Base.defaultProps = {
   onClose: null,
   showClose: false,
   transparent: false,
-
 };
 
 export default Base;

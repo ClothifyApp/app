@@ -22,8 +22,8 @@ export const Overlay = styled.dialog`
 
 export const Modal = styled.div`
   position: relative;
-  width: 400px;
-  padding: 25px 25px;
+  width: 100%;
+  padding: 35px 25px;
   padding-top: 60px;
   background: ${(props) => props.theme.colors.white};
   box-shadow: ${(props) => props.theme.shadows.regular};
@@ -35,14 +35,12 @@ export const Modal = styled.div`
     overflow: auto;
   }
   @media ${device.mobileL}{
-    width:  100%;
-    height: auto;
     margin-top: 70px;
     overflow: auto;
   }
-  @media ${device.tablet}{
-    width:  100%;
-    height: auto;
+  @media ${device.laptop} {
+    width: 460px;
+    max-height: 90%;
     margin-top: 70px;
     overflow: auto;
   }
