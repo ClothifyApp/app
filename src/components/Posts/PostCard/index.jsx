@@ -44,8 +44,6 @@ const PostCard = ({ id, src }) => {
       .get('https://clothify-api.vercel.app/garments/user', getGarment, {
         headers: {
           accept: 'application/json',
-          'x-access-token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNDVjYzBjMDRhNjYyMDAwODg1MzA4MiIsImlhdCI6MTU5ODQwOTc0MCwiZXhwIjoxNjI5OTQ1NzQwfQ.hU6RR_w0ewbQrjOfO_7JViCcEBnwk7CR7DlqTmltXOg',
         },
         
       })

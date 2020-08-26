@@ -35,8 +35,6 @@ const Info = ({ isOpen, garment }) => (
         </div>
       </Heading>
       <Body>
-        <h3>{name}</h3>
-        <p>{description}</p>
         <h3>{garment.name}</h3>
         <p>
           {garment.description}

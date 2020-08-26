@@ -1,7 +1,5 @@
 
 
-import { SET_LOADING, GET_GARMENTS, GET_TOP_GARMENT } from '../actions/actionTypes';
-
 import {
   SET_LOADING,
   SET_TOKEN,
