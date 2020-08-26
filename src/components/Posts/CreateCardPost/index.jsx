@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
+/* import PropTypes from 'prop-types'; */
 
 /* Others components */
 import Pic from '../Pictures';
@@ -93,7 +93,7 @@ const CreateCardPost = () => {
         <Tag>shoes</Tag>
         <Tag>tie</Tag>
       </WrapperTag>
-      <Button onClick={guardarDatos}>Guardar</Button>
+      <Button margin='30px 0 0 0' onClick={guardarDatos}>Guardar</Button>
     </>
   );
 };

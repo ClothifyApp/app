@@ -83,5 +83,5 @@ export const Icon = styled(FontAwesomeIcon)`
   color: ${({ theme }) => theme.colors.pinkLighter};
   font-size: 24px;
   margin: 0 4px 4px 0;
-  position: fixed;
+  position: absolute;
 `;
