@@ -11,7 +11,13 @@ function Swipe({
   onLike,
   onDislike,
   onSuperLike,
-  images,
+  user,
+  garments: {
+    name,
+    description,
+    photos,
+    tags
+  }
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -19,7 +25,7 @@ function Swipe({
 
   return (
     <Wrapper>
-      <Slider onClick={handleImageClick} imageUrls={images} />
+      <Slider onClick={handleImageClick} imageUrls={images} user={user} garments={...garments} />
       <ButtonsContainer
         onWhatsapp={onWhatsapp}
         onLike={onLike}
@@ -40,6 +46,7 @@ Swipe.propTypes = {
   onWhatsapp: PropTypes.func,
   // eslint-disable-next-line react/forbid-prop-types
   images: PropTypes.array.isRequired,
+  garments: PropTypes.object.isRequired,
 };
 
 Swipe.defaultProps = {

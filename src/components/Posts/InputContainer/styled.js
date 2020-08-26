@@ -14,6 +14,7 @@ export const Entry = styled.input`
   border-radius: 4px;
   font-size: 16px;
   border: none;
+  box-shadow: -1px 1px 2px rgba(26, 22, 32, 0.25);
   &:focus {
     border-color: 1px solid red;
     outline: none;
@@ -27,7 +28,7 @@ export const Text = styled.textarea`
   background: ${({ theme }) => theme.colors.whiteOpacity};
   border-radius: 4px;
   border: none;
-
+  box-shadow: -1px 1px 2px rgba(26, 22, 32, 0.25);
   &:focus {
     border-color: 1px solid red;
     outline: none;

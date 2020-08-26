@@ -41,6 +41,18 @@ export const Pictures = styled.div`
   }
 `;
 
+export const Img = styled.img`
+  border: none;
+  box-sizing: content-box;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  justify-content: center;
+  position: relative;
+`;
+
 export const Input = styled.input`
   background: ${({ theme }) => theme.colors.whiteOpacity};
   border: none;
@@ -71,4 +83,5 @@ export const Icon = styled(FontAwesomeIcon)`
   color: ${({ theme }) => theme.colors.pinkLighter};
   font-size: 24px;
   margin: 0 4px 4px 0;
+  position: absolute;
 `;

@@ -85,11 +85,11 @@ export default function Posts() {
   return (
     <div>
       <ListOfPostCard />
-      <MainWrapper>
+      {/* <MainWrapper>
         <MainImage>
           <img src={PostIlustration} alt="Ilustracion de new post" />
         </MainImage>
-      </MainWrapper>
+      </MainWrapper> */}
     </div>
   );
 }
