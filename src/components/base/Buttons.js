@@ -27,6 +27,8 @@ export const SolidButton = styled(Button)`
   color: ${getColor('primary')};
   box-shadow: ${({ theme }) => theme.shadows.regular};
   border-radius: 8px;
+  font-size: 15px;
+  padding: .5em 1.5em;
   &:hover {
     box-shadow: ${({ theme }) => theme.shadows.large};
   }

@@ -15,7 +15,8 @@ const ProfileInput = ({ icon, text, children }) => (
 );
 
 ProfileInput.propTypes = {
-  icon: PropTypes.element.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  icon: PropTypes.object.isRequired,
   text: PropTypes.string.isRequired,
   children: PropTypes.element.isRequired,
 };

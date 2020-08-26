@@ -19,7 +19,18 @@ const TagsPost = () => (
       <Tag>shoes</Tag>
       <Tag>tie</Tag>
     </WrapperTag>
+    <Button margin="10px" onClick={onEnds}>
+      Guardar
+    </Button>
   </>
 );
+
+TagsPost.propTypes = {
+  onEnds: PropTypes.func,
+};
+
+TagsPost.defaultProps = {
+  onEnds: null,
+};
 
 export default TagsPost;

@@ -51,12 +51,12 @@ export default function Main() {
         <MainImageWrapper>
           <img
             src={LoginIlustration}
-            alt='Ilustración de login con logo de Clothify'
+            alt="Ilustración de login con logo de Clothify"
           />
         </MainImageWrapper>
         <LetsGoWrapper>
-          <h2>El verdadero amor está en la prenda que buscas!</h2>
-          <Button onClick={handleOpenModal}>Let's go!</Button>
+          <h2>¡El verdadero amor está en la prenda que buscas!</h2>
+          <Button onClick={handleOpenModal}>Comenzar</Button>
         </LetsGoWrapper>
       </MainWrapper>
     </>

@@ -31,8 +31,6 @@ export const Modal = styled.div`
   border-radius: 10px;
   cursor: auto;
   @media ${device.mobileM} {
-    width: 100%;
-    height: 700px;
     margin-top: 70px;
     overflow: auto;
   }
@@ -61,9 +59,8 @@ export const Modal = styled.div`
     overflow: auto;
   }
   @media ${device.desktop} {
-    width: 100%;
+    width: 500px;
     max-width: 500px;
-    height: auto;
     margin-top: 70px;
   }
 `;
