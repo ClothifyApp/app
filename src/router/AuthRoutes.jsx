@@ -31,7 +31,8 @@ const NoAuthComponent = ({
 };
 
 NoAuthComponent.propTypes = {
-  component: PropTypes.func,
+  // eslint-disable-next-line react/forbid-prop-types
+  component: PropTypes.object,
   path: PropTypes.string.isRequired,
   exact: PropTypes.bool.isRequired,
   authorized: PropTypes.bool.isRequired,

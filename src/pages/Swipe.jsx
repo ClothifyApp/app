@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { getGarments as getGarmentsAction } from '../actions/swipeActions';
+import {
+  getGarments as getGarmentsAction,
+  getTopGarment as getTopGarmentsAction
+} from '../actions/swipeActions';
 import SwipeComponent from '../components/Swipe';
 
 const Wrapper = styled.div`
@@ -20,20 +24,48 @@ const images = [
   'https://cdn.fstoppers.com/styles/large-16-9/s3/lead/2016/01/how_to_find_models_lead.jpg',
 ];
 
-function Swipe() {
+function Swipe({
+  getGarments,
+  getTopGarment,
+  garments,
+  topGarment,
+}) {
+  useEffect(() => {
+    getGarments();
+  }, []);
+
+  console.log(garments.length, topGarment);
+
+  const handleLike = () => {
+    getTopGarment();
+  };
+
   return (
     <Wrapper>
-      <SwipeComponent images={images} />
+      <SwipeComponent images={images} onLike={handleLike} />
     </Wrapper>
   );
 }
 
+Swipe.propTypes = {
+  getGarments: PropTypes.func.isRequired,
+  getTopGarment: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  topGarment: PropTypes.object.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  garments: PropTypes.array.isRequired,
+};
+
 const mapStateToProps = (state) => ({
   garments: state.garments,
+  topGarment: state.topGarment,
 });
 
 const mapDispatchToProps = (dispatch) => (
-  bindActionCreators({ getGarments: getGarmentsAction }, dispatch)
+  bindActionCreators({
+    getGarments: getGarmentsAction,
+    getTopGarment: getTopGarmentsAction,
+  }, dispatch)
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Swipe);
