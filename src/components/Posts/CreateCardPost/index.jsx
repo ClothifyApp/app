@@ -34,7 +34,7 @@ const CreateCardPost = () => {
         headers: {
           accept: 'application/json',
           'x-access-token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNDA1NjgzYTIzODI2MDhiMDA5MWI5YSIsImlhdCI6MTU5ODMwODk2NywiZXhwIjoxNjI5ODQ0OTY3fQ.HjU_-1Zu_9z60EcItokCcyjzi5YCXIDIZVK3-RRJFuQ',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNDVjYzBjMDRhNjYyMDAwODg1MzA4MiIsImlhdCI6MTU5ODQwOTc0MCwiZXhwIjoxNjI5OTQ1NzQwfQ.hU6RR_w0ewbQrjOfO_7JViCcEBnwk7CR7DlqTmltXOg',
         },
       })
       .then((response) => {
@@ -74,7 +74,6 @@ const CreateCardPost = () => {
             name="description"
             onChange={handleChangeInputChange}
             value={input.description}
-            required
           />
         </div>
       </form>

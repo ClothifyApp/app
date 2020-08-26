@@ -8,7 +8,7 @@ const Images = [
     id: '1',
     url: 'https://i.ibb.co/SNJ7nh6/1.jpg',
   },
-];
+]; 
 
 const ListOfPostCard = () => (
   <Contain>

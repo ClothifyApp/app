@@ -10,7 +10,7 @@ import { Button } from '../../base/Buttons';
 import BaseModalPost from '../BaseModalPost';
 
 export const CreatePost = ({ onEnds }) => {
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [step, setStep] = useState(1);
   const handleBack = () => setStep(step - 1);
 
@@ -32,16 +32,8 @@ export const CreatePost = ({ onEnds }) => {
           position="fixed"
           isOpen={isModalOpen}
           onClose={handleCloseModal}
-          showBack={[2].includes(step)}
-          onBack={handleBack}
           showClose>
-          {step === 1 && <CreateCardPost onContinue={handleContinue} />}
-          {step === 2 && <TagsPost />}
-          {step === 2 ? (
-            <Button margin="10px" onClick={onEnds}>
-              Guardar
-            </Button>
-          ) : null}
+          <CreateCardPost />
         </BaseModalPost>
         <PlusCircle onClick={handleOpenModal}>
           <IconPlus icon={faPlus} />

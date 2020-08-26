@@ -6,7 +6,7 @@ import { faCheckCircle, faVenusMars } from '@fortawesome/free-solid-svg-icons';
 import { Tag } from '../../base/Tag';
 import { InfoWrapper, Heading, Body } from './styled';
 
-const Info = ({ isOpen }) => (
+const Info = ({ isOpen }, props) => (
   <InfoWrapper isOpen={isOpen}>
     <div className="info">
       <h2>Image title</h2>
@@ -22,8 +22,7 @@ const Info = ({ isOpen }) => (
         </div>
         <div className="name-gender">
           <h3>
-            User actual name
-            {' '}
+            {props.userName}
             <FontAwesomeIcon icon={faCheckCircle} />
           </h3>
           <p>
@@ -34,12 +33,9 @@ const Info = ({ isOpen }) => (
         </div>
       </Heading>
       <Body>
-        <h3>T-shirt</h3>
+        <h3>{props.name}</h3>
         <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Modi enim,
-          quod ratione porro repudiandae accusamus fuga tempore mollitia
-          nostrum sint facere, impedit animi magnam minus maxime corrupti
-          dicta recusandae! Nemo?
+          {props.description}
         </p>
         <div className="tags-container">
           <Tag active>Stuff</Tag>

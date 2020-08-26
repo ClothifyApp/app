@@ -8,6 +8,7 @@ import ButtonsContainer from './ButtonsContainer';
 import Info from './Info';
 
 function Swipe({
+  width,
   onWhatsapp,
   onLike,
   onDislike,
@@ -20,12 +21,12 @@ function Swipe({
     tags: [],
   },
 }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const handleImageClick = () => setIsOpen(!isOpen);
 
   return (
-    <Wrapper>
+    <Wrapper width={width}>
       <Slider
         onClick={handleImageClick}
         imageUrls={garment.photos}
