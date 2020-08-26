@@ -5,7 +5,8 @@ import { useHistory } from 'react-router-dom';
 // REDUX
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { setLoading as setLoadingAction } from '../actions/globalActions';
+import * as globalActions from '../actions/globalActions';
+import * as authActions from '../actions/authActions';
 
 import { firebaseApp } from '../services/firebase';
 
@@ -24,7 +25,7 @@ import Tags from '../components/modals/Tags';
 import LoginIlustration from '../assets/images/login.svg';
 import { verifyUserPhone } from '../api';
 
-const Main = ({ setLoading }) => {
+const Main = ({ setLoading, setToken, setUser }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [confirmationCode, setConfirmationCode] = useState('');
@@ -64,10 +65,14 @@ const Main = ({ setLoading }) => {
   const handleVerifyCode = async () => {
     try {
       setLoading(true);
-      const authResponse = await verifyUserPhone(
+      const { message, data: { user, token } } = await verifyUserPhone(
         confirmationCode,
         verificationId,
       );
+
+      // TODO: NNotification with message.
+      setToken(token);
+      setUser(user);
       setStep(step + 1);
     } catch (err) {
       console.log(err);
@@ -128,6 +133,8 @@ const Main = ({ setLoading }) => {
 
 Main.propTypes = {
   setLoading: PropTypes.func.isRequired,
+  setToken: PropTypes.func.isRequired,
+  setUser: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -136,7 +143,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
-    setLoading: setLoadingAction,
+    setLoading: globalActions.setLoading,
+    setUser: authActions.setUser,
+    setToken: authActions.setToken,
   },
   dispatch,
 );
