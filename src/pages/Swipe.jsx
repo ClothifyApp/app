@@ -41,7 +41,7 @@ function Swipe({
 
   return (
     <Wrapper>
-      <SwipeComponent garment={{ ...topGarment, photos: images }} onLike={handleLike} />
+      <SwipeComponent garment={{ user: {}, ...topGarment, photos: images }} onLike={handleLike} />
     </Wrapper>
   );
 }

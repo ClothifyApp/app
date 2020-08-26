@@ -9,7 +9,7 @@ export const setToken = (token) => {
 };
 
 export const getUser = async (userId) => {
-  const { data } = clothifyService.get(`users/${userId}`);
+  const { data } = await clothifyService.get(`users/${userId}`);
   return data.data.user;
 };
 

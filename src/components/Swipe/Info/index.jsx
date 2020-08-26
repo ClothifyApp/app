@@ -7,23 +7,23 @@ import { faCheckCircle, faVenusMars } from '@fortawesome/free-solid-svg-icons';
 import { Tag } from '../../base/Tag';
 import { InfoWrapper, Heading, Body } from './styled';
 
-const Info = ({ isOpen, user, garment }) => (
+const Info = ({ isOpen, garment }) => (
   <InfoWrapper isOpen={isOpen}>
     <div className="info">
       <h2>{garment.name}</h2>
-      <p>{user.name}</p>
+      <p>{garment.user.name}</p>
     </div>
     <div className="open-info">
       <Heading>
         <div className="avatar">
           <img
-            src={user.avatar}
-            alt={user.name}
+            src={garment.user.avatar}
+            alt={garment.user.name}
           />
         </div>
         <div className="name-gender">
           <h3>
-            {user.name}
+            {garment.user.name}
             {' '}
             <FontAwesomeIcon icon={faCheckCircle} />
           </h3>
@@ -41,7 +41,7 @@ const Info = ({ isOpen, user, garment }) => (
         </p>
         <div className="tags-container">
           {garment.tags && garment.tags.map((tag) => <Tag active key={tag}>{tag}</Tag>)}
-          {(!garment.tags || garment.tags.length) && <span>Ninguna categoría :(</span>}
+          {(!garment.tags || !garment.tags.length) && <span>Ninguna categoría :(</span>}
         </div>
       </Body>
     </div>
@@ -50,7 +50,6 @@ const Info = ({ isOpen, user, garment }) => (
 
 Info.propTypes = {
   isOpen: PropTypes.bool,
-  user: PropTypes.object.isRequired,
   garment: PropTypes.object.isRequired,
 };
 

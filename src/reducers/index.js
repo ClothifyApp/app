@@ -12,15 +12,11 @@ export default function rootReducer(state = {}, action) {
         ...state,
         garments: action.payload,
       };
-    case GET_TOP_GARMENT: {
-      const garments = [...state.garments];
-      const topGarment = garments.shift();
+    case GET_TOP_GARMENT:
       return {
         ...state,
-        topGarment,
-        garments,
+        ...action.payload,
       };
-    }
     default:
       return state;
   }
