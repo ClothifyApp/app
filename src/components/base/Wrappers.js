@@ -28,15 +28,17 @@ export const MainImageWrapper = styled.div`
   ${flexCenter};
   height: auto;
   width: 100%;
+  margin-top: 20px;
   & img {
     height: auto;
-    width: 100%;
-    max-width: 450px;
+    max-width: 300px;
     object-fit: contain;
   }
-  @media (max-width: ${device.mobileL}) {
+  @media ${device.mobileL} {
     width: 100%;
-    height: 100vh;
+    padding: initial;
+    height: calc(100vh - ${({ theme }) => theme.sizes.navbarHeight}px);
+    margin: 0;
     & img {
       height: 60%;
       max-width: 100%;

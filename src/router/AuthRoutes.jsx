@@ -24,7 +24,7 @@ const NoAuthComponent = ({
   component: Component, path, exact, authorized,
 }) => {
   if (authorized) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to="/" />;
   }
 
   return <Route component={Component} path={path} exact={exact} />;
@@ -42,9 +42,9 @@ NoAuthComponent.defaultProps = {
   component: null,
 };
 
-function mapStateToProps({ token }) {
+function mapStateToProps({ user }) {
   return {
-    authorized: !!token,
+    authorized: user && user.fullName,
   };
 }
 
