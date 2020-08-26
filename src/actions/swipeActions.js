@@ -36,8 +36,8 @@ export const makeReactionAction = (type, garmentId) => async (dispatch) => {
   dispatch(getTopGarment());
 };
 
-export const getGarments = () => async (dispatch) => {
-  setToken(process.env.REACT_APP_TEST_TOKEN);
+export const getGarments = () => async (dispatch, getState) => {
+  setToken(getState().token);
   dispatch(setLoading(true));
 
   const { data } = await api.get('garments');

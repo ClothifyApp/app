@@ -7,6 +7,7 @@ const initialStore = {
   user: null,
   garments: [],
   isLoading: false,
+  topGarment: {},
 };
 
 // eslint-disable-next-line import/prefer-default-export

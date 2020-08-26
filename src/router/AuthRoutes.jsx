@@ -17,7 +17,11 @@ AuthComponent.propTypes = {
   component: PropTypes.element.isRequired,
   path: PropTypes.string.isRequired,
   exact: PropTypes.bool.isRequired,
-  authorized: PropTypes.bool.isRequired,
+  authorized: PropTypes.bool,
+};
+
+AuthComponent.defaultProps = {
+  authorized: false,
 };
 
 const NoAuthComponent = ({
@@ -35,16 +39,17 @@ NoAuthComponent.propTypes = {
   component: PropTypes.object,
   path: PropTypes.string.isRequired,
   exact: PropTypes.bool.isRequired,
-  authorized: PropTypes.bool.isRequired,
+  authorized: PropTypes.bool,
 };
 
 NoAuthComponent.defaultProps = {
   component: null,
+  authorized: false,
 };
 
 function mapStateToProps({ user }) {
   return {
-    authorized: user && user.fullName,
+    authorized: !!user && !!user.fullName,
   };
 }
 
