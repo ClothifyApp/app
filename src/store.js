@@ -5,6 +5,7 @@ import rootReducer from './reducers';
 const initialStore = {
   token: null,
   user: null,
+  garments: [],
   isLoading: false,
 };
 

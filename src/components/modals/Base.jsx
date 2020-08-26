@@ -36,8 +36,8 @@ Base.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.element]),
   onBack: PropTypes.func,
   isOpen: PropTypes.bool,
-  onClose: PropTypes.func.isRequired,
-  showClose: PropTypes.bool.isRequired,
+  onClose: PropTypes.func,
+  showClose: PropTypes.bool,
   showBack: PropTypes.bool,
   position: PropTypes.string,
 };
@@ -48,6 +48,8 @@ Base.defaultProps = {
   position: 'absolute',
   children: null,
   onBack: null,
+  onClose: null,
+  showClose: false,
 };
 
 export default Base;
