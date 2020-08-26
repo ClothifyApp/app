@@ -5,6 +5,7 @@ import rootReducer from './reducers';
 const initialStore = {
   token: null,
   user: null,
+  isLoading: false,
 };
 
 // eslint-disable-next-line import/prefer-default-export
