@@ -21,10 +21,6 @@ export const CreatePost = ({ onEnds }) => {
     setIsModalOpen(true);
   };
 
-  const handleContinue = ({ name, description }) => {
-    setStep(step + 1);
-  };
-
   return (
     <>
       <ImgWrapper direction="column" align="center">

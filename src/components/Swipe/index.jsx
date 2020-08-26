@@ -39,7 +39,7 @@ function Swipe({
         onDislike={onDislike}
         onSuperLike={onSuperLike}
       />
-      <Info isOpen={isOpen} />
+      <Info  name={garment.name} description={garment.description} isOpen={isOpen} />
       <BgCard index={1} />
       <BgCard index={2} />
     </Wrapper>
