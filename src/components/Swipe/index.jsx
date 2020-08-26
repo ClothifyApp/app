@@ -13,12 +13,7 @@ function Swipe({
   onDislike,
   onSuperLike,
   user,
-  garment = {
-    name: '',
-    description: '',
-    photos: [],
-    tags: [],
-  },
+  garment,
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -30,7 +25,6 @@ function Swipe({
         onClick={handleImageClick}
         imageUrls={garment.photos}
         user={user}
-        garments={garment}
       />
       <ButtonsContainer
         onWhatsapp={onWhatsapp}
@@ -38,7 +32,7 @@ function Swipe({
         onDislike={onDislike}
         onSuperLike={onSuperLike}
       />
-      <Info isOpen={isOpen} />
+      <Info isOpen={isOpen} garment={garment} user={user} />
       <BgCard index={1} />
       <BgCard index={2} />
     </Wrapper>
@@ -50,8 +44,8 @@ Swipe.propTypes = {
   onSuperLike: PropTypes.func,
   onLike: PropTypes.func,
   onWhatsapp: PropTypes.func,
-  garment: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired,
+  garment: PropTypes.object,
+  user: PropTypes.object,
 };
 
 Swipe.defaultProps = {
@@ -59,6 +53,13 @@ Swipe.defaultProps = {
   onSuperLike: null,
   onLike: null,
   onWhatsapp: null,
+  garment: {
+    name: '',
+    description: '',
+    photos: [],
+    tags: [],
+  },
+  user: { },
 };
 
 export default Swipe;
