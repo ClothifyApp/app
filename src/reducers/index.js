@@ -4,7 +4,6 @@ import {
   SET_TOKEN,
   SET_USER,
   LOGOUT,
-  SET_LOADING,
   GET_GARMENTS,
   GET_TOP_GARMENT,
 } from '../actions/actionTypes';

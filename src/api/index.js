@@ -21,7 +21,7 @@ export const doReaction = async (type, garmentId) => {
   const { data } = await clothifyService.post('/reactions', reaction);
 
   return data.data.reaction;
-}
+};
 
 export const verifyUserPhone = async (code, verificationId) => {
   try {
@@ -32,7 +32,7 @@ export const verifyUserPhone = async (code, verificationId) => {
 
     return response.data;
   } catch (err) {
-    return { error: err.response};
+    return { error: err.response };
   }
 };
 
