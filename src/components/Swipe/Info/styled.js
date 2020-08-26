@@ -30,6 +30,7 @@ export const InfoWrapper = styled.div`
     padding: 20px;
     opacity: ${({ isOpen }) => (!isOpen ? '0' : '1')};
     visibility: ${({ isOpen }) => (!isOpen ? 'hidden' : 'visible')};
+    transform: scale(${({ isOpen }) => (isOpen ? '1' : '0')});
   }
 `;
 

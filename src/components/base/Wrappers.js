@@ -8,7 +8,7 @@ export const MainWrapper = styled.section`
   display: grid;
   grid-template-columns: 1fr;
   @media ${device.mobileL} {
-    grid-template-columns: 1fr 500px;
+    grid-template-columns: 1fr 480px;
   }
 `;
 
@@ -30,10 +30,11 @@ export const MainImageWrapper = styled.div`
   width: 100%;
   & img {
     height: auto;
-    max-width: 300px;
+    width: 100%;
+    max-width: 450px;
     object-fit: contain;
   }
-  @media ${device.mobileL} {
+  @media (max-width: ${device.mobileL}) {
     width: 100%;
     height: 100vh;
     & img {
