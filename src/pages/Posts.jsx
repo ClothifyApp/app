@@ -1,5 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { listMyGarmentsThunk } from '../actions/myGarmentsActions';
 import ListOfPostCard from '../components/Posts/ListOfPostCard';
 
 import PostIlustration from '../assets/images/new-post.svg';
@@ -81,7 +86,13 @@ export const MainWrapper = styled.div`
   }
 `;
 
-export default function Posts() {
+function Posts({ listMyGarments, myGarments }) {
+  useEffect(() => {
+    listMyGarments();
+  }, []);
+
+  console.log(myGarments);
+
   return (
     <div>
       <ListOfPostCard />
@@ -93,3 +104,21 @@ export default function Posts() {
     </div>
   );
 }
+
+Posts.propTypes = {
+  listMyGarments: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  myGarments: PropTypes.array.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  myGarments: state.myGarments,
+});
+
+const mapDispatchToProps = (dispatch) => (
+  bindActionCreators({
+    listMyGarments: listMyGarmentsThunk,
+  }, dispatch)
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Posts);

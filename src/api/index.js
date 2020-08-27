@@ -40,7 +40,7 @@ export const verifyUserPhone = async (code, verificationId) => {
 // My garments
 export const listMyGarments = async () => {
   const { data } = await clothifyService.get('/garments/user/');
-  return data.data.garmentss;
+  return data.data.garments;
 };
 
 export default clothifyService;

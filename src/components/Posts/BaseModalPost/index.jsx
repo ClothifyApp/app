@@ -33,11 +33,11 @@ const Base = ({
 );
 
 Base.propTypes = {
-  children: PropTypes.element.isRequired,
-  onBack: PropTypes.func.isRequired,
+  children: PropTypes.element,
+  onBack: PropTypes.func,
   isOpen: PropTypes.bool,
   onClose: PropTypes.func.isRequired,
-  showClose: PropTypes.bool.isRequired,
+  showClose: PropTypes.bool,
   showBack: PropTypes.bool,
   position: PropTypes.string.isRequired,
 };
@@ -45,6 +45,9 @@ Base.propTypes = {
 Base.defaultProps = {
   isOpen: false,
   showBack: false,
+  onBack: null,
+  children: null,
+  showClose: false,
 };
 
 export default Base;
