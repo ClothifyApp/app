@@ -6,7 +6,7 @@ export const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: ${(props) => props.width || '90%' };
+  width: ${(props) => props.width || '90%'};
   max-width: 450px;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.white};
