@@ -39,6 +39,7 @@ function Swipe({
 }
 
 Swipe.propTypes = {
+  width: PropTypes.number,
   onDislike: PropTypes.func,
   onSuperLike: PropTypes.func,
   onLike: PropTypes.func,
@@ -48,6 +49,7 @@ Swipe.propTypes = {
 
 Swipe.defaultProps = {
   onDislike: null,
+  width: null,
   onSuperLike: null,
   onLike: null,
   onWhatsapp: null,

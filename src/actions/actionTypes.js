@@ -11,3 +11,6 @@ export const GET_TOP_GARMENT = 'GET_TOP_GARMENT';
 export const SET_USER = 'SET_USER';
 export const SET_TOKEN = 'SET_TOKEN';
 export const LOGOUT = 'LOGOUT';
+
+// My Garments
+export const LIST_MY_GARMENTS = 'LIST_MY_GARMENTS';

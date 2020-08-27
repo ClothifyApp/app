@@ -8,6 +8,7 @@ const initialStore = {
   garments: [],
   isLoading: false,
   topGarment: {},
+  myGarments: [],
 };
 
 // eslint-disable-next-line import/prefer-default-export

@@ -36,11 +36,13 @@ export const makeReactionAction = (type, garmentId) => async (dispatch) => {
   dispatch(getTopGarment());
 };
 
-export const getGarments = () => async (dispatch, getState) => {
-  setToken(getState().token);
+export const getGarments = () => async (dispatch) => {
+  // setToken(getState().token);
+  // TODO change for real token
+  setToken(process.env.REACT_APP_TEST_TOKEN);
   dispatch(setLoading(true));
 
-  const { data } = await api.get('garments');
+  const { data } = await api.get('feed');
 
   dispatch(setLoading(false));
   dispatch(getGaementsAction(data.data.garments));

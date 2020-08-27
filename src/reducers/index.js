@@ -1,5 +1,3 @@
-
-
 import {
   SET_LOADING,
   SET_TOKEN,
@@ -7,6 +5,7 @@ import {
   LOGOUT,
   GET_GARMENTS,
   GET_TOP_GARMENT,
+  LIST_MY_GARMENTS,
 } from '../actions/actionTypes';
 
 import initialState from './initialState';
@@ -44,6 +43,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         ...action.payload,
+      };
+    case LIST_MY_GARMENTS:
+      return {
+        ...state,
+        myGarments: action.payload,
       };
     default:
       return state;

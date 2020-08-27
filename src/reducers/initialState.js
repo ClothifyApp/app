@@ -4,6 +4,7 @@ const initialState = {
     phone: undefined,
   },
   token: undefined,
+  myGarments: [],
 };
 
 export default initialState;
