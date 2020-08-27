@@ -12,7 +12,6 @@ export const getUser = async (userId) => {
   const { data } = await clothifyService.get(`users/${userId}`);
   return data.data.user;
 };
-
 export const doReaction = async (type, garmentId) => {
   const reaction = {
     type,

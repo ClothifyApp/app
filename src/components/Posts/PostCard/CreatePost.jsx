@@ -10,7 +10,7 @@ import { Button } from '../../base/Buttons';
 import BaseModalPost from '../BaseModalPost';
 
 export const CreatePost = ({ onEnds }) => {
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [step, setStep] = useState(1);
   const handleBack = () => setStep(step - 1);
 
@@ -21,25 +21,13 @@ export const CreatePost = ({ onEnds }) => {
     setIsModalOpen(true);
   };
 
-  const handleContinue = ({ name, description }) => {
-    setStep(step + 1);
-  };
-
   return (
     <>
       <ImgWrapper direction="column" align="center">
         <BaseModalPost
           position="fixed"
           isOpen={isModalOpen}
-          onClose={handleCloseModal}
-          showBack={[2].includes(step)}
-          onBack={handleBack}
-          showClose
-        >
-          <>
-            {step === 1 && <CreateCardPost onContinue={handleContinue} />}
-            {step === 2 && <TagsPost />}
-          </>
+          onClose={handleCloseModal}>
         </BaseModalPost>
         <PlusCircle onClick={handleOpenModal}>
           <IconPlus icon={faPlus} />

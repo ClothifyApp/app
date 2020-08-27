@@ -7,6 +7,7 @@ import { faCheckCircle, faVenusMars } from '@fortawesome/free-solid-svg-icons';
 import { Tag } from '../../base/Tag';
 import { InfoWrapper, Heading, Body } from './styled';
 
+
 const Info = ({ isOpen, garment }) => (
   <InfoWrapper isOpen={isOpen}>
     <div className="info">
@@ -29,7 +30,6 @@ const Info = ({ isOpen, garment }) => (
           </h3>
           <p>
             <FontAwesomeIcon icon={faVenusMars} />
-            {' '}
             Female
           </p>
         </div>

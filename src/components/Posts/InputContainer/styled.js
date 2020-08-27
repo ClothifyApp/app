@@ -23,6 +23,7 @@ export const Entry = styled.input`
 export const Text = styled.textarea`
   width: 100%;
   height: 60px;
+  position: relative;
   font-size: 16px;
   font-family: 'Proxima nova';
   background: ${({ theme }) => theme.colors.whiteOpacity};
