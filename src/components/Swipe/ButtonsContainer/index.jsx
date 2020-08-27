@@ -8,31 +8,29 @@ import { ButtonsWrapper } from './styled';
 import { WhatsAppButton, ReactionButton } from '../../base/Buttons';
 
 const ButtonsContainer = ({
-  showWhatsapp,
-  showReactions,
   onDislike,
   onSuperLike,
   onLike,
   onWhatsapp,
 }) => (
   <ButtonsWrapper>
-    {showWhatsapp && (
+    {onWhatsapp && (
       <WhatsAppButton onClick={onWhatsapp}>
         Enviar Mensaje
         <FontAwesomeIcon icon={faWhatsapp} size="lg" />
       </WhatsAppButton>
     )}
-    {showReactions && (
+    {onDislike && (
       <ReactionButton onClick={onDislike}>
         <FontAwesomeIcon icon={faTimes} size="2x" />
       </ReactionButton>
     )}
-    {showReactions && (
+    {onSuperLike && (
       <ReactionButton onClick={onSuperLike} size="sm" color="yellow">
         <FontAwesomeIcon icon={faBolt} size="lg" />
       </ReactionButton>
     )}
-    {showReactions && (
+    {onLike && (
       <ReactionButton onClick={onLike} color="secondary">
         <FontAwesomeIcon icon={faHeart} size="2x" />
       </ReactionButton>
@@ -41,8 +39,6 @@ const ButtonsContainer = ({
 );
 
 ButtonsContainer.propTypes = {
-  showWhatsapp: PropTypes.bool,
-  showReactions: PropTypes.bool,
   onDislike: PropTypes.func,
   onSuperLike: PropTypes.func,
   onLike: PropTypes.func,
@@ -50,8 +46,6 @@ ButtonsContainer.propTypes = {
 };
 
 ButtonsContainer.defaultProps = {
-  showWhatsapp: false,
-  showReactions: false,
   onDislike: null,
   onSuperLike: null,
   onLike: null,

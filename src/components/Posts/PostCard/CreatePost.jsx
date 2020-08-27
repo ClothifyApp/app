@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 import CreateCardPost from '../CreateCardPost';
-import {
-  ImgWrapper, IconPlus, PlusCircle, Title,
-} from './styled';
+import { ImgWrapper, IconPlus, PlusCircle, Title } from './styled';
 import TagsPost from '../TagPost';
+import { Button } from '../../base/Buttons';
 
 // Import ModalBase
 import BaseModalPost from '../BaseModalPost';
 
-export const CreatePost = () => {
+export const CreatePost = ({ onEnds }) => {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [step, setStep] = useState(1);
   const handleBack = () => setStep(step - 1);
@@ -21,7 +21,9 @@ export const CreatePost = () => {
     setIsModalOpen(true);
   };
 
-  const handleContinue = () => setStep(step + 1);
+  const handleContinue = ({ name, description }) => {
+    setStep(step + 1);
+  };
 
   return (
     <>
@@ -46,6 +48,10 @@ export const CreatePost = () => {
       </ImgWrapper>
     </>
   );
+};
+
+TagsPost.propTypes = {
+  onEnds: PropTypes.func.isRequired,
 };
 
 export default CreatePost;

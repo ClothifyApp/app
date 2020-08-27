@@ -1,32 +1,17 @@
 import React from 'react';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import {
-  Wrapper, Pictures, Input, Icon,
-} from './styled';
+import { Wrapper } from './styled';
+import Pic from '../Pictures';
 
-const ImagesContainer = () => (
-  <Wrapper>
-    <Pictures>
-      <Icon icon={faPlus} />
-      <Input type="file" />
-    </Pictures>
-    <Pictures>
-      <Icon icon={faPlus} />
-      <Input type="file" />
-    </Pictures>
-    <Pictures>
-      <Icon icon={faPlus} />
-      <Input type="file" />
-    </Pictures>
-    <Pictures>
-      <Icon icon={faPlus} />
-      <Input type="file" />
-    </Pictures>
-    <Pictures>
-      <Icon icon={faPlus} />
-      <Input type="file" />
-    </Pictures>
-  </Wrapper>
-);
+const ImagesContainer = () => {
+  const pictures = [1, 2, 3, 4, 5]
+  return(
+    <Wrapper>
+      {
+        pictures.map(() => (<Pic />) )         
+      }
+    </Wrapper>
+  )
+}
+
 
 export default ImagesContainer;

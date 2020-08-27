@@ -44,6 +44,18 @@ export const Modal = styled.div`
     margin-top: 70px;
     overflow: auto;
   }
+  @media ${device.laptop} {
+    width: 460px;
+    height: 620px;
+    margin-top: 70px;
+    overflow: auto;
+  }
+  @media ${device.laptopL} {
+    width: 460px;
+    height: auto;
+    margin-top: 70px;
+    overflow: auto;
+  }
   @media ${device.desktop} {
     width: 500px;
     max-width: 500px;

@@ -8,7 +8,7 @@ export const MainWrapper = styled.section`
   display: grid;
   grid-template-columns: 1fr;
   @media ${device.mobileL} {
-    grid-template-columns: 1fr 500px;
+    grid-template-columns: 1fr 480px;
   }
 `;
 

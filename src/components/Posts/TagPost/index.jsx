@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Tag, WrapperTag } from './styled';
 import { Button } from '../../base/Buttons';
-import { Tag, Wrapper } from './styled';
 
 const TagsPost = ({ onEnds }) => (
   <>
     <h2>Preferencias</h2>
-    <Wrapper>
+    <WrapperTag>
       <Tag>whatever</Tag>
       <Tag>pants</Tag>
       <Tag active>t-shirt</Tag>
@@ -20,7 +20,7 @@ const TagsPost = ({ onEnds }) => (
       <Tag>skirt</Tag>
       <Tag>shoes</Tag>
       <Tag>tie</Tag>
-    </Wrapper>
+    </WrapperTag>
     <Button margin="10px" onClick={onEnds}>
       Guardar
     </Button>
