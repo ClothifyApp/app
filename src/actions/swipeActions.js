@@ -42,7 +42,7 @@ export const getGarments = () => async (dispatch) => {
   setToken(process.env.REACT_APP_TEST_TOKEN);
   dispatch(setLoading(true));
 
-  const { data } = await api.get('feed');
+  const { data } = await api.get('garments');
 
   dispatch(setLoading(false));
   dispatch(getGaementsAction(data.data.garments));
