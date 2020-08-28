@@ -65,11 +65,13 @@ const Main = ({ setLoading, setToken, setUser }) => {
   const handleVerifyCode = async () => {
     try {
       setLoading(true);
-      const { message, data: { user, token } } = await verifyUserPhone(
-        confirmationCode,
-        verificationId,
-      );
+      const {
+        message,
+        data: { user, token },
+      } = await verifyUserPhone(confirmationCode, verificationId);
 
+      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('token', token);
       // TODO: NNotification with message.
       setToken(token);
       setUser(user);
@@ -137,17 +139,20 @@ Main.propTypes = {
   setUser: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  isLoading: state.isLoading,
+const mapStateToProps = ({ isLoading, user, token }) => ({
+  isLoading,
+  user,
+  token,
 });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators(
-  {
-    setLoading: globalActions.setLoading,
-    setUser: authActions.setUser,
-    setToken: authActions.setToken,
-  },
-  dispatch,
-);
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      setLoading: globalActions.setLoading,
+      setUser: authActions.setUser,
+      setToken: authActions.setToken,
+    },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
