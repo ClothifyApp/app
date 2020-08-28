@@ -10,7 +10,7 @@ import {
 import { Wrapper, Control, ImageSlider } from './styled';
 import ImageIndicator from './ImageIndicator';
 
-const Slider = ({ imageUrls, onClick }) => {
+const Slider = ({ imageUrls, onClick, height, border }) => {
   const [currentImage, setCurrentImage] = useState(1);
 
   const handleMoveSlideLeft = () => {
@@ -22,11 +22,17 @@ const Slider = ({ imageUrls, onClick }) => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper border={border} height={height}>
       <ImageSlider current={currentImage} total={imageUrls.length}>
         {imageUrls.map((url) => (
           // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-          <img onClick={onClick} src={url} key={url} alt="Clothe" />
+          <img
+            height={height}
+            onClick={onClick}
+            src={url}
+            key={url}
+            alt="Clothe"
+          />
         ))}
       </ImageSlider>
       <ImageIndicator
@@ -51,6 +57,7 @@ const Slider = ({ imageUrls, onClick }) => {
 Slider.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   imageUrls: PropTypes.array,
+  height: PropTypes,
   onClick: PropTypes.func.isRequired,
 };
 

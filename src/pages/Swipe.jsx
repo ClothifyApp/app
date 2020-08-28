@@ -25,11 +25,7 @@ const images = [
   'https://cdn.fstoppers.com/styles/large-16-9/s3/lead/2016/01/how_to_find_models_lead.jpg',
 ];
 
-function Swipe({
-  getGarments,
-  makeReaction,
-  topGarment,
-}) {
+function Swipe({ getGarments, makeReaction, topGarment }) {
   useEffect(() => {
     getGarments();
   }, []);
@@ -69,11 +65,13 @@ const mapStateToProps = (state) => ({
   topGarment: state.topGarment,
 });
 
-const mapDispatchToProps = (dispatch) => (
-  bindActionCreators({
-    getGarments: getGarmentsAction,
-    makeReaction: makeReactionAction,
-  }, dispatch)
-);
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      getGarments: getGarmentsAction,
+      makeReaction: makeReactionAction,
+    },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Swipe);

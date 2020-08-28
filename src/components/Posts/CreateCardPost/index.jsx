@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-/* import PropTypes from 'prop-types'; */
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+
+/* Redux */
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { createGarmentThunk } from '../../../actions/createGarments';
 
 /* Others components */
 import Pic from '../Pictures';
@@ -12,7 +16,10 @@ import { Tag, WrapperTag } from '../TagPost/styled';
 
 import { Button } from '../../base/Buttons';
 
-const CreateCardPost = () => {
+function CreateCardPost({ createMyGarment }) {
+  useEffect(() => {
+    createMyGarment();
+  }, []);
   const pictures = [1, 2, 3, 4, 5];
   const [arrayImg, setArrayImg] = useState([]);
   const [input, setInput] = useState({
@@ -27,27 +34,9 @@ const CreateCardPost = () => {
     });
   };
 
-  const sendUserData = () => {
-    const userData = { ...input, photos: arrayImg };
-    axios
-      .post('https://clothify-api.vercel.app/garments', userData, {
-        headers: {
-          accept: 'application/json',
-        },
-      })
-      .then((response) => {
-        setInput({
-          name: response.data.garment.name,
-          description: response.data.garment.description,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
   const guardarDatos = (e) => {
     e.preventDefault();
-    sendUserData();
+    createMyGarment({ ...input, photos: arrayImg });
   };
   return (
     <>
@@ -90,11 +79,27 @@ const CreateCardPost = () => {
         <Tag>shoes</Tag>
         <Tag>tie</Tag>
       </WrapperTag>
-      <Button margin='30px 0 0 0' onClick={guardarDatos}>Guardar</Button>
+      <Button margin="30px 0 0 0" onClick={guardarDatos}>
+        Guardar
+      </Button>
     </>
   );
+}
+
+CreateCardPost.propTypes = {
+  createMyGarment: PropTypes.func.isRequired,
 };
 
-CreateCardPost.propTypes = {};
+const mapStateToProps = (state) => ({
+  myGarments: state.myGarments,
+});
 
-export default CreateCardPost;
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      createMyGarment: createGarmentThunk,
+    },
+    dispatch
+  );
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateCardPost);

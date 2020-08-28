@@ -4,9 +4,8 @@ import device from '../../base/device';
 
 export const Contain = styled.div`
   width: 90%;
-  height: 900px;
-  overflow: auto;
-  margin: 100px auto;
+  margin: 0 auto;
+  margin-top: 100px;
 `;
 
 export const Wrapper = styled.div`

@@ -6,7 +6,7 @@ import { device } from '../../base/device';
 
 export const ImgWrapper = styled.figure`
   width: 380px;
-  height: 280px;
+  height: 360px;
   border-radius: 4px;
   display: block;
   margin: 0;
@@ -31,7 +31,7 @@ export const ImgWrapper = styled.figure`
   }
   @media ${device.desktopL} {
     width: 360px;
-    height: 280px;
+    height: 360px;
   }
 `;
 
