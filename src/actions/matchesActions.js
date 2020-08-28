@@ -14,7 +14,6 @@ export const listMatchesAction = () => async (dispatch) => {
   try {
     const matches = await listMatches();
     dispatch(setMatchesAction(matches));
-    console.log(matches);
   } catch (error) {
     console.error(error);
   }
