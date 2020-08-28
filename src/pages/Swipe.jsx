@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSocks } from '@fortawesome/free-solid-svg-icons';
 
 import {
   getGarments as getGarmentsAction,
@@ -16,6 +18,16 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   min-height: calc(100vh - ${({ theme }) => theme.sizes.navbarHeight}px);
+`;
+
+const Error = styled.div`
+  width: 100%;
+  padding: 20px;
+  max-width: 600px;
+  text-align: center;
+  & svg {
+    color: orange;
+  }
 `;
 
 function Swipe({
@@ -41,13 +53,24 @@ function Swipe({
 
   return (
     <Wrapper>
-      <SwipeComponent
-        garment={{ ...topGarment }}
-        onLike={handleLike}
-        onSuperLike={handleSuperlike}
-        onDislike={handleDisLike}
-        initialOpen={false}
-      />
+      {topGarment && (
+        <SwipeComponent
+          garment={{ ...topGarment }}
+          onLike={handleLike}
+          onSuperLike={handleSuperlike}
+          onDislike={handleDisLike}
+          initialOpen={false}
+        />
+      )}
+      { !topGarment && (
+        <Error>
+          <FontAwesomeIcon icon={faSocks} size="3x" />
+          <h3>
+            Oops, parece que ya no hay mas prendas. Espera a que nuevos usuarios se registren,
+            estamos seguros que pronto encontrarás tu media naranja ;)
+          </h3>
+        </Error>
+      )}
     </Wrapper>
   );
 }
