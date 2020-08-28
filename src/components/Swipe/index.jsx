@@ -14,8 +14,9 @@ function Swipe({
   onDislike,
   onSuperLike,
   garment,
+  initialOpen,
 }) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(initialOpen);
 
   const handleImageClick = () => setIsOpen(!isOpen);
 
@@ -45,6 +46,7 @@ Swipe.propTypes = {
   onLike: PropTypes.func,
   onWhatsapp: PropTypes.func,
   garment: PropTypes.object,
+  initialOpen: PropTypes.bool,
 };
 
 Swipe.defaultProps = {
@@ -58,8 +60,9 @@ Swipe.defaultProps = {
     description: '',
     photos: [],
     tags: [],
-    user: {},
+    userId: {},
   },
+  initialOpen: true,
 };
 
 export default Swipe;

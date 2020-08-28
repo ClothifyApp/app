@@ -7,7 +7,9 @@ const initialStore = {
   user: null,
   garments: [],
   isLoading: false,
-  topGarment: {},
+  topGarment: {
+    userId: {},
+  },
   myGarments: [],
 };
 
