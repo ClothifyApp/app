@@ -11,6 +11,8 @@ import {
   getGarments as getGarmentsAction,
   makeReactionAction,
 } from '../actions/swipeActions';
+
+import { listMatchesAction } from '../actions/matchesActions';
 import SwipeComponent from '../components/Swipe';
 
 const Wrapper = styled.div`
@@ -34,9 +36,11 @@ function Swipe({
   getGarments,
   makeReaction,
   topGarment,
+  listMatches,
 }) {
   useEffect(() => {
     getGarments();
+    listMatches();
   }, []);
 
   const handleLike = () => {
@@ -78,8 +82,13 @@ function Swipe({
 Swipe.propTypes = {
   getGarments: PropTypes.func.isRequired,
   makeReaction: PropTypes.func.isRequired,
+  listMatches: PropTypes.func.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
-  topGarment: PropTypes.object.isRequired,
+  topGarment: PropTypes.object,
+};
+
+Swipe.defaultProps = {
+  topGarment: null,
 };
 
 const mapStateToProps = (state) => ({
@@ -90,6 +99,7 @@ const mapDispatchToProps = (dispatch) => (
   bindActionCreators({
     getGarments: getGarmentsAction,
     makeReaction: makeReactionAction,
+    listMatches: listMatchesAction,
   }, dispatch)
 );
 

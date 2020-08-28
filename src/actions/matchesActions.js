@@ -10,10 +10,11 @@ const setMatchesAction = (payload) => (
   }
 );
 
-export const ListMatches = () => async (dispatch) => {
+export const listMatchesAction = () => async (dispatch) => {
   try {
-    const garments = await listMatches();
-    dispatch(setMatchesAction(garments));
+    const matches = await listMatches();
+    dispatch(setMatchesAction(matches));
+    console.log(matches);
   } catch (error) {
     console.error(error);
   }
