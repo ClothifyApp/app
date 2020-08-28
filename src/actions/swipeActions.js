@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable import/prefer-default-export */
-import api, { setToken, getUser, doReaction } from '../api';
+import api, { setToken, doReaction } from '../api';
 import { setLoading } from './globalActions';
 import { GET_GARMENTS, GET_TOP_GARMENT } from './actionTypes';
 
