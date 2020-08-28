@@ -7,14 +7,11 @@ import MatchCard from './components/MatchCard';
 const Matches = ({ matches }) => (
   <div>
     {matches.map(({
-      _id, photoUrl, title, tag, description,
+      _id, ...match
     }) => (
       <MatchCard
         key={_id}
-        photoUrl={photoUrl}
-        title={title}
-        description={description}
-        tag={tag}
+        match={match}
       />
     ))}
   </div>
