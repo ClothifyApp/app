@@ -31,7 +31,7 @@ const ROUTES = [
     key: 'SWIPE',
     exact: true,
     component: Swipe,
-    auth: true,
+    auth: false,
   },
 ];
 

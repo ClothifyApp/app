@@ -15,3 +15,6 @@ export const LOGOUT = 'LOGOUT';
 
 // My Garments
 export const LIST_MY_GARMENTS = 'LIST_MY_GARMENTS';
+
+// My Garments
+export const SET_MATCHES = 'SET_MATCHES';

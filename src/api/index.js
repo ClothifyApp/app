@@ -52,10 +52,16 @@ export const getFeed = async () => {
   return data.data.garments;
 };
 
-// Tas
+// Tags
 export const getTags = async () => {
   const { data } = await clothifyService.get('/tags');
   return data.data.tags;
+};
+
+// Matches
+export const listMatches = async () => {
+  const { data } = await clothifyService.get('/match/user/');
+  return data.data.matches;
 };
 
 export default clothifyService;
