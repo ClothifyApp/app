@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -12,6 +12,10 @@ import ImageIndicator from './ImageIndicator';
 
 const Slider = ({ imageUrls, onClick, height, border }) => {
   const [currentImage, setCurrentImage] = useState(1);
+
+  useEffect(() => {
+    setCurrentImage(1);
+  }, [imageUrls]);
 
   const handleMoveSlideLeft = () => {
     setCurrentImage(currentImage - 1);

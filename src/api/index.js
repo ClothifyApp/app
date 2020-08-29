@@ -47,6 +47,11 @@ export const listMyGarments = async () => {
 export const createMyGarment = async (data) => {
   const response = await clothifyService.post('/garments', data);
   return response.data.garment;
+
+// Matches
+export const listMatches = async () => {
+  const { data } = await clothifyService.get('/match/user/');
+  return data.data.matches;
 };
 
 export default clothifyService;
