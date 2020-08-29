@@ -5,9 +5,9 @@ import { buttonMixin } from '../../base/Mixins';
 
 export const Wrapper = styled.div`
   position: relative;
-  height: 355px;
+  height: ${(props) => props.height || '355px'};
   width: 100%;
-  border-radius: 8px;
+  border-radius: ${(props) => props.border || '8px'};
   overflow: hidden;
   box-shadow: ${({ theme }) => theme.shadows.regular};
 `;
@@ -22,7 +22,7 @@ export const ImageSlider = styled.div`
   transition: 0.4s;
   & img {
     display: block;
-    height: ${imageHeight}px;
+    height: ${` (props) => props.height || ${imageHeight}px  `};
     width: 100%;
     object-fit: cover;
     background: ${({ theme }) => theme.colors.whiteOpacity};

@@ -12,6 +12,7 @@ const Info = ({ isOpen, garment }) => (
   <InfoWrapper isOpen={isOpen}>
     <div className="info">
       <h2>{garment.name}</h2>
+      <p>{garment.userId.fullName}</p>
     </div>
     <div className="open-info">
       <Heading>
@@ -29,15 +30,13 @@ const Info = ({ isOpen, garment }) => (
           </h3>
           <p>
             <FontAwesomeIcon icon={faVenusMars} />
-            Female
+            {garment.userId.gender}
           </p>
         </div>
       </Heading>
       <Body>
         <h3>{garment.name}</h3>
-        <p>
-          {garment.description}
-        </p>
+        <p>{garment.description}</p>
         <div className="tags-container">
           {garment.tags && garment.tags.map((tag) => <Tag active key={tag._id}>{tag.name}</Tag>)}
           {(!garment.tags || !garment.tags.length) && <span>Ninguna categoría :(</span>}
