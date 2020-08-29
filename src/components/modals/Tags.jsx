@@ -7,11 +7,16 @@ import { Tag } from '../base/Tag';
 import { TagWrapper } from './styled';
 
 const Tags = ({
-  onEnds, tags, userData, updateUser,
+  onEnds, tags, userData, updateUser, hideTitle,
 }) => {
   const handleClick = (_id) => {
-    const userPreferences = userData.preferences;
-    userPreferences.push(_id);
+    let userPreferences = userData.preferences;
+
+    if (userPreferences.some((preference) => preference === _id)) {
+      userPreferences = userPreferences.filter((preference) => preference !== _id);
+    } else {
+      userPreferences.push(_id);
+    }
     updateUser({ ...userData, preferences: userPreferences });
   };
 
@@ -19,9 +24,8 @@ const Tags = ({
 
   return (
     <>
-      {onEnds && <h2>Selecciona al menos 3 preferencias.</h2>}
+      {onEnds && !hideTitle && <h2>Preferencias</h2>}
       <TagWrapper padding={!!onEnds}>
-        <Tag>whatever</Tag>
         {tags.map((tag) => (
           <Tag
             key={tag._id}
@@ -34,7 +38,7 @@ const Tags = ({
       </TagWrapper>
       {onEnds && (
         <Button onClick={onEnds} disabled={buttonDisabled}>
-          Finalizar
+          Guardar cambios
         </Button>
       )}
     </>
@@ -45,10 +49,12 @@ Tags.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.object).isRequired,
   userData: PropTypes.objectOf(PropTypes.string).isRequired,
   updateUser: PropTypes.func.isRequired,
+  hideTitle: PropTypes.bool,
   onEnds: PropTypes.func,
 };
 
 Tags.defaultProps = {
+  hideTitle: false,
   onEnds: null,
 };
 
