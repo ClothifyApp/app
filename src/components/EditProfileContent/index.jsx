@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 // REDUX
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import * as globalActions from '../../actions/globalActions';
 import * as authActions from '../../actions/authActions';
 
@@ -11,10 +12,16 @@ import ProfileCompletion from '../modals/ProfileCompletion';
 import { Button } from '../base/Buttons';
 import Tags from '../modals/Tags';
 import { getTags, updateUser } from '../../api';
-import { Wrapper, Actions } from './styles';
+import { Wrapper, Actions, DeleteAccount } from './styles';
 
 const EditProfileContent = ({
-  setLoading, setUser, user, setTags, tags, onClose
+  setLoading,
+  setUser,
+  user,
+  setTags,
+  tags,
+  onClose,
+  logout,
 }) => {
   useEffect(() => {
     const getAllTags = async () => {
@@ -32,13 +39,18 @@ const EditProfileContent = ({
     try {
       setLoading(true);
       await updateUser(user);
-      onClose();
+      return onClose();
     } catch (error) {
-      console.log('handleSubmit -> error', error);
       return null;
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleLogout = () => {
+    onClose();
+    logout();
+    return <Redirect to="/" />;
   };
 
   return (
@@ -53,8 +65,10 @@ const EditProfileContent = ({
       />
 
       <Actions>
-        <Button color="secondary">Cerrar sesión</Button>
-        <Button>Eliminar Cuenta</Button>
+        <Button color="greyLighter" margin="10px 0 20px" onClick={handleLogout}>
+          Cerrar sesión
+        </Button>
+        <DeleteAccount>Eliminar Cuenta</DeleteAccount>
       </Actions>
     </Wrapper>
   );
@@ -65,6 +79,7 @@ EditProfileContent.propTypes = {
   setTags: PropTypes.func.isRequired,
   setUser: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
   user: PropTypes.objectOf(PropTypes.string).isRequired,
   tags: PropTypes.arrayOf(PropTypes.string),
 };
@@ -88,6 +103,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(
     setTags: globalActions.setTags,
     setUser: authActions.setUser,
     setToken: authActions.setToken,
+    logout: authActions.logout,
   },
   dispatch,
 );
