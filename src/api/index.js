@@ -1,7 +1,12 @@
 import axios from 'axios';
 
+const savedToken = localStorage.getItem('token');
+
 const clothifyService = axios.create({
   baseURL: process.env.REACT_APP_CLOTHIFY_API_URL,
+  headers: {
+    'x-access-token': savedToken,
+  },
 });
 
 // Auth
@@ -38,7 +43,8 @@ export const verifyUserPhone = async (code, verificationId) => {
   }
 };
 
-export const updateUser = (user) => clothifyService.patch('/users', { ...user });
+export const updateUser = (user) =>
+  clothifyService.patch('/users', { ...user });
 
 // My garments
 export const listMyGarments = async () => {
@@ -48,6 +54,7 @@ export const listMyGarments = async () => {
 
 // My Feed
 export const getFeed = async () => {
+  console.log('getFeed -> clothifyService', clothifyService);
   const { data } = await clothifyService.get('/garments');
   return data.data.garments;
 };
