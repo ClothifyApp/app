@@ -2,6 +2,7 @@
 
 // Commons
 export const SET_LOADING = 'SET_LOADING';
+export const SET_TAGS = 'SET_TAGS';
 
 // SWIPE/FEED
 export const GET_GARMENTS = 'GET_GARMENTS';

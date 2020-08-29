@@ -9,6 +9,7 @@ export const getUser = async (userId) => {
   const { data } = await clothifyService.get(`users/${userId}`);
   return data.data.user;
 };
+
 export const doReaction = async (type, garmentId) => {
   const reaction = {
     type,
@@ -37,10 +38,18 @@ export const verifyUserPhone = async (code, verificationId) => {
   }
 };
 
+export const updateUser = (user) => clothifyService.patch('/users', { ...user });
+
 // My garments
 export const listMyGarments = async () => {
   const { data } = await clothifyService.get('/garments/user/');
   return data.data.garments;
+};
+
+// My garments
+export const getTags = async () => {
+  const { data } = await clothifyService.get('/tags');
+  return data.data.tags;
 };
 
 export default clothifyService;

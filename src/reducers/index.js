@@ -6,6 +6,7 @@ import {
   GET_GARMENTS,
   GET_TOP_GARMENT,
   LIST_MY_GARMENTS,
+  SET_TAGS,
 } from '../actions/actionTypes';
 
 import initialState from './initialState';
@@ -13,14 +14,20 @@ import initialState from './initialState';
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
     case SET_TOKEN:
+      localStorage.setItem('token', action.payload);
       return {
         ...state,
         token: action.payload,
       };
     case SET_USER:
+      localStorage.setItem(
+        'user',
+        JSON.stringify({ ...state.user, ...action.payload }),
+      );
+
       return {
         ...state,
-        user: action.payload,
+        user: { ...state.user, ...action.payload },
       };
     case LOGOUT:
       return {
@@ -33,6 +40,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         isLoading: action.payload,
+      };
+    case SET_TAGS:
+      return {
+        ...state,
+        tags: action.payload,
       };
     case GET_GARMENTS:
       return {
