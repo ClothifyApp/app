@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux';
 import { AuthenticatedRoute, UnauthenticatedRoute } from './AuthRoutes';
 import NotFound from '../pages/NotFound';
 import ROUTES from './routes';
+import * as api from '../api';
 import * as authActions from '../actions/authActions';
 
 const routes = ROUTES.map((route) => {
@@ -32,6 +33,7 @@ const Router = ({ setUser, setToken }) => {
 
     if (loggedToken) {
       const foundToken = loggedToken;
+      api.setToken(foundToken);
       setToken(foundToken);
     }
   }, []);

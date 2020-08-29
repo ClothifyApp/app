@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 // REDUX
 import { bindActionCreators } from 'redux';
@@ -19,11 +19,9 @@ import {
 } from '../components/base/Wrappers';
 import AskNumber from '../components/modals/AskNumber';
 import VerifyCode from '../components/modals/VerifyCode';
-import ProfileCompletion from '../components/modals/ProfileCompletion';
-import Tags from '../components/modals/Tags';
 
 import LoginIlustration from '../assets/images/login.svg';
-import { verifyUserPhone } from '../api';
+import { verifyUserPhone, setToken as setTokenHeader } from '../api';
 
 const Main = ({ setLoading, setToken, setUser }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,7 +29,6 @@ const Main = ({ setLoading, setToken, setUser }) => {
   const [confirmationCode, setConfirmationCode] = useState('');
   const [verificationId, setVerificationId] = useState('');
   const [step, setStep] = useState(1);
-  const router = useHistory();
 
   const handleOpenModal = () => setIsModalOpen(true);
 
@@ -65,29 +62,25 @@ const Main = ({ setLoading, setToken, setUser }) => {
   const handleVerifyCode = async () => {
     try {
       setLoading(true);
-      const {
-        message,
-        data: { user, token },
-      } = await verifyUserPhone(confirmationCode, verificationId);
+      const { data } = await verifyUserPhone(confirmationCode, verificationId);
 
-      localStorage.setItem('user', JSON.stringify(user));
-      localStorage.setItem('token', token);
+      // Add header to services requests
+      setTokenHeader(data.token);
+
+      // Redux
+      await setUser(data.user);
+      setToken(data.token);
       // TODO: NNotification with message.
-      setToken(token);
-      setUser(user);
-      setStep(step + 1);
+      return <Redirect to="/complete-profile" />;
     } catch (err) {
       console.log(err);
+      return null;
     } finally {
       setLoading(false);
     }
   };
 
   const handleBack = () => setStep(step - 1);
-
-  const handleCreate = () => {
-    router.push('/posts');
-  };
 
   return (
     <>
@@ -114,8 +107,6 @@ const Main = ({ setLoading, setToken, setUser }) => {
             onResend={handleSendSMS}
           />
         )}
-        {step === 3 && <ProfileCompletion onContinue={handleVerifyCode} />}
-        {step === 4 && <Tags onEnds={handleCreate} />}
       </BaseModal>
       <MainWrapper>
         <MainImageWrapper>
@@ -139,20 +130,13 @@ Main.propTypes = {
   setUser: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ isLoading, user, token }) => ({
-  isLoading,
-  user,
-  token,
-});
+const mapDispatchToProps = (dispatch) => bindActionCreators(
+  {
+    setLoading: globalActions.setLoading,
+    setUser: authActions.setUser,
+    setToken: authActions.setToken,
+  },
+  dispatch,
+);
 
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(
-    {
-      setLoading: globalActions.setLoading,
-      setUser: authActions.setUser,
-      setToken: authActions.setToken,
-    },
-    dispatch
-  );
-
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(null, mapDispatchToProps)(Main);
