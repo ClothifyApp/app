@@ -70,6 +70,7 @@ export const Button = styled.a`
   width: 24px;
   height: 24px;
   margin-bottom: 5px;
+  z-index: 1;
 `;
 
 export const PlusCircle = styled.a`
