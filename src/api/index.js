@@ -44,14 +44,21 @@ export const listMyGarments = async () => {
 };
 
 // Create Garment
-export const createMyGarment = async (data) => {
-  const response = await clothifyService.post('/garments', data);
-  return response.data.garment;
+export const createMyGarment = async (garment) => {
+  const { data } = await clothifyService.post('/garments', garment);
+  return data.data.garment;
 }
+
 // Matches
 export const listMatches = async () => {
   const { data } = await clothifyService.get('/match/user/');
   return data.data.matches;
 };
+
+// Delete Garment
+export const deleteGarment = async (garmentId) => {
+  const { data } = await clothifyService.delete('/garments/'+ garmentId);
+  return data.data.deletedCount;
+}
 
 export default clothifyService;

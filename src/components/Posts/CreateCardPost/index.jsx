@@ -16,7 +16,7 @@ import { Tag, WrapperTag } from '../TagPost/styled';
 
 import { Button } from '../../base/Buttons';
 
-function CreateCardPost({ createMyGarment }) {
+function CreateCardPost({ createMyGarment, onSave }) {
   useEffect(() => {
     createMyGarment();
   }, []);
@@ -37,6 +37,7 @@ function CreateCardPost({ createMyGarment }) {
   const guardarDatos = (e) => {
     e.preventDefault();
     createMyGarment({ ...input, photos: arrayImg });
+    onSave()
   };
   return (
     <>
@@ -79,7 +80,7 @@ function CreateCardPost({ createMyGarment }) {
         <Tag>shoes</Tag>
         <Tag>tie</Tag>
       </WrapperTag>
-      <Button margin="30px 0 0 0" onClick={guardarDatos}>
+      <Button margin="30px 0 0 0"  onClick={guardarDatos}>
         Guardar
       </Button>
     </>

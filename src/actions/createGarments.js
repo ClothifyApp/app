@@ -1,4 +1,4 @@
-import { createMyGarment, setToken } from '../api';
+import { createMyGarment } from '../api';
 import { setLoading } from './globalActions';
 import { CREATE_MY_GARMENT } from './actionTypes';
 
@@ -10,10 +10,10 @@ const createMyGarmentAction = (payload) => ({
 // eslint-disable-next-line import/prefer-default-export
 export const createGarmentThunk = (data) => async (dispatch) => {
   dispatch(setLoading(true));
-  setToken(process.env.REACT_APP_TEST_TOKEN);
   try {
-    const createGarment = await createMyGarment(data);
-    dispatch(createMyGarmentAction(createGarment));
+    const garment = await createMyGarment(data);
+    console.log(garment)
+    dispatch(createMyGarmentAction(garment));
   } finally {
     dispatch(setLoading(false));
   }

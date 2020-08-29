@@ -18,13 +18,12 @@ const images = [
 ];
 
 function ListOfPostCard({ myGarments }) {
-  console.log(myGarments);
   return (
     <Contain>
       <Wrapper>
         <CreatePost />
         {myGarments.map((garment) => (
-          <PostCard garment={garment} id={garment.id} key={garment.id} />
+          <PostCard garment={garment} key={garment._id} />
         ))}
       </Wrapper>
     </Contain>

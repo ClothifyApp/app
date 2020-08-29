@@ -14,8 +14,7 @@ function Posts({ listMyGarments, myGarments }) {
   useEffect(() => {
     listMyGarments();
   }, []);
-
-  console.log(myGarments);
+console.log(myGarments)
 
   return (
     <div>

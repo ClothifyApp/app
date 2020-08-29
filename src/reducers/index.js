@@ -7,6 +7,8 @@ import {
   GET_TOP_GARMENT,
   LIST_MY_GARMENTS,
   SET_MATCHES,
+  DELETE_GARMENT,
+  CREATE_MY_GARMENT,
 } from '../actions/actionTypes';
 
 import initialState from './initialState';
@@ -54,6 +56,17 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         matches: action.payload,
+      };
+    case DELETE_GARMENT:
+      return {
+        ...state,
+        myGarments: state.myGarments.filter((garment) => action.payload !== garment._id),
+      };
+    case CREATE_MY_GARMENT:
+      console.log(state)
+      return {
+        ...state,
+        myGarments: [...state.myGarments, action.payload],
       };
     default:
       return state;
