@@ -4,6 +4,11 @@ const clothifyService = axios.create({
   baseURL: process.env.REACT_APP_CLOTHIFY_API_URL,
 });
 
+// Auth
+export const setToken = (token) => {
+  clothifyService.defaults.headers['x-access-token'] = token;
+};
+
 // Feed
 export const getUser = async (userId) => {
   const { data } = await clothifyService.get(`users/${userId}`);
@@ -18,11 +23,6 @@ export const doReaction = async (type, garmentId) => {
   const { data } = await clothifyService.post('/reactions', reaction);
 
   return data.data.reaction;
-};
-
-// Auth
-export const setToken = (token) => {
-  clothifyService.defaults.headers['x-access-token'] = token;
 };
 
 export const verifyUserPhone = async (code, verificationId) => {
@@ -46,7 +46,13 @@ export const listMyGarments = async () => {
   return data.data.garments;
 };
 
-// My garments
+// My Feed
+export const getFeed = async () => {
+  const { data } = await clothifyService.get('/garments');
+  return data.data.garments;
+};
+
+// Tas
 export const getTags = async () => {
   const { data } = await clothifyService.get('/tags');
   return data.data.tags;

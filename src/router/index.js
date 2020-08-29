@@ -32,9 +32,8 @@ const Router = ({ setUser, setToken }) => {
     }
 
     if (loggedToken) {
-      const foundToken = loggedToken;
-      api.setToken(foundToken);
-      setToken(foundToken);
+      api.setToken(loggedToken);
+      setToken(loggedToken);
     }
   }, []);
 
