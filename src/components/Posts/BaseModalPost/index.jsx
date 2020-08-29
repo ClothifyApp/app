@@ -14,8 +14,9 @@ const Base = ({
   showClose,
   showBack,
   position,
+  Zindex
 }) => (
-  <Overlay position={position} open={isOpen}>
+  <Overlay Zindex={Zindex} position={position} open={isOpen}>
     <Modal>
       {showBack && (
       <TopButton position="left" onClick={onBack}>
