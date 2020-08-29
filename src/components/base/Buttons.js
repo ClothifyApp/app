@@ -68,6 +68,9 @@ export const ReactionButton = styled.button`
     opacity: 0.97;
     box-shadow: ${({ theme }) => theme.shadows.large};
   }
+  &:active {
+    transform: scale(1.1);
+  }
 `;
 
 export const FlatButton = styled.button`
