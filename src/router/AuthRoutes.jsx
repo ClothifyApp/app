@@ -7,30 +7,23 @@ const AuthComponent = ({
   component: Component,
   path,
   exact,
-  authorized,
   logged,
 }) => {
   if (logged) {
-    if (authorized) {
-      return <Route component={Component} path={path} exact={exact} />;
-    }
-
-    return <Redirect to="/complete-profile" />;
+    return <Route component={Component} path={path} exact={exact} />;
   }
 
-  return <Redirect to="/" />;
+  return <Redirect to="/swipe" />;
 };
 
 AuthComponent.propTypes = {
   component: PropTypes.element.isRequired,
   path: PropTypes.string.isRequired,
   exact: PropTypes.bool.isRequired,
-  authorized: PropTypes.bool,
   logged: PropTypes.bool,
 };
 
 AuthComponent.defaultProps = {
-  authorized: false,
   logged: false,
 };
 
@@ -43,7 +36,7 @@ const NoAuthComponent = ({
 }) => {
   if (logged) {
     if (authorized) {
-      return <Redirect to="/" />;
+      return <Redirect to="/swipe" />;
     }
 
     return <Redirect to="/complete-profile" />;
