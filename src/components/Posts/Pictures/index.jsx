@@ -10,9 +10,21 @@ const Pic = (props) => {
   const onSelectImg = (e) => {
     const img = e.target.files;
     if (img && img.length > 0) {
+      readImage(img[0]);
       saveImage(img[0]);
     }
   };
+
+  const readImage = (file) => {
+    const reader = new FileReader();
+    
+    reader.onload = function(e) {
+      setImage({src: e.target.result}) ;
+    }
+    
+    reader.readAsDataURL(file);
+
+  }
 
   const saveImage = (image) => {
     const data = new FormData();
@@ -27,7 +39,6 @@ const Pic = (props) => {
         },
       })
       .then((response) => {
-        setImage({ src: response.data.data.imagePath, alt: image.name });
         props.setArrayImg([...props.arrayImg, response.data.data.imagePath]);
         console.log(props.arrayImg);
       })
