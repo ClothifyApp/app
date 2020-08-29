@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 
-import { listMyGarments, setToken } from '../api';
+import { listMyGarments } from '../api';
 import { setLoading } from './globalActions';
 import { LIST_MY_GARMENTS } from './actionTypes';
 
