@@ -17,7 +17,7 @@ export const Overlay = styled.dialog`
   cursor: pointer;
   transition: 0.3s;
   overflow: ${(props) => props.overflow || ''};
-  z-index: 10;
+  z-index: ${(props) => props.Zindex || '10' };
 `;
 
 export const Modal = styled.div`

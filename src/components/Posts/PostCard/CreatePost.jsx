@@ -24,6 +24,7 @@ export const CreatePost = ({ onEnds }) => {
     <>
       <ImgWrapper direction="column" align="center">
         <BaseModalPost
+          Zindex='11'
           position="fixed"
           isOpen={isModalOpen}
           onClose={handleCloseModal}
