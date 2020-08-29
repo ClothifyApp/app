@@ -1,28 +1,29 @@
-import React, { useState } from 'react';
+/* eslint-disable react/forbid-prop-types */
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ImgWrapper, Img, Icon, Button, Touch } from './styled';
+
+import { listMyGarmentsThunk } from '../../../actions/myGarmentsActions';
 
 // import ModalDelete
 import DeletePost from '../DeletePost';
 
 // Import ModalBase
-import BaseModal from '../../modals/Base';
+import BaseModalPost from '../BaseModalPost';
+// import BaseModal from '../../modals/Base';
 
 //import Swipe Component
 import Swipe from '../../Swipe';
-import axios from 'axios';
+import Slider from '../../Swipe/Slider';
 
-const PostCard = ({ id, src }) => {
+function PostCard({ garment }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpenSwipe, setIsModalOpenSwipe] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [garments, setGarments] = useState({
-    name: '',
-    description: '',
-    photos: [],
-    tags: [],
-  });
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
@@ -37,61 +38,67 @@ const PostCard = ({ id, src }) => {
     setIsModalOpenSwipe(false);
   };
 
-
-  const getGarmentUser = () => {
-    const getGarment = { name: '', description: '', photos: [], tags: [] };
-    axios
-      .get('https://clothify-api.vercel.app/garments/user', getGarment, {
-        headers: {
-          accept: 'application/json',
-        },
-        
-      })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const getData = () => {
-    getGarmentUser();
-  };
-
   return (
     <>
       <ImgWrapper>
-        <BaseModal
+        <BaseModalPost
           position="absolute"
           isOpen={isModalOpen}
           onClose={handleCloseModal}
           showClose>
           <DeletePost />
-        </BaseModal>
+        </BaseModalPost>
         <Button onClick={handleOpenModal}>
           <Icon icon={faTrash} />
         </Button>
 
         {/* modal post user */}
-         {/* <BaseModal
+        <BaseModalPost
           position="fixed"
           isOpen={isModalOpenSwipe}
           onClose={handleCloseModalSwipe}
           showClose>
-          <Swipe imageUrls={setGarments.photos}  width="100%" />
-        </BaseModal>  */}
-        <Touch onSubmit={getData} onClick={handleOpenModalSwipe} >
-          <Img src={setGarments.photos} id={id} />
-        </Touch>
+          <Swipe garment={garment} width="100%" />
+        </BaseModalPost>
+        {/* <Touch onClick={handleOpenModalSwipe} myGarment={garment}>
+          <Img src={garment.photos[0]} />
+        </Touch> */}
+        <Slider
+          height="360px"
+          border="4px"
+          onClick={handleOpenModalSwipe}
+          imageUrls={garment.photos}
+        />
       </ImgWrapper>
     </>
   );
-};
+}
 
 PostCard.propTypes = {
-  id: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired,
+  listMyGarments: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  garment: PropTypes.array.isRequired,
+  user: PropTypes.object.isRequired,
 };
+Swipe.defaultProps = {
+  myGarment: {
+    name: '',
+    description: '',
+    photos: [],
+    tags: [],
+    user: {},
+  },
+};
+const mapStateToProps = (state) => ({
+  myGarments: state.myGarments,
+});
 
-export default PostCard;
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      listMyGarments: listMyGarmentsThunk,
+    },
+    dispatch
+  );
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostCard);

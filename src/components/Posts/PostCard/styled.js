@@ -6,7 +6,7 @@ import { device } from '../../base/device';
 
 export const ImgWrapper = styled.figure`
   width: 380px;
-  height: 280px;
+  height: 360px;
   border-radius: 4px;
   display: block;
   margin: 0;
@@ -31,7 +31,7 @@ export const ImgWrapper = styled.figure`
   }
   @media ${device.desktopL} {
     width: 360px;
-    height: 280px;
+    height: 360px;
   }
 `;
 
@@ -70,6 +70,7 @@ export const Button = styled.a`
   width: 24px;
   height: 24px;
   margin-bottom: 5px;
+  z-index: 1;
 `;
 
 export const PlusCircle = styled.a`
