@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -16,11 +17,16 @@ const Info = ({ isOpen, garment }) => (
     <div className="open-info">
       <Heading>
         <div className="avatar">
-          <img src={garment.userId.photoUrl} alt={garment.userId.photoUrl} />
+          <img
+            src={garment.userId.photoUrl}
+            alt={garment.userId.fullName}
+          />
         </div>
         <div className="name-gender">
           <h3>
-            {garment.userId.fullName} <FontAwesomeIcon icon={faCheckCircle} />
+            {garment.userId.fullName}
+            {' '}
+            <FontAwesomeIcon icon={faCheckCircle} />
           </h3>
           <p>
             <FontAwesomeIcon icon={faVenusMars} />
@@ -32,15 +38,8 @@ const Info = ({ isOpen, garment }) => (
         <h3>{garment.name}</h3>
         <p>{garment.description}</p>
         <div className="tags-container">
-          {/* {garment.tags &&
-            garment.tags.map((tag) => (
-              <Tag active key={tag}>
-                {tag}
-              </Tag>
-            ))} */}
-          {(!garment.tags || !garment.tags.length) && (
-            <span>Ninguna categoría :(</span>
-          )}
+          {garment.tags && garment.tags.map((tag) => <Tag active key={tag._id}>{tag.name}</Tag>)}
+          {(!garment.tags || !garment.tags.length) && <span>Ninguna categoría :(</span>}
         </div>
       </Body>
     </div>

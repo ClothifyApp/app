@@ -4,11 +4,15 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSocks } from '@fortawesome/free-solid-svg-icons';
 
 import {
   getGarments as getGarmentsAction,
   makeReactionAction,
 } from '../actions/swipeActions';
+
+import { listMatchesAction } from '../actions/matchesActions';
 import SwipeComponent from '../components/Swipe';
 
 const Wrapper = styled.div`
@@ -18,16 +22,25 @@ const Wrapper = styled.div`
   min-height: calc(100vh - ${({ theme }) => theme.sizes.navbarHeight}px);
 `;
 
-const images = [
-  'https://i.pinimg.com/originals/b9/c4/53/b9c4539c094848a95548a26e1fe6a207.jpg',
-  'https://i.pinimg.com/originals/77/42/6c/77426ca1fd324f1c96f6fef71c5d5b50.jpg',
-  'https://i.pinimg.com/564x/6f/5f/ea/6f5fea506c85da0ee892b7b498fe8706.jpg',
-  'https://cdn.fstoppers.com/styles/large-16-9/s3/lead/2016/01/how_to_find_models_lead.jpg',
-];
+const Error = styled.div`
+  width: 100%;
+  padding: 20px;
+  max-width: 600px;
+  text-align: center;
+  & svg {
+    color: orange;
+  }
+`;
 
-function Swipe({ getGarments, makeReaction, topGarment }) {
+function Swipe({
+  getGarments,
+  makeReaction,
+  topGarment,
+  listMatches,
+}) {
   useEffect(() => {
     getGarments();
+    listMatches();
   }, []);
 
   const handleLike = () => {
@@ -44,12 +57,24 @@ function Swipe({ getGarments, makeReaction, topGarment }) {
 
   return (
     <Wrapper>
-      <SwipeComponent
-        garment={{ user: {}, ...topGarment, photos: images }}
-        onLike={handleLike}
-        onSuperLike={handleSuperlike}
-        onDislike={handleDisLike}
-      />
+      {topGarment && (
+        <SwipeComponent
+          garment={{ ...topGarment }}
+          onLike={handleLike}
+          onSuperLike={handleSuperlike}
+          onDislike={handleDisLike}
+          initialOpen={false}
+        />
+      )}
+      { !topGarment && (
+        <Error>
+          <FontAwesomeIcon icon={faSocks} size="3x" />
+          <h3>
+            Oops, parece que ya no hay mas prendas. Espera a que nuevos usuarios se registren,
+            estamos seguros que pronto encontrarás tu media naranja ;)
+          </h3>
+        </Error>
+      )}
     </Wrapper>
   );
 }
@@ -57,21 +82,25 @@ function Swipe({ getGarments, makeReaction, topGarment }) {
 Swipe.propTypes = {
   getGarments: PropTypes.func.isRequired,
   makeReaction: PropTypes.func.isRequired,
+  listMatches: PropTypes.func.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
-  topGarment: PropTypes.object.isRequired,
+  topGarment: PropTypes.object,
+};
+
+Swipe.defaultProps = {
+  topGarment: null,
 };
 
 const mapStateToProps = (state) => ({
   topGarment: state.topGarment,
 });
 
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(
-    {
-      getGarments: getGarmentsAction,
-      makeReaction: makeReactionAction,
-    },
-    dispatch
-  );
+const mapDispatchToProps = (dispatch) => (
+  bindActionCreators({
+    getGarments: getGarmentsAction,
+    makeReaction: makeReactionAction,
+    listMatches: listMatchesAction,
+  }, dispatch)
+);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Swipe);
