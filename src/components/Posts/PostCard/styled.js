@@ -51,12 +51,12 @@ export const Touch = styled.a`
 
 export const Icon = styled(FontAwesomeIcon)`
   cursor: pointer;
-  color: white;
+  color: rgba(218, 11, 159, .8);
   font-size: 24px;
   margin: 0 4px 4px 0;
-  &:hover {
-    color: ${({ theme }) => theme.colors.pinkLighter};
-  }
+    &:hover {
+      color: rgba(218, 11, 159, 1);
+    }
 `;
 
 export const IconPlus = styled(FontAwesomeIcon)`

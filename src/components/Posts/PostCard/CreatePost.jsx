@@ -4,13 +4,12 @@ import PropTypes from 'prop-types';
 import CreateCardPost from '../CreateCardPost';
 import { ImgWrapper, IconPlus, PlusCircle, Title } from './styled';
 import TagsPost from '../TagPost';
-import { Button } from '../../base/Buttons';
 
 // Import ModalBase
 import BaseModalPost from '../BaseModalPost';
 
 export const CreatePost = () => {
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCloseModal = () => {
     setIsModalOpen(false);

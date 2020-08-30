@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 /* Redux */
@@ -17,9 +17,6 @@ import { Tag, WrapperTag } from '../TagPost/styled';
 import { Button } from '../../base/Buttons';
 
 function CreateCardPost({ createMyGarment, onSave }) {
-  useEffect(() => {
-    createMyGarment();
-  }, []);
   const pictures = [1, 2, 3, 4, 5];
   const [arrayImg, setArrayImg] = useState([]);
   const [input, setInput] = useState({
@@ -42,8 +39,8 @@ function CreateCardPost({ createMyGarment, onSave }) {
   return (
     <>
       <Wrapper>
-        {pictures.map(() => (
-          <Pic arrayImg={arrayImg} setArrayImg={setArrayImg} />
+        {pictures.map((index) => (
+          <Pic arrayImg={arrayImg} setArrayImg={setArrayImg} key={index} />
         ))}
       </Wrapper>
       <form onSubmit={guardarDatos}>

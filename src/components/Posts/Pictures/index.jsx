@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Pictures, Input, Icon, Img, Preloader } from '../ImagesContainer/styled';
@@ -10,13 +9,6 @@ const Pic = (props) => {
   const [loader, setLoader] = useState(false);
   const [icon, setIcon] = useState(true);
 
-  const loading = () => {
-    setLoader(true)
-  }
-
-  const showIcon = () => {
-    setIcon(true)
-  }
 
   const onSelectImg = (e) => {
     const img = e.target.files;
@@ -63,7 +55,6 @@ const Pic = (props) => {
 };
 
 Pic.propTypes = {
-  arrayImg: PropTypes.func.isRequired,
   setArrayImg: PropTypes.func.isRequired,
 };
 

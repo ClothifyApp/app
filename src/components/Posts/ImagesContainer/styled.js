@@ -101,13 +101,12 @@ export const Preloader = styled.div`
   animation-duration: 2s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
-}
-@keyframes girar {
-  from {
-    transform: rotate(0deg);
+  @keyframes girar {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
-  to {
-    transform: rotate(360deg);
-  }
-}
-`;
+`

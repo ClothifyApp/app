@@ -25,7 +25,6 @@ import Slider from '../../Swipe/Slider';
 function PostCard({ garment, deleteGarment }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpenSwipe, setIsModalOpenSwipe] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
