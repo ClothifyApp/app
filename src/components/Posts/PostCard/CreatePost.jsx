@@ -10,7 +10,7 @@ import { Button } from '../../base/Buttons';
 import BaseModalPost from '../BaseModalPost';
 
 export const CreatePost = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
   const handleCloseModal = () => {
     setIsModalOpen(false);

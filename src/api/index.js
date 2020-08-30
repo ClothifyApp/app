@@ -61,4 +61,16 @@ export const deleteGarment = async (garmentId) => {
   return data.data.deletedCount;
 }
 
+// Save Image Garment
+export const uploadImage = async (data) => {
+  const response = await clothifyService.post('/image/', data, {
+    headers: {
+      accept: 'application/json',
+      'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
+      },
+  });
+  
+  return response.data.data.imagePath;
+}
+
 export default clothifyService;

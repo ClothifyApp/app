@@ -85,3 +85,29 @@ export const Icon = styled(FontAwesomeIcon)`
   margin: 0 4px 4px 0;
   position: absolute;
 `;
+
+export const Preloader = styled.div`
+  width: 25px;
+  height: 25px;
+  z-index: 2;
+  margin: 0 4px 4px 0;
+  background-color: #eee;
+  border: 10px solid #B71AB7;
+  border-top: 10px solid white;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  animation-name: girar;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes girar {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+`;
