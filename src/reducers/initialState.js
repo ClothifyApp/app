@@ -8,6 +8,7 @@ const initialState = {
   token: undefined,
   myGarments: [],
   tags: [],
+  notification: {},
 };
 
 export default initialState;
