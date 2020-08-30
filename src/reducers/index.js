@@ -34,8 +34,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         token: null,
-        user: null,
-        suggestions: null,
+        user: initialState.user,
       };
     case SET_LOADING:
       return {
