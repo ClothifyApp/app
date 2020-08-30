@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import Layout from './components/Layout';
 import { mainTheme } from './themes/main';
-import { Router } from './router';
+import Router from './router';
 import { store } from './store';
 import Loader from './components/base/Loader';
 

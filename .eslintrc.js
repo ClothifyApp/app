@@ -20,6 +20,8 @@ module.exports = {
     'import/no-named-as-default': 0,
     'linebreak-style': 0,
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    "no-underscore-dangle": 0,
+    "react/forbid-prop-types": 0,
   },
   settings: {
     'import/resolver': {

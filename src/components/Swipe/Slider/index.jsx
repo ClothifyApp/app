@@ -59,8 +59,11 @@ const Slider = ({ imageUrls, onClick, height, border }) => {
 };
 
 Slider.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
   imageUrls: PropTypes.array,
+<<<<<<< HEAD
+=======
+  height: PropTypes.string.isRequired,
+>>>>>>> 92c19a7154a93bca332991b94894677198916772
   onClick: PropTypes.func.isRequired,
 };
 

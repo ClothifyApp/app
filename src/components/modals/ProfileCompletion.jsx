@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   faUser,
-  faMapMarked,
   faVenusMars,
+  faMapMarked,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { Button } from '../base/Buttons';
@@ -11,33 +11,72 @@ import { CircularPhotoSelector } from '../base/FormFields';
 import ProfileInput from '../ProfileInput';
 import { DataWrapper } from './styled';
 
-const ProfileCompletion = ({ onContinue }) => (
-  <>
-    {onContinue && <h2>Completa tu perfil</h2>}
-    <CircularPhotoSelector>
-      <input type="file" />
-    </CircularPhotoSelector>
-    <DataWrapper margin={!!onContinue}>
-      <ProfileInput icon={faUser} text="Nombre">
-        <input type="text" placeholder="Escribe tu nombre" />
-      </ProfileInput>
-      <ProfileInput icon={faMapMarked} text="País">
-        <input type="text" placeholder="Escribe tu país" disabled />
-      </ProfileInput>
-      <ProfileInput icon={faVenusMars} text="Género">
-        <select dir="rtl">
-          <option value="">Másculino</option>
-          <option value="">Femenino</option>
-          <option value="">Otro</option>
-          <option value="">Prefiero no decirlo</option>
-        </select>
-      </ProfileInput>
-    </DataWrapper>
-    {onContinue && <Button onClick={onContinue}>Continuar</Button>}
-  </>
-);
+const ProfileCompletion = ({ userData, updateUser, onContinue }) => {
+  const [internalUser, setInternaUser] = useState(userData);
+  const handleOnChange = ({ target }) => {
+    if (onContinue) {
+      setInternaUser({ ...internalUser, [target.name]: target.value });
+    } else {
+      updateUser({ ...userData, [target.name]: target.value });
+    }
+  };
+
+  const buttonDisabled = onContinue
+    ? !internalUser || !internalUser.fullName || !internalUser.gender || internalUser.gender === 'none'
+    : !userData || !userData.fullName || !userData.gender || userData.gender === 'none';
+
+  return (
+    <>
+      {onContinue && <h2>Completa tu perfil</h2>}
+      <CircularPhotoSelector>
+        <input type="file" />
+      </CircularPhotoSelector>
+      <DataWrapper margin={!!onContinue}>
+        <ProfileInput icon={faUser} text="Nombre">
+          <input
+            name="fullName"
+            type="text"
+            placeholder="Escribe tu nombre"
+            value={userData.fullName}
+            onChange={handleOnChange}
+          />
+        </ProfileInput>
+        <ProfileInput icon={faMapMarked} text="País">
+          <input
+            type="text"
+            placeholder="Selecciona tu país"
+            value="Colombia"
+            disabled
+          />
+        </ProfileInput>
+        <ProfileInput icon={faVenusMars} text="Género">
+          <select
+            name="gender"
+            dir="rtl"
+            value={userData.gender || 'none'}
+            onChange={handleOnChange}
+          >
+            <option disabled value="none">
+              -- Selecciona una Opción --
+            </option>
+            <option value="M">Másculino</option>
+            <option value="F">Femenino</option>
+            <option value="N">No Binario</option>
+          </select>
+        </ProfileInput>
+      </DataWrapper>
+      {onContinue && (
+        <Button onClick={() => onContinue(internalUser)} disabled={buttonDisabled}>
+          Continuar
+        </Button>
+      )}
+    </>
+  );
+};
 
 ProfileCompletion.propTypes = {
+  userData: PropTypes.object.isRequired,
+  updateUser: PropTypes.func.isRequired,
   onContinue: PropTypes.func,
 };
 

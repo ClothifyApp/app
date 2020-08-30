@@ -18,7 +18,6 @@ const Matches = ({ matches }) => (
 );
 
 Matches.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
   matches: PropTypes.array,
 };
 

@@ -41,7 +41,6 @@ const AskNumber = ({ onContinue, value, onChange }) => {
             value={value}
             onChange={onChange}
           />
-          {/* {<ErrorLabel></ErrorLabel>} */}
         </FormField>
       </Wrapper>
       <InfoText>
