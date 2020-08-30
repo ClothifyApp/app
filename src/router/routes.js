@@ -17,21 +17,21 @@ const ROUTES = [
     key: 'COMPLETE_PROFILE',
     exact: true,
     component: Profile,
-    auth: true,
+    auth: false,
   },
   {
     path: ['/posts'],
     key: 'POSTS',
     exact: true,
     component: Posts,
-    auth: false,
+    auth: true,
   },
   {
     path: '/swipe',
     key: 'SWIPE',
     exact: true,
     component: Swipe,
-    auth: false,
+    auth: true,
   },
 ];
 
