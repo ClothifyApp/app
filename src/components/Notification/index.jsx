@@ -10,7 +10,7 @@ import { NotificationContainer } from './styled';
 import options from './constants';
 
 const Notification = ({ notification }) => {
-  if (notification.message && notification.type) {
+  if (notification && notification.message && notification.type) {
     return (
       <NotificationContainer type={notification.type}>
         <FontAwesomeIcon icon={options[notification.type].icon} size="3x" />
