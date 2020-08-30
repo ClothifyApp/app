@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect, Route } from 'react-router-dom';
@@ -18,7 +19,7 @@ const AuthComponent = ({
 };
 
 AuthComponent.propTypes = {
-  component: PropTypes.element.isRequired,
+  component: PropTypes.object,
   path: PropTypes.string.isRequired,
   exact: PropTypes.bool.isRequired,
   authorized: PropTypes.bool,
@@ -26,6 +27,7 @@ AuthComponent.propTypes = {
 };
 
 AuthComponent.defaultProps = {
+  component: null,
   logged: false,
   authorized: false,
 };
@@ -45,7 +47,6 @@ const NoAuthComponent = ({
 };
 
 NoAuthComponent.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
   component: PropTypes.object,
   path: PropTypes.string.isRequired,
   exact: PropTypes.bool.isRequired,
