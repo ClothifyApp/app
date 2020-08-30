@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const CardContainer = styled.div`
+export const CardContainer = styled.a`
   background-color: ${({ theme }) => theme.colors.whiteOpacity};
   box-shadow: ${({ theme }) => theme.shadows.regular};
   margin-bottom: 15px;
@@ -8,6 +8,7 @@ export const CardContainer = styled.div`
   padding: 10px;
   display: flex;
   align-items: center;
+  text-decoration: none;
 `;
 
 export const Title = styled.div`

@@ -14,3 +14,7 @@ export const LOGOUT = 'LOGOUT';
 
 // My Garments
 export const LIST_MY_GARMENTS = 'LIST_MY_GARMENTS';
+export const CREATE_MY_GARMENT = 'CREATE_MY_GARMENT';
+
+// My Matches
+export const SET_MATCHES = 'SET_MATCHES';

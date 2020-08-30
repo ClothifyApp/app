@@ -17,7 +17,7 @@ export const Overlay = styled.dialog`
   cursor: pointer;
   transition: 0.3s;
   overflow: ${(props) => props.overflow || ''};
-  z-index: 10;
+  z-index: ${(props) => props.Zindex || '10' };
 `;
 
 export const Modal = styled.div`
@@ -32,21 +32,23 @@ export const Modal = styled.div`
   cursor: auto;
   @media ${device.mobileM} {
     margin-top: 70px;
+    max-height: 600px;
     overflow: auto;
   }
-  @media ${device.mobileL}{
+  @media ${device.mobileL} {
     margin-top: 70px;
+    max-height: 600px;
+    overflow: auto;
+  }
+  @media ${device.tablet} {
+    margin-top: 70px;
+    width: 260px;
+    max-height: 400px;
     overflow: auto;
   }
   @media ${device.laptop} {
     width: 460px;
     max-height: 90%;
-    margin-top: 70px;
-    overflow: auto;
-  }
-  @media ${device.laptop} {
-    width: 460px;
-    height: 620px;
     margin-top: 70px;
     overflow: auto;
   }

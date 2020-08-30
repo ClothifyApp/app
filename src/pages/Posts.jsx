@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -7,84 +6,9 @@ import { bindActionCreators } from 'redux';
 import { listMyGarmentsThunk } from '../actions/myGarmentsActions';
 import ListOfPostCard from '../components/Posts/ListOfPostCard';
 
-import PostIlustration from '../assets/images/new-post.svg';
+// import PostIlustration from '../assets/images/new-post.svg';
 
-import { device } from '../components/base/device';
-
-const MainImage = styled.div`
-  display: none;
-  @media ${device.mobileM} {
-    display: none;
-  }
-  @media ${device.mobileL} {
-    display: none;
-  }
-  @media ${device.laptop} {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    min-height: calc(100vh - ${({ theme }) => theme.sizes.navbarHeight};
-    & img {
-      height: 60%;
-      max-width: 100%;
-      object-fit: contain;
-    }
-  }
-  @media ${device.laptopL} {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    min-height: calc(100vh - ${({ theme }) => theme.sizes.navbarHeight};
-    & img {
-      height: 60%;
-      max-width: 100%;
-      object-fit: contain;
-    }
-  }
-  @media ${device.desktop} {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    min-height: calc(100vh - ${({ theme }) => theme.sizes.navbarHeight};
-    & img {
-      height: 60%;
-      max-width: 100%;
-      object-fit: contain;
-    }
-  }
-`;
-
-export const MainWrapper = styled.div`
-  @media ${device.mobileM} {
-    width: 380px;
-    height: 620px;
-  }
-  @media ${device.mobileL} {
-    width: 100%;
-    height: 620px;
-  }
-  @media ${device.laptop} {
-    width: 100%;
-    min-height: calc(100vh - ${({ theme }) => theme.sizes.navbarHeight};
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-  @media ${device.laptopL} {
-    width: 100%;
-    min-height: calc(100vh - ${({ theme }) => theme.sizes.navbarHeight};
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-  @media ${device.desktop} {
-    width: 100%;
-    min-height: calc(100vh - ${({ theme }) => theme.sizes.navbarHeight};
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-`;
+/* styles */
 
 function Posts({ listMyGarments, myGarments }) {
   useEffect(() => {
@@ -95,7 +19,7 @@ function Posts({ listMyGarments, myGarments }) {
 
   return (
     <div>
-      <ListOfPostCard />
+      <ListOfPostCard myGarments={myGarments} />
       {/* <MainWrapper>
         <MainImage>
           <img src={PostIlustration} alt="Ilustracion de new post" />
@@ -115,10 +39,12 @@ const mapStateToProps = (state) => ({
   myGarments: state.myGarments,
 });
 
-const mapDispatchToProps = (dispatch) => (
-  bindActionCreators({
-    listMyGarments: listMyGarmentsThunk,
-  }, dispatch)
-);
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      listMyGarments: listMyGarmentsThunk,
+    },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);
