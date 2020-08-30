@@ -1,35 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // REDUX
 import { connect } from 'react-redux';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import { NotificationContainer } from './styled';
+import { NotificationContainer, NotificationCloseIcon } from './styled';
 
-import options from './constants';
+import options, { notificationTypes } from './constants';
 
 const Notification = ({ notification }) => {
-  if (notification && notification.message && notification.type) {
-    return (
-      <NotificationContainer type={notification.type}>
-        <FontAwesomeIcon icon={options[notification.type].icon} size="3x" />
-        <div>
-          <h3>{notification.title}</h3>
-          <p>{notification.message}</p>
-        </div>
-      </NotificationContainer>
-    );
-  }
-  return null;
+  const [spacing, setSpacing] = useState(-150);
+  const closeNotification = () => setSpacing(-150);
+  const openNotification = () => setSpacing(10);
+
+  useEffect(() => {
+    if (notification.message && notification.title) {
+      openNotification();
+      setTimeout(closeNotification, 5000);
+    }
+    return () => clearTimeout(closeNotification);
+  }, [notification]);
+  return (
+    <NotificationContainer type={notification.type} spacing={spacing}>
+      <FontAwesomeIcon icon={options[notification.type].icon} size="3x" />
+      <div>
+        <NotificationCloseIcon icon={faTimes} onClick={closeNotification} />
+        <h3>{notification.title}</h3>
+        <p>{notification.message}</p>
+      </div>
+    </NotificationContainer>
+  );
 };
 
 Notification.propTypes = {
   notification: PropTypes.shape({
-    type: PropTypes.oneOf(['warning', 'error', 'like']).isRequired,
+    type: PropTypes.oneOf(Object.keys(notificationTypes)).isRequired,
     title: PropTypes.string.isRequired,
     message: PropTypes.string.isRequired,
-  }).isRequired,
+  }),
+};
+
+Notification.defaultProps = {
+  notification: {
+    type: notificationTypes.warning,
+  },
 };
 
 const mapStateToProps = ({ notification }) => ({

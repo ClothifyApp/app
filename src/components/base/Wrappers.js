@@ -7,7 +7,7 @@ export const MainWrapper = styled.section`
   min-height: calc(100vh - ${({ theme }) => theme.sizes.navbarHeight}px);
   display: grid;
   grid-template-columns: 1fr;
-  @media ${device.mobileL} {
+  @media ${device.tablet} {
     grid-template-columns: 1fr 480px;
   }
 `;
@@ -16,7 +16,6 @@ export const LetsGoWrapper = styled.section`
   display: flex;
   height: 100%;
   padding: 40px;
-  padding-bottom: 115px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -34,7 +33,7 @@ export const MainImageWrapper = styled.div`
     max-width: 300px;
     object-fit: contain;
   }
-  @media ${device.mobileL} {
+  @media ${device.tablet} {
     width: 100%;
     padding: initial;
     height: calc(100vh - ${({ theme }) => theme.sizes.navbarHeight}px);

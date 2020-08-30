@@ -3,6 +3,7 @@ import {
   faHeart,
   faExclamationCircle,
   faTimesCircle,
+  faCheckCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
 export default {
@@ -18,6 +19,10 @@ export default {
     icon: faHeart,
     color: 'gradient',
   },
+  success: {
+    icon: faCheckCircle,
+    color: 'green',
+  },
 };
 
 export const notificationTypes = {
@@ -25,4 +30,5 @@ export const notificationTypes = {
   match: 'match',
   like: 'match',
   error: 'error',
+  success: 'success',
 };
