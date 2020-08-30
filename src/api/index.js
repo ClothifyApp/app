@@ -63,17 +63,12 @@ export const getTags = async () => {
   return data.data.tags;
 };
 // Create Garment
-<<<<<<< HEAD
+
 export const createMyGarment = async (garment) => {
   const { data } = await clothifyService.post('/garments', garment);
   return data.data.garment;
 }
-=======
-export const createMyGarment = async (data) => {
-  const response = await clothifyService.post('/garments', data);
-  return response.data.garment;
-};
->>>>>>> 92c19a7154a93bca332991b94894677198916772
+
 
 // Matches
 export const listMatches = async () => {
