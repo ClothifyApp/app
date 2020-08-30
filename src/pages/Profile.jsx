@@ -81,7 +81,6 @@ Profile.propTypes = {
   setLoading: PropTypes.func.isRequired,
   setTags: PropTypes.func.isRequired,
   setUser: PropTypes.func.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
   tags: PropTypes.array,
   token: PropTypes.string,
 };

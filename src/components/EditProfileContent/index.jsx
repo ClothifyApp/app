@@ -81,9 +81,7 @@ EditProfileContent.propTypes = {
   setUser: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
   user: PropTypes.object.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
   tags: PropTypes.array,
 };
 

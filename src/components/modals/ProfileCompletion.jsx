@@ -75,7 +75,6 @@ const ProfileCompletion = ({ userData, updateUser, onContinue }) => {
 };
 
 ProfileCompletion.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
   userData: PropTypes.object.isRequired,
   updateUser: PropTypes.func.isRequired,
   onContinue: PropTypes.func,
