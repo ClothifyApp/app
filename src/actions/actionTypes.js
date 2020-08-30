@@ -3,6 +3,8 @@
 // Commons
 export const SET_LOADING = 'SET_LOADING';
 export const SET_TAGS = 'SET_TAGS';
+export const SET_NOTIFICATION = 'SET_NOTIFICATION';
+export const CLEAR_NOTIFICATION = 'CLEAR_NOTIFICATION';
 
 // SWIPE/FEED
 export const GET_GARMENTS = 'GET_GARMENTS';

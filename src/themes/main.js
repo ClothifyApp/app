@@ -11,7 +11,7 @@ export const mainTheme = {
     pink: '#FC497B',
     green: '#25D366',
     greenLight: '#2dda6d',
-    yellow: '#FFC850',
+    yellow: '#e6a20e',
     gradient: 'linear-gradient(0deg, #B71AB7 0%, #DA0B9F 100%);',
     pinkLighter: '#DA0B9F',
   },

@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import { BrowserRouter } from 'react-router-dom';
 
 import Layout from './components/Layout';
+import Notification from './components/Notification';
 import { mainTheme } from './themes/main';
 import Router from './router';
 import { store } from './store';
@@ -16,6 +17,7 @@ function App() {
     <Provider store={store}>
       <ThemeProvider theme={mainTheme}>
         <BrowserRouter>
+          <Notification />
           <Layout>
             <Router />
           </Layout>
