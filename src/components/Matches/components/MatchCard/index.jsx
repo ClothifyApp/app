@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {
   CardContainer,
   Title,
-  Tag,
   InfoText,
   DescriptionContainer,
 } from './styled';

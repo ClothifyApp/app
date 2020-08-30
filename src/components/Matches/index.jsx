@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import MatchCard from './components/MatchCard';
+import NoMatch from './components/NoMatch';
 
 const Matches = ({ matches }) => (
   <div>
@@ -14,6 +15,7 @@ const Matches = ({ matches }) => (
         match={match}
       />
     ))}
+    {(!matches || !matches.length) && <NoMatch />}
   </div>
 );
 
