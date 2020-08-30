@@ -21,9 +21,8 @@ import AskNumber from '../components/modals/AskNumber';
 import VerifyCode from '../components/modals/VerifyCode';
 
 import LoginIlustration from '../assets/images/login.svg';
-import { verifyUserPhone, setToken as setTokenHeader } from '../api';
 
-const Main = ({ setLoading, setToken, setUser }) => {
+const Main = ({ setLoading, singIn }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [confirmationCode, setConfirmationCode] = useState('');
@@ -62,14 +61,8 @@ const Main = ({ setLoading, setToken, setUser }) => {
   const handleVerifyCode = async () => {
     try {
       setLoading(true);
-      const { data } = await verifyUserPhone(confirmationCode, verificationId);
+      singIn(confirmationCode, verificationId);
 
-      // Add header to services requests
-      setTokenHeader(data.token);
-
-      // Redux
-      await setUser(data.user);
-      setToken(data.token);
       // TODO: NNotification with message.
       return <Redirect to="/complete-profile" />;
     } catch (err) {
@@ -126,15 +119,13 @@ const Main = ({ setLoading, setToken, setUser }) => {
 
 Main.propTypes = {
   setLoading: PropTypes.func.isRequired,
-  setToken: PropTypes.func.isRequired,
-  setUser: PropTypes.func.isRequired,
+  singIn: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
     setLoading: globalActions.setLoading,
-    setUser: authActions.setUser,
-    setToken: authActions.setToken,
+    singIn: authActions.singIn,
   },
   dispatch,
 );
