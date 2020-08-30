@@ -6,7 +6,7 @@ import { Button } from '../../base/Buttons';
  function DeletePost({onDelete})  {
    return(
       <>
-        <Title>Estás seguro que deseas eliminar esta publicación?</Title>
+        <Title>¿Estás seguro(a) que deseas eliminar esta publicación?</Title>
         <Button onClick={onDelete} marginB="5px" size="10px">
           SI
         </Button>

@@ -63,7 +63,6 @@ export default function rootReducer(state = initialState, action) {
         myGarments: state.myGarments.filter((garment) => action.payload !== garment._id),
       };
     case CREATE_MY_GARMENT:
-      console.log(state)
       return {
         ...state,
         myGarments: [...state.myGarments, action.payload],

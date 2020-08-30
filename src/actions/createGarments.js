@@ -12,11 +12,13 @@ export const createGarmentThunk = (data) => async (dispatch) => {
   dispatch(setLoading(true));
   try {
     const garment = await createMyGarment(data);
-    console.log(garment)
     dispatch(createMyGarmentAction(garment));
-  } finally {
+  }catch (error) {
+    console.log(error);
+  }
+   finally {
     dispatch(setLoading(false));
   }
-}; /* catch (error) {
-    console.log(error);
-}; */
+}; 
+
+  

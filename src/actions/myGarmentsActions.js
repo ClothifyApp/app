@@ -15,12 +15,12 @@ export const listMyGarmentsThunk = () => async (dispatch) => {
   try {
     const garments = await listMyGarments();
     dispatch(listMyGarmentsAction(garments));
+  }catch (error) {
+    console.error(error);
   } finally {
     dispatch(setLoading(false));
   }
-  /* catch (error) {
-    console.error(error);
-  } */
+   
 };
 
 const deleteGarmentAction = (payload) => ({
@@ -35,10 +35,10 @@ export const deleteGarmentThunk = (garmentId) => async (dispatch) => {
     if(deleteCount > 0){
       dispatch(deleteGarmentAction(garmentId));
     }
+  }catch (error) {
+    console.error(error);
   } finally {
     dispatch(setLoading(false));
   }
-  /* catch (error) {
-    console.error(error);
-  } */
+    
 };
