@@ -4,14 +4,12 @@ import PropTypes from 'prop-types';
 import CreateCardPost from '../CreateCardPost';
 import { ImgWrapper, IconPlus, PlusCircle, Title } from './styled';
 import TagsPost from '../TagPost';
-import { Button } from '../../base/Buttons';
 
 // Import ModalBase
 import BaseModalPost from '../BaseModalPost';
 
-export const CreatePost = ({ onEnds }) => {
-  const [isModalOpen, setIsModalOpen] = useState(true);
-  const [step, setStep] = useState(1);
+export const CreatePost = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
@@ -29,7 +27,7 @@ export const CreatePost = ({ onEnds }) => {
           isOpen={isModalOpen}
           onClose={handleCloseModal}
           showClose>
-          <CreateCardPost />
+          <CreateCardPost onSave={handleCloseModal} />
         </BaseModalPost>
         <PlusCircle onClick={handleOpenModal}>
           <IconPlus icon={faPlus} />

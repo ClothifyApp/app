@@ -1,4 +1,4 @@
-import { createMyGarment, setToken } from '../api';
+import { createMyGarment } from '../api';
 import { setLoading } from './globalActions';
 import { CREATE_MY_GARMENT } from './actionTypes';
 
@@ -11,11 +11,14 @@ const createMyGarmentAction = (payload) => ({
 export const createGarmentThunk = (data) => async (dispatch) => {
   dispatch(setLoading(true));
   try {
-    const createGarment = await createMyGarment(data);
-    dispatch(createMyGarmentAction(createGarment));
-  } finally {
+    const garment = await createMyGarment(data);
+    dispatch(createMyGarmentAction(garment));
+  }catch (error) {
+    console.log(error);
+  }
+   finally {
     dispatch(setLoading(false));
   }
-}; /* catch (error) {
-    console.log(error);
-}; */
+}; 
+
+  

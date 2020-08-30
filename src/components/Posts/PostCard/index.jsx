@@ -1,13 +1,13 @@
 /* eslint-disable react/forbid-prop-types */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { ImgWrapper, Img, Icon, Button, Touch } from './styled';
+import { ImgWrapper, Icon, Button,  } from './styled';
 
-import { listMyGarmentsThunk } from '../../../actions/myGarmentsActions';
+import { deleteGarmentThunk } from '../../../actions/myGarmentsActions';
 
 // import ModalDelete
 import DeletePost from '../DeletePost';
@@ -20,10 +20,11 @@ import BaseModalPost from '../BaseModalPost';
 import Swipe from '../../Swipe';
 import Slider from '../../Swipe/Slider';
 
-function PostCard({ garment }) {
+
+
+function PostCard({ garment, deleteGarment }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpenSwipe, setIsModalOpenSwipe] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
@@ -38,6 +39,10 @@ function PostCard({ garment }) {
     setIsModalOpenSwipe(false);
   };
 
+  const handleDeleteGarment = () => {
+    deleteGarment(garment._id);
+  }
+
   return (
     <>
       <ImgWrapper>
@@ -46,7 +51,7 @@ function PostCard({ garment }) {
           isOpen={isModalOpen}
           onClose={handleCloseModal}
           showClose>
-          <DeletePost />
+          <DeletePost onDelete={handleDeleteGarment} />
         </BaseModalPost>
         <Button onClick={handleOpenModal}>
           <Icon icon={faTrash} />
@@ -75,30 +80,20 @@ function PostCard({ garment }) {
 }
 
 PostCard.propTypes = {
-  listMyGarments: PropTypes.func.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
-  garment: PropTypes.array.isRequired,
-  user: PropTypes.object.isRequired,
+  garment: PropTypes.object.isRequired,
+  deleteGarment: PropTypes.func.isRequired,
 };
 Swipe.defaultProps = {
-  myGarment: {
-    name: '',
-    description: '',
-    photos: [],
-    tags: [],
-    user: {},
-  },
+ 
 };
-const mapStateToProps = (state) => ({
-  myGarments: state.myGarments,
-});
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      listMyGarments: listMyGarmentsThunk,
+      deleteGarment: deleteGarmentThunk,
     },
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostCard);
+export default connect(null, mapDispatchToProps)(PostCard);

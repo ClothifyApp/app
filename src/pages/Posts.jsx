@@ -15,8 +15,6 @@ function Posts({ listMyGarments, myGarments }) {
     listMyGarments();
   }, []);
 
-  console.log(myGarments);
-
   return (
     <div>
       <ListOfPostCard myGarments={myGarments} />
