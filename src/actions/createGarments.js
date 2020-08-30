@@ -10,7 +10,6 @@ const createMyGarmentAction = (payload) => ({
 // eslint-disable-next-line import/prefer-default-export
 export const createGarmentThunk = (data) => async (dispatch) => {
   dispatch(setLoading(true));
-  setToken(process.env.REACT_APP_TEST_TOKEN);
   try {
     const createGarment = await createMyGarment(data);
     dispatch(createMyGarmentAction(createGarment));

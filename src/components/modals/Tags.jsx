@@ -4,36 +4,58 @@ import PropTypes from 'prop-types';
 import { Button } from '../base/Buttons';
 import { Tag } from '../base/Tag';
 
-import { TagWrapper, Small } from './styled';
+import { TagWrapper } from './styled';
 
-const VerifyCode = ({ onEnds }) => (
-  <>
-    {onEnds && <h2>Preferencias</h2>}
-    <Small>Selecciona al menos 3 preferencias.</Small>
-    <TagWrapper padding={!!onEnds}>
-      <Tag>whatever</Tag>
-      <Tag>pants</Tag>
-      <Tag active>t-shirt</Tag>
-      <Tag>skirt</Tag>
-      <Tag>shoes</Tag>
-      <Tag>tie</Tag>
-      <Tag>whatever</Tag>
-      <Tag>pants</Tag>
-      <Tag active>t-shirt</Tag>
-      <Tag>skirt</Tag>
-      <Tag>shoes</Tag>
-      <Tag>tie</Tag>
-    </TagWrapper>
-    {onEnds && <Button onClick={onEnds}>Finalizar</Button>}
-  </>
-);
+const Tags = ({
+  onEnds, tags, userData, updateUser, hideTitle,
+}) => {
+  const handleClick = (_id) => {
+    let userPreferences = userData.preferences;
 
-VerifyCode.propTypes = {
+    if (userPreferences.some((preference) => preference === _id)) {
+      userPreferences = userPreferences.filter((preference) => preference !== _id);
+    } else {
+      userPreferences.push(_id);
+    }
+    updateUser({ ...userData, preferences: userPreferences });
+  };
+
+  const buttonDisabled = userData.preferences.length < 3;
+
+  return (
+    <>
+      {onEnds && !hideTitle && <h2>Preferencias</h2>}
+      <TagWrapper padding={!!onEnds}>
+        {tags.map((tag) => (
+          <Tag
+            key={tag._id}
+            active={userData.preferences.includes(tag._id)}
+            onClick={() => handleClick(tag._id)}
+          >
+            {tag.name}
+          </Tag>
+        ))}
+      </TagWrapper>
+      {onEnds && (
+        <Button onClick={onEnds} disabled={buttonDisabled}>
+          Guardar cambios
+        </Button>
+      )}
+    </>
+  );
+};
+
+Tags.propTypes = {
+  tags: PropTypes.arrayOf(PropTypes.object).isRequired,
+  userData: PropTypes.objectOf(PropTypes.string).isRequired,
+  updateUser: PropTypes.func.isRequired,
+  hideTitle: PropTypes.bool,
   onEnds: PropTypes.func,
 };
 
-VerifyCode.defaultProps = {
+Tags.defaultProps = {
+  hideTitle: false,
   onEnds: null,
 };
 
-export default VerifyCode;
+export default Tags;
