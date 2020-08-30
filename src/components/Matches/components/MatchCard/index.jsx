@@ -9,6 +9,7 @@ import {
   DescriptionContainer,
 } from './styled';
 
+import NoProfilePicture from '../../../../assets/images/no-profile-picture.jpg';
 import { urlGenerator } from '../../../../services/whatsapp';
 import { Avatar } from '../../../base/Images';
 import { WhatsAppButton } from '../../../base/Buttons';
@@ -17,7 +18,7 @@ const MatchCard = ({
   match,
 }) => (
   <CardContainer>
-    <Avatar src={match.secondUser.photoUrl} alt={match.secondUser.fullName} />
+    <Avatar src={match.secondUser.photoUrl || NoProfilePicture} alt={match.secondUser.fullName} />
     <DescriptionContainer>
       <Title>{match.secondUser.fullName}</Title>
       <InfoText>{`${match.garments.length} Prendas`}</InfoText>

@@ -56,7 +56,7 @@ export const Heading = styled.header`
   }
   & .name-gender {
     & svg {
-      margin-left: 5px;
+      margin-right: 5px;
       color: ${({ theme }) => theme.colors.primary};
     }
   }
