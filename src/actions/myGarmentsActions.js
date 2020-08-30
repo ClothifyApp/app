@@ -1,10 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 
-<<<<<<< HEAD
-import { listMyGarments, deleteGarment, setToken } from '../api';
-=======
-import { listMyGarments } from '../api';
->>>>>>> 92c19a7154a93bca332991b94894677198916772
+import { listMyGarments, deleteGarment } from '../api';
 import { setLoading } from './globalActions';
 import { LIST_MY_GARMENTS, DELETE_GARMENT } from './actionTypes';
 
