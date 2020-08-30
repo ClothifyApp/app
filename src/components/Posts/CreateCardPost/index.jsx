@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 /* Redux */
@@ -16,10 +16,7 @@ import { Tag, WrapperTag } from '../TagPost/styled';
 
 import { Button } from '../../base/Buttons';
 
-function CreateCardPost({ createMyGarment }) {
-  useEffect(() => {
-    createMyGarment();
-  }, []);
+function CreateCardPost({ createMyGarment, onSave }) {
   const pictures = [1, 2, 3, 4, 5];
   const [arrayImg, setArrayImg] = useState([]);
   const [input, setInput] = useState({
@@ -37,12 +34,13 @@ function CreateCardPost({ createMyGarment }) {
   const guardarDatos = (e) => {
     e.preventDefault();
     createMyGarment({ ...input, photos: arrayImg });
+    onSave()
   };
   return (
     <>
       <Wrapper>
-        {pictures.map(() => (
-          <Pic arrayImg={arrayImg} setArrayImg={setArrayImg} />
+        {pictures.map((index) => (
+          <Pic arrayImg={arrayImg} setArrayImg={setArrayImg} key={index} />
         ))}
       </Wrapper>
       <form onSubmit={guardarDatos}>
@@ -79,7 +77,7 @@ function CreateCardPost({ createMyGarment }) {
         <Tag>shoes</Tag>
         <Tag>tie</Tag>
       </WrapperTag>
-      <Button margin="30px 0 0 0" onClick={guardarDatos}>
+      <Button margin="30px 0 0 0"  onClick={guardarDatos}>
         Guardar
       </Button>
     </>

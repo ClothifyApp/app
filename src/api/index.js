@@ -63,15 +63,35 @@ export const getTags = async () => {
   return data.data.tags;
 };
 // Create Garment
-export const createMyGarment = async (data) => {
-  const response = await clothifyService.post('/garments', data);
-  return response.data.garment;
-};
+
+export const createMyGarment = async (garment) => {
+  const { data } = await clothifyService.post('/garments', garment);
+  return data.data.garment;
+}
+
 
 // Matches
 export const listMatches = async () => {
   const { data } = await clothifyService.get('/match/user/');
   return data.data.matches;
 };
+
+// Delete Garment
+export const deleteGarment = async (garmentId) => {
+  const { data } = await clothifyService.delete('/garments/'+ garmentId);
+  return data.data.deletedCount;
+}
+
+// Save Image Garment
+export const uploadImage = async (data) => {
+  const response = await clothifyService.post('/image/', data, {
+    headers: {
+      accept: 'application/json',
+      'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
+      },
+  });
+  
+  return response.data.data.imagePath;
+}
 
 export default clothifyService;

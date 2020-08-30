@@ -3,8 +3,9 @@
 # env vars
 .env
 
-# package-lock
+# package-lock adn yarn.lock
 package-lock.json
+yarn.lock
 
 # dependencies
 /node_modules

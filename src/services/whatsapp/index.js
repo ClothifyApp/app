@@ -10,7 +10,7 @@ const messageBuilder = (userGarments, receiverGarments, receiver, user) => {
 
   const isPlural = (things, letter = 's') => (things.length > 1 ? letter : '');
 
-  return `Hola ${getFirstName(receiver.fullName)}! soy ${getFirstName(user.fullName)}, vi que hicimos match en clothify, te gusta${isPlural(userGarments, 'n')} mi${isPlural(userGarments)} prenda${isPlural(userGarments)}: ${myGarmentsText}. Y a mi me gusta${isPlural(receiverGarments, 'n')} tu${isPlural(receiverGarments)} prenda${isPlural(receiverGarments)}: ${theirGarmentsText}. Te parece si cambiamos?`;
+  return `✨ Hola, ${getFirstName(receiver.fullName)}! Soy ${getFirstName(user.fullName)}. Vi que hicimos match en Clothify App 🤩. Te gusta${isPlural(userGarments, 'n')} mi${isPlural(userGarments)} prenda${isPlural(userGarments)}: ${myGarmentsText}. Y a mi me gusta${isPlural(receiverGarments, 'n')} tu${isPlural(receiverGarments)} prenda${isPlural(receiverGarments)}: ${theirGarmentsText}. ¿Te parece si cambiamos? ☺️`;
 };
 
 export const urlGenerator = (match, userId) => {
