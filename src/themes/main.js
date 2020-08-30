@@ -9,7 +9,7 @@ export const mainTheme = {
     grey: '#4A4A4A',
     greyLighter: '#C0C0C0',
     pink: '#FC497B',
-    green: '#25D366',
+    green: '#2b9e55',
     greenLight: '#2dda6d',
     yellow: '#e6a20e',
     gradient: 'linear-gradient(0deg, #B71AB7 0%, #DA0B9F 100%);',
