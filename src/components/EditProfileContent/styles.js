@@ -15,3 +15,9 @@ export const Actions = styled.div`
     margin-top: 10px;
   }
 `;
+
+export const DeleteAccount = styled.a`
+  color: ${({ theme }) => theme.colors.pink};
+  text-decoration: none;
+  cursor: pointer;
+`;

@@ -1,10 +1,10 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable import/prefer-default-export */
-import api, { setToken, doReaction } from '../api';
+import { getFeed, doReaction } from '../api';
 import { setLoading } from './globalActions';
 import { GET_GARMENTS, GET_TOP_GARMENT } from './actionTypes';
 
-const getGaementsAction = (payload) => (
+const getGarmentsAction = (payload) => (
   {
     type: GET_GARMENTS,
     payload,
@@ -33,14 +33,11 @@ export const makeReactionAction = (type, garmentId) => async (dispatch) => {
 };
 
 export const getGarments = () => async (dispatch) => {
-  // setToken(getState().token);
-  // TODO change for real token
-  setToken(process.env.REACT_APP_TEST_TOKEN);
   dispatch(setLoading(true));
 
-  const { data } = await api.get('garments');
+  const garments = await getFeed();
 
   dispatch(setLoading(false));
-  dispatch(getGaementsAction(data.data.garments));
+  dispatch(getGarmentsAction(garments));
   dispatch(getTopGarment());
 };
