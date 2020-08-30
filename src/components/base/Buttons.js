@@ -47,7 +47,8 @@ export const SolidButton = styled(Button)`
 export const WhatsAppButton = styled(Button)`
   color: ${getColor('white')};
   background: ${getColor('green')};
-  font-size: 16px;
+  font-size: 15px;
+  padding: 5px 25px;
   display: inline-block;
   margin-top: 7px;
   &:hover {
