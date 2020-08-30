@@ -50,7 +50,7 @@ const Layout = ({ children }) => {
         onClose={handleCloseDrawer}
         title={drawerOptions.title}
       >
-        {drawerOptions.content && <drawerOptions.content />}
+        {drawerOptions.content && <drawerOptions.content onClose={handleCloseDrawer} />}
       </Drawer>
     </>
   );

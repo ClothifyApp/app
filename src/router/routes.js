@@ -1,6 +1,7 @@
 import Login from '../pages/Login';
 import Posts from '../pages/Posts';
 import Swipe from '../pages/Swipe';
+import Profile from '../pages/Profile';
 
 // Este es un arreglo donde irán todas las rutas de nuestra App ;)
 const ROUTES = [
@@ -10,6 +11,13 @@ const ROUTES = [
     exact: true,
     component: Login,
     auth: false,
+  },
+  {
+    path: ['/complete-profile'],
+    key: 'COMPLETE_PROFILE',
+    exact: true,
+    component: Profile,
+    auth: true,
   },
   {
     path: ['/posts'],

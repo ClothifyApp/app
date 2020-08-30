@@ -1,10 +1,14 @@
 // eslint-disable react/jsx-filename-extension
-import React from 'react';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { AuthenticatedRoute, UnauthenticatedRoute } from './AuthRoutes';
 import NotFound from '../pages/NotFound';
 import ROUTES from './routes';
+import * as authActions from '../actions/authActions';
 
 const routes = ROUTES.map((route) => {
   if (route.path instanceof Array) {
@@ -17,7 +21,15 @@ const routes = ROUTES.map((route) => {
 }).flat();
 
 // eslint-disable-next-line import/prefer-default-export
-export function Router() {
+const Router = ({ setUser }) => {
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem('user');
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser);
+    }
+  }, []);
+
   return (
     <Switch>
       {routes.map(({
@@ -37,4 +49,17 @@ export function Router() {
       <Route component={NotFound} />
     </Switch>
   );
-}
+};
+
+Router.propTypes = {
+  setUser: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => bindActionCreators(
+  {
+    setUser: authActions.setUser,
+  },
+  dispatch,
+);
+
+export default connect(null, mapDispatchToProps)(Router);
