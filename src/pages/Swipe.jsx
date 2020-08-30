@@ -83,7 +83,6 @@ Swipe.propTypes = {
   getGarments: PropTypes.func.isRequired,
   makeReaction: PropTypes.func.isRequired,
   listMatches: PropTypes.func.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
   topGarment: PropTypes.object,
 };
 

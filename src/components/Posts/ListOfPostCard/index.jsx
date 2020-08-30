@@ -33,7 +33,6 @@ function ListOfPostCard({ myGarments }) {
 
 ListOfPostCard.propTypes = {
   garment: PropTypes.object,
-  // eslint-disable-next-line react/forbid-prop-types
   myGarments: PropTypes.array.isRequired,
 };
 
