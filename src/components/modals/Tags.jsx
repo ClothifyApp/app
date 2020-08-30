@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable react/forbid-prop-types */
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Button } from '../base/Buttons';
@@ -7,29 +8,30 @@ import { Tag } from '../base/Tag';
 import { TagWrapper } from './styled';
 
 const Tags = ({
-  onEnds, tags, userData, updateUser, hideTitle,
+  onEnds, tags, userData, hideTitle,
 }) => {
-  const handleClick = (_id) => {
-    let userPreferences = userData.preferences;
+  // eslint-disable-next-line prefer-const
+  let [userPreferences, setUserPreferences] = useState(userData.preferences || []);
 
+  const handleClick = (_id) => {
     if (userPreferences.some((preference) => preference === _id)) {
       userPreferences = userPreferences.filter((preference) => preference !== _id);
     } else {
-      userPreferences.push(_id);
+      userPreferences = [...userPreferences, _id];
     }
-    updateUser({ ...userData, preferences: userPreferences });
+    setUserPreferences(userPreferences);
   };
 
-  const buttonDisabled = userData.preferences.length < 3;
+  const buttonDisabled = userPreferences.length < 3;
 
   return (
     <>
-      {onEnds && !hideTitle && <h2>Preferencias</h2>}
-      <TagWrapper padding={!!onEnds}>
+      {!hideTitle && <h2>Preferencias</h2>}
+      <TagWrapper padding={!hideTitle}>
         {tags.map((tag) => (
           <Tag
             key={tag._id}
-            active={userData.preferences.includes(tag._id)}
+            active={userPreferences.includes(tag._id)}
             onClick={() => handleClick(tag._id)}
           >
             {tag.name}
@@ -37,7 +39,7 @@ const Tags = ({
         ))}
       </TagWrapper>
       {onEnds && (
-        <Button onClick={onEnds} disabled={buttonDisabled}>
+        <Button onClick={() => onEnds(userPreferences)} disabled={buttonDisabled}>
           Guardar cambios
         </Button>
       )}
@@ -46,9 +48,8 @@ const Tags = ({
 };
 
 Tags.propTypes = {
-  tags: PropTypes.arrayOf(PropTypes.object).isRequired,
-  userData: PropTypes.objectOf(PropTypes.string).isRequired,
-  updateUser: PropTypes.func.isRequired,
+  tags: PropTypes.array.isRequired,
+  userData: PropTypes.object.isRequired,
   hideTitle: PropTypes.bool,
   onEnds: PropTypes.func,
 };

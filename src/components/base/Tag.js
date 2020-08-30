@@ -12,7 +12,7 @@ export const Tag = styled.div`
   padding: 4px 10px;
   border-radius: 50px;
   margin: 4px;
-  border: 1px solid ${getColor('grey')};
+  border: 1px solid ${getColor('grey', 'primary')};
   background: ${getColor('white')};
   color: ${getColor('grey', 'white')};
   cursor: pointer;

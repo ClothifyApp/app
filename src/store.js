@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
 const initialStore = {
-  token: null,
+  token: localStorage.getItem('token'),
   user: null,
   garments: [],
   isLoading: false,

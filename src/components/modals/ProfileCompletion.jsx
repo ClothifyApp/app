@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   faUser,
@@ -12,15 +12,18 @@ import ProfileInput from '../ProfileInput';
 import { DataWrapper } from './styled';
 
 const ProfileCompletion = ({ userData, updateUser, onContinue }) => {
-  useEffect(() => {
-    updateUser({ ...userData, country: 'Colombia' }); // TODO: Multi country.
-  }, []);
-
+  const [internalUser, setInternaUser] = useState(userData);
   const handleOnChange = ({ target }) => {
-    updateUser({ ...userData, [target.name]: target.value });
+    if (onContinue) {
+      setInternaUser({ ...internalUser, [target.name]: target.value });
+    } else {
+      updateUser({ ...userData, [target.name]: target.value });
+    }
   };
 
-  const buttonDisabled = !userData || !userData.fullName || !userData.gender;
+  const buttonDisabled = onContinue
+    ? !internalUser || !internalUser.fullName || !internalUser.gender || internalUser.gender === 'none'
+    : !userData || !userData.fullName || !userData.gender || userData.gender === 'none';
 
   return (
     <>
@@ -50,10 +53,10 @@ const ProfileCompletion = ({ userData, updateUser, onContinue }) => {
           <select
             name="gender"
             dir="rtl"
-            value={userData.gender}
+            value={userData.gender || 'none'}
             onChange={handleOnChange}
           >
-            <option disabled selected value>
+            <option disabled value="none">
               -- Selecciona una Opción --
             </option>
             <option value="M">Másculino</option>
@@ -63,7 +66,7 @@ const ProfileCompletion = ({ userData, updateUser, onContinue }) => {
         </ProfileInput>
       </DataWrapper>
       {onContinue && (
-        <Button onClick={onContinue} disabled={buttonDisabled}>
+        <Button onClick={() => onContinue(internalUser)} disabled={buttonDisabled}>
           Continuar
         </Button>
       )}
@@ -72,7 +75,8 @@ const ProfileCompletion = ({ userData, updateUser, onContinue }) => {
 };
 
 ProfileCompletion.propTypes = {
-  userData: PropTypes.objectOf(PropTypes.string).isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  userData: PropTypes.object.isRequired,
   updateUser: PropTypes.func.isRequired,
   onContinue: PropTypes.func,
 };

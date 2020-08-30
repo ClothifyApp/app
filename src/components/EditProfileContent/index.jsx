@@ -35,10 +35,12 @@ const EditProfileContent = ({
     }
   }, []);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (userPreferences) => {
     try {
+      const newUser = { ...user, preferences: userPreferences };
       setLoading(true);
-      await updateUser(user);
+      await updateUser(newUser);
+      setUser(newUser);
       return onClose();
     } catch (error) {
       return null;
@@ -59,7 +61,6 @@ const EditProfileContent = ({
       <Tags
         hideTitle
         userData={user}
-        updateUser={setUser}
         tags={tags}
         onEnds={handleSubmit}
       />
@@ -80,8 +81,10 @@ EditProfileContent.propTypes = {
   setUser: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
-  user: PropTypes.objectOf(PropTypes.string).isRequired,
-  tags: PropTypes.arrayOf(PropTypes.string),
+  // eslint-disable-next-line react/forbid-prop-types
+  user: PropTypes.object.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  tags: PropTypes.array,
 };
 
 EditProfileContent.defaultProps = {

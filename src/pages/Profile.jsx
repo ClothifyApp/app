@@ -14,7 +14,7 @@ import Tags from '../components/modals/Tags';
 import { getTags, updateUser } from '../api';
 
 const Profile = ({
-  setLoading, setUser, user, setTags, tags,
+  setLoading, setUser, setTags, tags, token,
 }) => {
   useEffect(() => {
     const getAllTags = async () => {
@@ -27,13 +27,21 @@ const Profile = ({
   }, []);
 
   const [step, setStep] = useState(1);
-  const handleContinue = () => setStep(step + 1);
+  const [internalUser, setInternalUser] = useState({ country: 'Colombia' });
 
-  const handleSubmit = async () => {
+  const handleContinue = (userFirstStep) => {
+    setInternalUser(userFirstStep);
+    setStep(step + 1);
+  };
+
+  if (!token) return <Redirect to="/" />;
+
+  const handleSubmit = async (userPreferences) => {
     try {
       setLoading(true);
-      await updateUser(user);
-      return <Redirect to="/posts" />;
+      internalUser.preferences = userPreferences;
+      await updateUser(internalUser);
+      setUser(internalUser);
     } catch (error) {
       console.log('handleSubmit -> error', error);
       return null;
@@ -46,7 +54,7 @@ const Profile = ({
     if (step === 1) {
       return (
         <ProfileCompletion
-          userData={user}
+          userData={internalUser}
           onContinue={handleContinue}
           updateUser={setUser}
         />
@@ -56,7 +64,7 @@ const Profile = ({
     if (step === 2) {
       return (
         <Tags
-          userData={user}
+          userData={internalUser}
           updateUser={setUser}
           tags={tags}
           onEnds={handleSubmit}
@@ -73,8 +81,14 @@ Profile.propTypes = {
   setLoading: PropTypes.func.isRequired,
   setTags: PropTypes.func.isRequired,
   setUser: PropTypes.func.isRequired,
-  user: PropTypes.objectOf(PropTypes.string).isRequired,
-  tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  tags: PropTypes.array,
+  token: PropTypes.string,
+};
+
+Profile.defaultProps = {
+  token: null,
+  tags: [],
 };
 
 const mapStateToProps = ({
