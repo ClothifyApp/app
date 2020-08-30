@@ -8,7 +8,7 @@ export const headerIconButtons = [
     icon: faBell,
     color: 'primary',
     component: Matches,
-    title: 'Notificaciones',
+    title: 'Matches',
   },
   {
     icon: faUser,
