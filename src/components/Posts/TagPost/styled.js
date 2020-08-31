@@ -17,9 +17,8 @@ export const WrapperTag = styled.div`
 export const Tag = styled.div`
   padding: 4px 10px;
   border-radius: 50px;
-  font-weight: 400;
   margin: 4px;
-  border: 1px solid ${getColor('greyLighter')};
+  border: 1px solid ${getColor('grey', 'primary')};
   background: ${getColor('white')};
   color: ${getColor('grey', 'white')};
   cursor: pointer;
