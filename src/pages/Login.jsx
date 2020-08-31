@@ -74,9 +74,13 @@ const Main = ({ setLoading, signIn, setNotification }) => {
     try {
       setLoading(true);
       await signIn(confirmationCode, verificationId);
-      router.replace('/complete-profile');
+      return router.replace('/complete-profile');
     } catch (err) {
-      return null;
+      return setNotification(
+        notificationTypes.error,
+        'Opps!',
+        'Hubo un problema vericando tu código. Intenta de nuevo.',
+      );
     } finally {
       setLoading(false);
     }
@@ -130,7 +134,6 @@ Main.propTypes = {
   setLoading: PropTypes.func.isRequired,
   setNotification: PropTypes.func.isRequired,
   signIn: PropTypes.func.isRequired,
-  setNotification: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(

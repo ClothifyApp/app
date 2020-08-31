@@ -11,7 +11,7 @@ export const Wrapper = styled.section`
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.white};
   animation-name: ${({ animate }) => (animate ? 'swipeup' : '')};
-  animation-duration: 1s;
+  animation-duration: .5s;
   animation-timing-function: ease-in;
   @keyframes swipeup {
     0% {
@@ -19,11 +19,11 @@ export const Wrapper = styled.section`
       opacity: 1;
     }
     60% {
-      transform: translateY(-200px);
+      transform: translateY(-50px);
       opacity: 0;
     }
     61% {
-      transform: translateY(100px);
+      transform: translateY(25px);
       opacity: 0;
     }
     100% {
