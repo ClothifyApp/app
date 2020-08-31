@@ -14,6 +14,8 @@ export const setToken = (token) => {
   clothifyService.defaults.headers['x-access-token'] = token;
 };
 
+export const deleteUser = () => clothifyService.delete('/users');
+
 // Feed
 export const getUser = async (userId) => {
   const { data } = await clothifyService.get(`users/${userId}`);

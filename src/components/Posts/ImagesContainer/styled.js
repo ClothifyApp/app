@@ -93,8 +93,8 @@ export const Preloader = styled.div`
   z-index: 2;
   margin: 0 4px 4px 0;
   background-color: #eee;
-  border: 5px solid #b71ab7;
-  border-top: 5px solid white;
+  border: 10px solid ${({ theme }) => theme.colors.primary};
+  border-top: 10px solid white;
   border-radius: 50%;
   justify-content: center;
   align-items: center;
