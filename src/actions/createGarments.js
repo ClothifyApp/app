@@ -20,7 +20,6 @@ export const createGarmentThunk = (data) => async (dispatch) => {
       'No pudimos guardar tu prenda :(',
       'Por favor intentalo de nuevo',
     ));
-    console.log(error);
   } finally {
     dispatch(setLoading(false));
   }

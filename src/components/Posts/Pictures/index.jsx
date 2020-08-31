@@ -24,7 +24,7 @@ const Pic = ({
   const [icon, setIcon] = useState(true);
 
   useEffect(() => {
-    setImage({src: selectedImgUrl, alt: 'Foto de Perfil'});
+    setImage({ src: selectedImgUrl, alt: 'Foto de Perfil' });
   }, [selectedImgUrl]);
 
   const saveImage = async (newImage) => {

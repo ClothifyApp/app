@@ -12,11 +12,10 @@ import Pic from '../Posts/Pictures';
 import { DataWrapper } from './styled';
 
 const ProfileCompletion = ({ userData, updateUser, onContinue }) => {
-  const [internalUser, setInternaUser] = useState(userData);
-  console.log("ProfileCompletion -> internalUser", internalUser)
+  const [internalUser, setInternalUser] = useState(userData);
   const handleOnChange = ({ target }) => {
     if (onContinue) {
-      setInternaUser({ ...internalUser, [target.name]: target.value });
+      setInternalUser({ ...internalUser, [target.name]: target.value });
     } else {
       updateUser({ ...userData, [target.name]: target.value });
     }
@@ -25,7 +24,7 @@ const ProfileCompletion = ({ userData, updateUser, onContinue }) => {
   const handleSelectImg = (imgArray) => {
     const photoUrl = imgArray.pop();
     if (onContinue) {
-      setInternaUser({ ...internalUser, photoUrl });
+      setInternalUser({ ...internalUser, photoUrl });
     } else {
       updateUser({ ...userData, photoUrl });
     }

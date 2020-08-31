@@ -65,9 +65,6 @@ function PostCard({ garment, deleteGarment }) {
           showClose>
           <Swipe garment={garment} width="100%" /> 
         </BaseModalPost>
-        {/* <Touch onClick={handleOpenModalSwipe} myGarment={garment}>
-          <Img src={garment.photos[0]} />
-        </Touch> */}
         <Slider
           height="360px"
           border="4px"
