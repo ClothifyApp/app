@@ -22,6 +22,5 @@ export const listMatchesAction = () => async (dispatch) => {
       'Hubo un problema trayendo tus matches',
       'Por favor recarga la página',
     ));
-    console.error(error);
   }
 };

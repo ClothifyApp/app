@@ -22,6 +22,7 @@ import VerifyCode from '../components/modals/VerifyCode';
 import { notificationTypes } from '../components/Notification/constants';
 
 import LoginIlustration from '../assets/images/login.svg';
+import { notificationTypes } from '../components/Notification/constants';
 
 const Main = ({ setLoading, signIn, setNotification }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -50,14 +51,20 @@ const Main = ({ setLoading, signIn, setNotification }) => {
         .signInWithPhoneNumber(`+57${phoneNumber}`, recaptcha);
       setVerificationId(confirmationResult.verificationId);
 
+      setNotification(
+        notificationTypes.success,
+        '¡Te enviamos un mensaje!',
+        'Revisa tu teléfono e indícanos el código.',
+      );
+
       if (goNext) {
         setStep(step + 1);
       }
     } catch (err) {
       setNotification(
         notificationTypes.error,
-        'No podemos enviar el código :(',
-        'Por favor inténtalo de nuevo.',
+        'Opps!',
+        'Hubo un problema enviando el código. Intenta de nuevo.',
       );
     } finally {
       setLoading(false);
@@ -122,6 +129,7 @@ const Main = ({ setLoading, signIn, setNotification }) => {
 
 Main.propTypes = {
   setLoading: PropTypes.func.isRequired,
+  setNotification: PropTypes.func.isRequired,
   signIn: PropTypes.func.isRequired,
   setNotification: PropTypes.func.isRequired,
 };

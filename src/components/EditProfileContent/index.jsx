@@ -46,7 +46,7 @@ const EditProfileContent = ({
     if (!tags || !tags.length) {
       getAllTags();
     }
-  }, []);
+  }, [setTags, tags, setLoading, setNotification]);
 
   const [isConfirmDeletionOpen, setIsConfirmDeletionOpen] = useState(false);
 
@@ -74,8 +74,15 @@ const EditProfileContent = ({
       }
       setUser(newUser);
       onClose();
-    } catch (error) {
+      localStorage.setItem('user', JSON.stringify(newUser));
       setNotification(
+        notificationTypes.success,
+        '¡Guardamos tus cambios!',
+        'Ya actualizamos tu información',
+      );
+      return onClose();
+    } catch (error) {
+      return setNotification(
         notificationTypes.error,
         'No pudimos guardar tu usuario :(',
         'Por favor inténtalo de nuevo.',

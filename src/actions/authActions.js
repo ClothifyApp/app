@@ -44,6 +44,7 @@ export const signIn = (confirmationCode, verificationId) => async (
   dispatch,
 ) => {
   try {
+    dispatch(setLoading(true));
     const {
       data: { token, user },
     } = await api.verifyUserPhone(confirmationCode, verificationId);
@@ -57,6 +58,8 @@ export const signIn = (confirmationCode, verificationId) => async (
       'Hubo un problema verificando tu número',
       'Por favor intentalo de nuevo',
     ));
+  } finally {
+    dispatch(setLoading(false));
   }
 };
 
