@@ -67,8 +67,7 @@ export const getTags = async () => {
 export const createMyGarment = async (garment) => {
   const { data } = await clothifyService.post('/garments', garment);
   return data.data.garment;
-}
-
+};
 
 // Matches
 export const listMatches = async () => {
@@ -78,9 +77,9 @@ export const listMatches = async () => {
 
 // Delete Garment
 export const deleteGarment = async (garmentId) => {
-  const { data } = await clothifyService.delete('/garments/'+ garmentId);
+  const { data } = await clothifyService.delete(`/garments/${garmentId}`);
   return data.data.deletedCount;
-}
+};
 
 // Save Image Garment
 export const uploadImage = async (data) => {
@@ -88,10 +87,10 @@ export const uploadImage = async (data) => {
     headers: {
       accept: 'application/json',
       'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
-      },
+    },
   });
-  
+
   return response.data.data.imagePath;
-}
+};
 
 export default clothifyService;

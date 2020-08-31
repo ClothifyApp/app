@@ -22,7 +22,7 @@ import VerifyCode from '../components/modals/VerifyCode';
 
 import LoginIlustration from '../assets/images/login.svg';
 
-const Main = ({ setLoading, singIn }) => {
+const Main = ({ setLoading, signIn }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [confirmationCode, setConfirmationCode] = useState('');
@@ -52,7 +52,7 @@ const Main = ({ setLoading, singIn }) => {
         setStep(step + 1);
       }
     } catch (err) {
-      console.log('handleContinue -> err', err);
+      return null;
     } finally {
       setLoading(false);
     }
@@ -61,12 +61,9 @@ const Main = ({ setLoading, singIn }) => {
   const handleVerifyCode = async () => {
     try {
       setLoading(true);
-      singIn(confirmationCode, verificationId);
-
-      // TODO: NNotification with message.
+      signIn(confirmationCode, verificationId);
       return <Redirect to="/complete-profile" />;
     } catch (err) {
-      console.log(err);
       return null;
     } finally {
       setLoading(false);
@@ -119,13 +116,13 @@ const Main = ({ setLoading, singIn }) => {
 
 Main.propTypes = {
   setLoading: PropTypes.func.isRequired,
-  singIn: PropTypes.func.isRequired,
+  signIn: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
     setLoading: globalActions.setLoading,
-    singIn: authActions.singIn,
+    signIn: authActions.signIn,
   },
   dispatch,
 );

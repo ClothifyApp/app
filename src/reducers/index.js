@@ -10,6 +10,8 @@ import {
   SET_MATCHES,
   DELETE_GARMENT,
   CREATE_MY_GARMENT,
+  SET_NOTIFICATION,
+  CLEAR_NOTIFICATION,
 } from '../actions/actionTypes';
 
 import initialState from './initialState';
@@ -48,6 +50,17 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         tags: action.payload,
       };
+    case SET_NOTIFICATION:
+      return {
+        ...state,
+        notification: action.payload,
+      };
+
+    case CLEAR_NOTIFICATION:
+      return {
+        ...state,
+        notification: initialState.notification,
+      };
     case GET_GARMENTS:
       return {
         ...state,
@@ -71,7 +84,9 @@ export default function rootReducer(state = initialState, action) {
     case DELETE_GARMENT:
       return {
         ...state,
-        myGarments: state.myGarments.filter((garment) => action.payload !== garment._id),
+        myGarments: state.myGarments.filter(
+          (garment) => action.payload !== garment._id,
+        ),
       };
     case CREATE_MY_GARMENT:
       return {
