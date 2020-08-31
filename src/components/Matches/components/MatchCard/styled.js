@@ -4,10 +4,10 @@ export const CardContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.whiteOpacity};
   box-shadow: ${({ theme }) => theme.shadows.regular};
   margin-bottom: 15px;
-  height: 90px;
   padding: 10px;
   display: flex;
   align-items: center;
+  text-decoration: none;
 `;
 
 export const Title = styled.div`

@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 import CreateCardPost from '../CreateCardPost';
 import {
   ImgWrapper, IconPlus, PlusCircle, Title,
 } from './styled';
-import TagsPost from '../TagPost';
 
 // Import ModalBase
 import BaseModalPost from '../BaseModalPost';
 
-export const CreatePost = () => {
-  const [isModalOpen, setIsModalOpen] = useState(true);
-  const [step, setStep] = useState(1);
-  const handleBack = () => setStep(step - 1);
+export const CreatePost = ({ garment }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
@@ -21,29 +19,33 @@ export const CreatePost = () => {
     setIsModalOpen(true);
   };
 
-  const handleContinue = () => setStep(step + 1);
-
   return (
     <>
       <ImgWrapper direction="column" align="center">
         <BaseModalPost
+          Zindex={11}
           position="fixed"
           isOpen={isModalOpen}
           onClose={handleCloseModal}
-          showBack={[2].includes(step)}
-          onBack={handleBack}
           showClose
         >
-          {step === 1 && <CreateCardPost onContinue={handleContinue} />}
-          {step === 2 && <TagsPost />}
+          <CreateCardPost garment={garment} onSave={handleCloseModal} />
         </BaseModalPost>
         <PlusCircle onClick={handleOpenModal}>
           <IconPlus icon={faPlus} />
-        </PlusCircle>
         <Title>Crear Publicación</Title>
+        </PlusCircle>
       </ImgWrapper>
     </>
   );
+};
+
+CreatePost.propTypes = {
+  garment: PropTypes.object,
+};
+
+CreatePost.defaultProps = {
+  garment: {},
 };
 
 export default CreatePost;

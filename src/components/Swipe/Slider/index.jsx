@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -10,8 +10,17 @@ import {
 import { Wrapper, Control, ImageSlider } from './styled';
 import ImageIndicator from './ImageIndicator';
 
-const Slider = ({ imageUrls, onClick }) => {
+const Slider = ({
+  imageUrls,
+  onClick,
+  height,
+  border,
+}) => {
   const [currentImage, setCurrentImage] = useState(1);
+
+  useEffect(() => {
+    setCurrentImage(1);
+  }, [imageUrls]);
 
   const handleMoveSlideLeft = () => {
     setCurrentImage(currentImage - 1);
@@ -22,11 +31,17 @@ const Slider = ({ imageUrls, onClick }) => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper border={border} height={height}>
       <ImageSlider current={currentImage} total={imageUrls.length}>
         {imageUrls.map((url) => (
           // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-          <img onClick={onClick} src={url} key={url} alt="Clothe" />
+          <img
+            height={height}
+            onClick={onClick}
+            src={url}
+            key={url}
+            alt="Clothe"
+          />
         ))}
       </ImageSlider>
       <ImageIndicator
@@ -49,13 +64,15 @@ const Slider = ({ imageUrls, onClick }) => {
 };
 
 Slider.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
   imageUrls: PropTypes.array,
+  height: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  border: PropTypes.any,
 };
 
 Slider.defaultProps = {
   imageUrls: [],
+  border: null,
 };
 
 export default Slider;

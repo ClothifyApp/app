@@ -1,5 +1,12 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# env vars
+.env
+
+# package-lock adn yarn.lock
+package-lock.json
+yarn.lock
+
 # dependencies
 /node_modules
 /.pnp

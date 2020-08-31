@@ -6,7 +6,7 @@ import { device } from '../../base/device';
 
 export const ImgWrapper = styled.figure`
   width: 380px;
-  height: 280px;
+  height: 360px;
   border-radius: 4px;
   display: block;
   margin: 0;
@@ -31,7 +31,7 @@ export const ImgWrapper = styled.figure`
   }
   @media ${device.desktopL} {
     width: 360px;
-    height: 280px;
+    height: 360px;
   }
 `;
 
@@ -51,18 +51,21 @@ export const Touch = styled.a`
 
 export const Icon = styled(FontAwesomeIcon)`
   cursor: pointer;
-  color: white;
+  color: rgba(218, 11, 159, .8);
   font-size: 24px;
   margin: 0 4px 4px 0;
-  &:hover {
-    color: ${({ theme }) => theme.colors.pinkLighter};
-  }
+  transition: all .2s ease-in-out;
+    &:hover {
+      color: rgba(218, 11, 159, 1);
+      transform: scale(1.3);
+    }
 `;
 
 export const IconPlus = styled(FontAwesomeIcon)`
-  cursor: pointer;
-  color: ${({ theme }) => theme.colors.pinkLighter};
+  cursor: pointer;  
+  color: rgba(218, 11, 159, 1);
   font-size: 64px;
+  
 `;
 
 export const Button = styled.a`
@@ -70,11 +73,21 @@ export const Button = styled.a`
   width: 24px;
   height: 24px;
   margin-bottom: 5px;
+  z-index: 1;
 `;
 
 export const PlusCircle = styled.a`
-  width: 64px;
-  height: 64px;
+  cursor: pointer;
+  display: inline;
+  align-items: center;
+  text-align: center;
+  width: 360px;
+  padding: 120px 0;
+  transition: all .2s ease-in-out;
+  &:hover {
+      transform: scale(1.1);
+    }
+
 `;
 
 export const Title = styled.h1`

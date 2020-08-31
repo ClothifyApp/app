@@ -1,18 +1,27 @@
+/* eslint-disable react/forbid-prop-types */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import {
-  ImgWrapper, Img, Icon, Button, Touch,
-} from './styled';
+import { ImgWrapper, Icon, Button } from './styled';
+
+import { deleteGarmentThunk } from '../../../actions/myGarmentsActions';
 
 // import ModalDelete
 import DeletePost from '../DeletePost';
 
 // Import ModalBase
-import BaseModal from '../../modals/Base';
+import BaseModalPost from '../BaseModalPost';
 
-const PostCard = ({ id, src }) => {
+// import Swipe Component
+import Swipe from '../../Swipe';
+import Slider from '../../Swipe/Slider';
+
+function PostCard({ garment, deleteGarment }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpenSwipe, setIsModalOpenSwipe] = useState(false);
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
@@ -20,31 +29,64 @@ const PostCard = ({ id, src }) => {
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
+  const handleOpenModalSwipe = () => {
+    setIsModalOpenSwipe(true);
+  };
+  const handleCloseModalSwipe = () => {
+    setIsModalOpenSwipe(false);
+  };
+
+  const handleDeleteGarment = () => {
+    deleteGarment(garment._id);
+  };
+
   return (
     <>
       <ImgWrapper>
-        <BaseModal
+        <BaseModalPost
           position="absolute"
           isOpen={isModalOpen}
           onClose={handleCloseModal}
           showClose
         >
-          <DeletePost />
-        </BaseModal>
+          <DeletePost onDelete={handleDeleteGarment} />
+        </BaseModalPost>
         <Button onClick={handleOpenModal}>
           <Icon icon={faTrash} />
         </Button>
-        <Touch href="instagram">
-          <Img src={src} id={id} />
-        </Touch>
+
+        {/* modal post user */}
+        <BaseModalPost
+          position="fixed"
+          isOpen={isModalOpenSwipe}
+          onClose={handleCloseModalSwipe}
+          showClose
+        >
+          <Swipe garment={garment} width="100%" />
+        </BaseModalPost>
+        <Slider
+          height="360px"
+          border="4px"
+          onClick={handleOpenModalSwipe}
+          imageUrls={garment.photos}
+        />
       </ImgWrapper>
     </>
   );
-};
+}
 
 PostCard.propTypes = {
-  id: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  garment: PropTypes.object.isRequired,
+  deleteGarment: PropTypes.func.isRequired,
 };
+Swipe.defaultProps = {};
 
-export default PostCard;
+const mapDispatchToProps = (dispatch) => bindActionCreators(
+  {
+    deleteGarment: deleteGarmentThunk,
+  },
+  dispatch,
+);
+
+export default connect(null, mapDispatchToProps)(PostCard);

@@ -36,8 +36,8 @@ export const Modal = styled.div`
   margin: 15px;
   padding: 35px 25px;
   padding-top: 60px;
-  background: ${(props) => props.theme.colors.white};
-  box-shadow: ${(props) => props.theme.shadows.regular};
+  background: ${({ theme, transparent }) => (transparent ? 'transparent' : theme.colors.white)};
+  box-shadow: ${({ theme, transparent }) => (transparent ? 'none' : theme.shadows.regular)};
   text-align: center;
   border-radius: 10px;
   cursor: auto;

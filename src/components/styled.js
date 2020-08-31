@@ -17,11 +17,16 @@ export const InputWrapper = styled.div`
     padding: 3px;
     width: 50%;
     text-align: right;
-    color: ${({ theme }) => theme.colors.greyLighter};
+    color: ${({ theme }) => theme.colors.grey};
     cursor: auto;
     appearance: none;
   }
   & input::placeholder {
     color: ${({ theme }) => theme.colors.greyLighter};
+    font-size: 14px;
+  }
+
+  & input[type='text']:disabled {
+    cursor: no-drop;
   }
 `;

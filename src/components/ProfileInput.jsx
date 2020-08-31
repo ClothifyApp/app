@@ -15,7 +15,7 @@ const ProfileInput = ({ icon, text, children }) => (
 );
 
 ProfileInput.propTypes = {
-  icon: PropTypes.element.isRequired,
+  icon: PropTypes.object.isRequired,
   text: PropTypes.string.isRequired,
   children: PropTypes.element.isRequired,
 };

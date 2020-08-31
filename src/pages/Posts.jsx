@@ -1,95 +1,39 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { listMyGarmentsThunk } from '../actions/myGarmentsActions'; 
 import ListOfPostCard from '../components/Posts/ListOfPostCard';
 
-import PostIlustration from '../assets/images/newPost.svg';
+function Posts({ listMyGarments, myGarments }) {
+  useEffect(() => {
+    listMyGarments();
+  }, [listMyGarments]);
 
-import { device } from '../components/base/device';
-
-const MainImage = styled.div`
-  display: none;
-  @media ${device.mobileM} {
-    display: none;
-  }
-  @media ${device.mobileL} {
-    display: none;
-  }
-  @media ${device.laptop} {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    height: 100vh;
-    & img {
-      height: 60%;
-      max-width: 100%;
-      object-fit: contain;
-    }
-  }
-  @media ${device.laptopL} {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    height: 100vh;
-    & img {
-      height: 60%;
-      max-width: 100%;
-      object-fit: contain;
-    }
-  }
-  @media ${device.desktop} {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    height: 100vh;
-    & img {
-      height: 60%;
-      max-width: 100%;
-      object-fit: contain;
-    }
-  }
-`;
-
-export const MainWrapper = styled.div`
-  @media ${device.mobileM} {
-    width: 380px;
-    height: 620px;
-  }
-  @media ${device.mobileL} {
-    width: 100%;
-    height: 620px;
-  }
-  @media ${device.laptop} {
-    width: 100%;
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-  @media ${device.laptopL} {
-    width: 100%;
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-  @media ${device.desktop} {
-    width: 100%;
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-`;
-
-export default function Posts() {
   return (
     <div>
-      <ListOfPostCard />
-      <MainWrapper>
-        <MainImage>
-          <img src={PostIlustration} alt="Ilustracion de new post" />
-        </MainImage>
-      </MainWrapper>
+      <ListOfPostCard myGarments={myGarments} />
     </div>
   );
 }
+
+Posts.propTypes = {
+  listMyGarments: PropTypes.func.isRequired,
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react/forbid-prop-types
+  myGarments: PropTypes.array.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  myGarments: state.myGarments,
+});
+
+const mapDispatchToProps = (dispatch) => bindActionCreators(
+  {
+    listMyGarments: listMyGarmentsThunk,
+  },
+  dispatch,
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Posts);

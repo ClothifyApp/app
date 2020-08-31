@@ -14,18 +14,19 @@ const Base = ({
   showClose,
   showBack,
   position,
+  transparent,
 }) => (
   <Overlay position={position} open={isOpen}>
-    <Modal>
+    <Modal transparent={transparent}>
       {showBack && (
-      <TopButton position="left" onClick={onBack}>
-        <FontAwesomeIcon icon={faChevronLeft} />
-      </TopButton>
+        <TopButton position="left" onClick={onBack}>
+          <FontAwesomeIcon icon={faChevronLeft} />
+        </TopButton>
       )}
       {showClose && (
-      <TopButton position="right" onClick={onClose}>
-        <FontAwesomeIcon icon={faTimes} />
-      </TopButton>
+        <TopButton position="right" onClick={onClose}>
+          <FontAwesomeIcon icon={faTimes} />
+        </TopButton>
       )}
       {children}
     </Modal>
@@ -33,18 +34,25 @@ const Base = ({
 );
 
 Base.propTypes = {
-  children: PropTypes.element.isRequired,
-  onBack: PropTypes.func.isRequired,
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.element]),
+  onBack: PropTypes.func,
   isOpen: PropTypes.bool,
-  onClose: PropTypes.func.isRequired,
-  showClose: PropTypes.bool.isRequired,
+  onClose: PropTypes.func,
+  showClose: PropTypes.bool,
   showBack: PropTypes.bool,
-  position: PropTypes.string.isRequired,
+  position: PropTypes.string,
+  transparent: PropTypes.bool,
 };
 
 Base.defaultProps = {
   isOpen: false,
   showBack: false,
+  position: 'absolute',
+  children: null,
+  onBack: null,
+  onClose: null,
+  showClose: false,
+  transparent: false,
 };
 
 export default Base;

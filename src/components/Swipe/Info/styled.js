@@ -30,6 +30,8 @@ export const InfoWrapper = styled.div`
     padding: 20px;
     opacity: ${({ isOpen }) => (!isOpen ? '0' : '1')};
     visibility: ${({ isOpen }) => (!isOpen ? 'hidden' : 'visible')};
+    transform: scale(${({ isOpen }) => (isOpen ? '1' : '0')});
+    text-align: center;
   }
 `;
 
@@ -39,6 +41,7 @@ export const Heading = styled.header`
   & h3,
   & p {
     margin: 0;
+    text-align: left;
   }
   & .avatar {
     width: 60px;
@@ -55,7 +58,7 @@ export const Heading = styled.header`
   }
   & .name-gender {
     & svg {
-      margin-left: 5px;
+      margin-right: 5px;
       color: ${({ theme }) => theme.colors.primary};
     }
   }

@@ -20,6 +20,11 @@ export const FormField = styled.div`
     font-weight: bold;
     border: 0;
   }
+  & input::placeholder {
+    color: ${({ theme }) => theme.colors.greyLighter};
+    font-size: 16px;
+    font-weight: lighter;
+  }
 `;
 
 export const CircularPhotoSelector = styled.div`

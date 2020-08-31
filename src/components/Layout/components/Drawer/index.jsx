@@ -21,8 +21,14 @@ const Drawer = ({
 
 Drawer.propTypes = {
   open: PropTypes.bool.isRequired,
+  title: PropTypes.string,
   onClose: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.element,
 };
+
+Drawer.defaultProps = {
+  title: '',
+  children: null,
+};
+
 export default Drawer;

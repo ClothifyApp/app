@@ -14,6 +14,16 @@ export const Button = styled.button`
   padding: 8px 35px;
   font-size: 18px;
   text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  -webkit-transition: opacity .5s ease-in-out;
+  -moz-transition: opacity .5s ease-in-out;
+  -ms-transition: opacity .5s ease-in-out;
+  -o-transition: opacity .5s ease-in-out;
+  transition: opacity .5s ease-in-out;
+  &:disabled,
+  &[disabled] {
+    opacity: 0.5;
+    cursor: no-drop;
+  }
 `;
 
 export const OutlinedButton = styled(Button)`
@@ -27,6 +37,8 @@ export const SolidButton = styled(Button)`
   color: ${getColor('primary')};
   box-shadow: ${({ theme }) => theme.shadows.regular};
   border-radius: 8px;
+  font-size: 15px;
+  padding: 0.5em 1.5em;
   &:hover {
     box-shadow: ${({ theme }) => theme.shadows.large};
   }
@@ -35,6 +47,10 @@ export const SolidButton = styled(Button)`
 export const WhatsAppButton = styled(Button)`
   color: ${getColor('white')};
   background: ${getColor('green')};
+  font-size: 15px;
+  padding: 5px 25px;
+  display: inline-block;
+  margin-top: 7px;
   &:hover {
     background: ${getColor('greenLight')};
   }
@@ -55,6 +71,9 @@ export const ReactionButton = styled.button`
   &:hover {
     opacity: 0.97;
     box-shadow: ${({ theme }) => theme.shadows.large};
+  }
+  &:active {
+    transform: scale(1.1);
   }
 `;
 

@@ -4,9 +4,13 @@ import { Redirect, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const AuthComponent = ({
-  component: Component, path, exact, authorized,
+  component: Component,
+  path,
+  exact,
+  logged,
+  authorized,
 }) => {
-  if (authorized) {
+  if (logged && authorized) {
     return <Route component={Component} path={path} exact={exact} />;
   }
 
@@ -14,32 +18,51 @@ const AuthComponent = ({
 };
 
 AuthComponent.propTypes = {
-  component: PropTypes.element.isRequired,
+  component: PropTypes.object,
   path: PropTypes.string.isRequired,
   exact: PropTypes.bool.isRequired,
-  authorized: PropTypes.bool.isRequired,
+  authorized: PropTypes.bool,
+  logged: PropTypes.bool,
+};
+
+AuthComponent.defaultProps = {
+  component: null,
+  logged: false,
+  authorized: false,
 };
 
 const NoAuthComponent = ({
-  component: Component, path, exact, authorized,
+  component: Component,
+  path,
+  exact,
+  authorized,
+  logged,
 }) => {
-  if (authorized) {
-    return <Redirect to="/dashboard" />;
+  if (logged && authorized) {
+    return <Redirect to="/swipe" />;
   }
 
   return <Route component={Component} path={path} exact={exact} />;
 };
 
 NoAuthComponent.propTypes = {
-  component: PropTypes.element.isRequired,
+  component: PropTypes.object,
   path: PropTypes.string.isRequired,
   exact: PropTypes.bool.isRequired,
-  authorized: PropTypes.bool.isRequired,
+  authorized: PropTypes.bool,
+  logged: PropTypes.bool,
 };
 
-function mapStateToProps({ token }) {
+NoAuthComponent.defaultProps = {
+  component: null,
+  authorized: false,
+  logged: false,
+};
+
+function mapStateToProps({ user, token }) {
   return {
-    authorized: !!token,
+    logged: !!token,
+    authorized: user && Boolean(user.fullName),
   };
 }
 

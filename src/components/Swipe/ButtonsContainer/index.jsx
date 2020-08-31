@@ -8,32 +8,30 @@ import { ButtonsWrapper } from './styled';
 import { WhatsAppButton, ReactionButton } from '../../base/Buttons';
 
 const ButtonsContainer = ({
-  showWhatsapp,
-  showReactions,
   onDislike,
   onSuperLike,
   onLike,
   onWhatsapp,
 }) => (
   <ButtonsWrapper>
-    {showWhatsapp && (
+    {onWhatsapp && (
       <WhatsAppButton onClick={onWhatsapp}>
         Enviar Mensaje
         <FontAwesomeIcon icon={faWhatsapp} size="lg" />
       </WhatsAppButton>
     )}
-    {showReactions && (
-      <ReactionButton onClick={onDislike}>
+    {onDislike && (
+      <ReactionButton onClick={onDislike} color="secondary">
         <FontAwesomeIcon icon={faTimes} size="2x" />
       </ReactionButton>
     )}
-    {showReactions && (
+    {onSuperLike && (
       <ReactionButton onClick={onSuperLike} size="sm" color="yellow">
         <FontAwesomeIcon icon={faBolt} size="lg" />
       </ReactionButton>
     )}
-    {showReactions && (
-      <ReactionButton onClick={onLike} color="secondary">
+    {onLike && (
+      <ReactionButton onClick={onLike} color="primary">
         <FontAwesomeIcon icon={faHeart} size="2x" />
       </ReactionButton>
     )}
@@ -41,17 +39,17 @@ const ButtonsContainer = ({
 );
 
 ButtonsContainer.propTypes = {
-  showWhatsapp: PropTypes.bool,
-  showReactions: PropTypes.bool,
-  onDislike: PropTypes.func.isRequired,
-  onSuperLike: PropTypes.func.isRequired,
-  onLike: PropTypes.func.isRequired,
-  onWhatsapp: PropTypes.func.isRequired,
+  onDislike: PropTypes.func,
+  onSuperLike: PropTypes.func,
+  onLike: PropTypes.func,
+  onWhatsapp: PropTypes.func,
 };
 
 ButtonsContainer.defaultProps = {
-  showWhatsapp: false,
-  showReactions: false,
+  onDislike: null,
+  onSuperLike: null,
+  onLike: null,
+  onWhatsapp: null,
 };
 
 export default ButtonsContainer;
