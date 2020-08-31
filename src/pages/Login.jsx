@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 // REDUX
 import { bindActionCreators } from 'redux';
@@ -19,6 +19,7 @@ import {
 } from '../components/base/Wrappers';
 import AskNumber from '../components/modals/AskNumber';
 import VerifyCode from '../components/modals/VerifyCode';
+import { notificationTypes } from '../components/Notification/constants';
 
 import LoginIlustration from '../assets/images/login.svg';
 import { notificationTypes } from '../components/Notification/constants';
@@ -29,6 +30,7 @@ const Main = ({ setLoading, signIn, setNotification }) => {
   const [confirmationCode, setConfirmationCode] = useState('');
   const [verificationId, setVerificationId] = useState('');
   const [step, setStep] = useState(1);
+  const router = useHistory();
 
   const handleOpenModal = () => setIsModalOpen(true);
 
@@ -70,8 +72,15 @@ const Main = ({ setLoading, signIn, setNotification }) => {
   };
 
   const handleVerifyCode = async () => {
-    signIn(confirmationCode, verificationId);
-    return <Redirect to="/complete-profile" />;
+    try {
+      setLoading(true);
+      await signIn(confirmationCode, verificationId);
+      router.replace('/complete-profile');
+    } catch (err) {
+      return null;
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleBack = () => setStep(step - 1);
@@ -122,6 +131,7 @@ Main.propTypes = {
   setLoading: PropTypes.func.isRequired,
   setNotification: PropTypes.func.isRequired,
   signIn: PropTypes.func.isRequired,
+  setNotification: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(

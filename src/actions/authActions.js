@@ -72,3 +72,19 @@ export const logout = () => (dispatch) => {
 
   dispatch(_logout());
 };
+
+export const deleteUser = () => async (dispatch) => {
+  try {
+    setLoading(true);
+    await api.deleteUser();
+    dispatch(logout());
+  } catch (error) {
+    dispatch(setNotification(
+      notificationTypes.error,
+      'No pudimos eliminar tu usuario :(',
+      'Por favor intentalo de nuevo',
+    ));
+  } finally {
+    setLoading(false);
+  }
+};
