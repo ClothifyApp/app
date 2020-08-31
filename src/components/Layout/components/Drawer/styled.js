@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const DrawerContainer = styled.aside`
   position: fixed;
+  overflow: auto;
   top: ${({ theme }) => theme.sizes.navbarHeight}px;
   background: ${({ theme }) => theme.colors.white};
   bottom: 0;

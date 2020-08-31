@@ -48,7 +48,6 @@ const ProfileCompletion = ({ userData, updateUser, onContinue }) => {
         selectedImgUrl={internalUser.photoUrl}
         setArrayImg={handleSelectImg}
         margin="auto"
-        borderRadius="50%"
         width={120}
         height={120}
       />
