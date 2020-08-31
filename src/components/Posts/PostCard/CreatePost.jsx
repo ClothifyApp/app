@@ -31,8 +31,8 @@ export const CreatePost = ({garment}) => {
         </BaseModalPost>
         <PlusCircle onClick={handleOpenModal}>
           <IconPlus icon={faPlus} />
-        </PlusCircle>
         <Title>Crear Publicación</Title>
+        </PlusCircle>
       </ImgWrapper>
     </>
   );

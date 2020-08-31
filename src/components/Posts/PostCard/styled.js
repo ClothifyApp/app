@@ -63,11 +63,9 @@ export const Icon = styled(FontAwesomeIcon)`
 
 export const IconPlus = styled(FontAwesomeIcon)`
   cursor: pointer;  
-  color: rgba(218, 11, 159, .8);
+  color: rgba(218, 11, 159, 1);
   font-size: 64px;
-  &:hover {
-      color: rgba(218, 11, 159, 1);
-    }
+  
 `;
 
 export const Button = styled.a`
@@ -79,8 +77,12 @@ export const Button = styled.a`
 `;
 
 export const PlusCircle = styled.a`
-  width: 64px;
-  height: 64px;
+  cursor: pointer;
+  display: inline;
+  align-items: center;
+  text-align: center;
+  width: 360px;
+  padding: 120px 0;
   transition: all .2s ease-in-out;
   &:hover {
       transform: scale(1.1);
