@@ -12,11 +12,10 @@ import ProfileInput from '../ProfileInput';
 import { DataWrapper } from './styled';
 
 const ProfileCompletion = ({ userData, updateUser, onContinue }) => {
-  const [internalUser, setInternaUser] = useState(userData);
+  const [internalUser, setInternaUser] = useState({ ...userData });
   const handleOnChange = ({ target }) => {
-    if (onContinue) {
-      setInternaUser({ ...internalUser, [target.name]: target.value });
-    } else {
+    setInternaUser({ ...internalUser, [target.name]: target.value });
+    if (!onContinue) {
       updateUser({ ...userData, [target.name]: target.value });
     }
   };
@@ -53,7 +52,7 @@ const ProfileCompletion = ({ userData, updateUser, onContinue }) => {
           <select
             name="gender"
             dir="rtl"
-            value={userData.gender || 'none'}
+            value={internalUser.gender || 'none'}
             onChange={handleOnChange}
           >
             <option disabled value="none">

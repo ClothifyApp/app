@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 // REDUX
@@ -10,6 +10,7 @@ import * as authActions from '../../actions/authActions';
 import { notificationTypes } from '../Notification/constants';
 
 import ProfileCompletion from '../modals/ProfileCompletion';
+import ConfirmDeletion from './components/ConfirmDeletion';
 import { Button } from '../base/Buttons';
 import Tags from '../modals/Tags';
 import { updateUser } from '../../api';
@@ -24,6 +25,7 @@ const EditProfileContent = ({
   onClose,
   logout,
   setNotification,
+  deleteUser,
 }) => {
   useEffect(() => {
     const getAllTags = async () => {
@@ -44,6 +46,11 @@ const EditProfileContent = ({
     }
   }, []);
 
+  const [isConfirmDeletionOpen, setIsConfirmDeletionOpen] = useState(false);
+
+  const handleCloseConfirmDeletion = () => setIsConfirmDeletionOpen(false);
+  const handleOpenConfirmDeletion = () => setIsConfirmDeletionOpen(true);
+
   const handleSubmit = async (userPreferences) => {
     try {
       const newUser = { ...user, preferences: userPreferences };
@@ -62,6 +69,11 @@ const EditProfileContent = ({
     }
   };
 
+  const handleDelete = () => {
+    onClose();
+    deleteUser();
+  };
+
   const handleLogout = () => {
     onClose();
     logout();
@@ -77,8 +89,13 @@ const EditProfileContent = ({
         <Button color="greyLighter" margin="10px 0 20px" onClick={handleLogout}>
           Cerrar sesión
         </Button>
-        <DeleteAccount>Eliminar Cuenta</DeleteAccount>
+        <DeleteAccount onClick={handleOpenConfirmDeletion}>Eliminar Cuenta</DeleteAccount>
       </Actions>
+      <ConfirmDeletion
+        isOpen={isConfirmDeletionOpen}
+        onClose={handleCloseConfirmDeletion}
+        onDelete={handleDelete}
+      />
     </Wrapper>
   );
 };
@@ -91,6 +108,7 @@ EditProfileContent.propTypes = {
   setNotification: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
+  deleteUser: PropTypes.func.isRequired,
   tags: PropTypes.array,
 };
 
@@ -115,6 +133,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(
     setUser: authActions.setUser,
     setToken: authActions.setToken,
     logout: authActions.logout,
+    deleteUser: authActions.deleteUser,
   },
   dispatch,
 );

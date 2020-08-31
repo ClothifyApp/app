@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 // REDUX
 import { bindActionCreators } from 'redux';
@@ -19,15 +19,17 @@ import {
 } from '../components/base/Wrappers';
 import AskNumber from '../components/modals/AskNumber';
 import VerifyCode from '../components/modals/VerifyCode';
+import { notificationTypes } from '../components/Notification/constants';
 
 import LoginIlustration from '../assets/images/login.svg';
 
-const Main = ({ setLoading, signIn }) => {
+const Main = ({ setLoading, signIn, setNotification }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [confirmationCode, setConfirmationCode] = useState('');
   const [verificationId, setVerificationId] = useState('');
   const [step, setStep] = useState(1);
+  const router = useHistory();
 
   const handleOpenModal = () => setIsModalOpen(true);
 
@@ -52,7 +54,11 @@ const Main = ({ setLoading, signIn }) => {
         setStep(step + 1);
       }
     } catch (err) {
-      return null;
+      setNotification(
+        notificationTypes.error,
+        'No podemos enviar el código :(',
+        'Por favor inténtalo de nuevo.',
+      );
     } finally {
       setLoading(false);
     }
@@ -61,8 +67,8 @@ const Main = ({ setLoading, signIn }) => {
   const handleVerifyCode = async () => {
     try {
       setLoading(true);
-      signIn(confirmationCode, verificationId);
-      return <Redirect to="/complete-profile" />;
+      await signIn(confirmationCode, verificationId);
+      router.replace('/complete-profile');
     } catch (err) {
       return null;
     } finally {
@@ -117,11 +123,13 @@ const Main = ({ setLoading, signIn }) => {
 Main.propTypes = {
   setLoading: PropTypes.func.isRequired,
   signIn: PropTypes.func.isRequired,
+  setNotification: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
     setLoading: globalActions.setLoading,
+    setNotification: globalActions.setNotification,
     signIn: authActions.signIn,
   },
   dispatch,
