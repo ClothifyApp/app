@@ -21,8 +21,9 @@ import AskNumber from '../components/modals/AskNumber';
 import VerifyCode from '../components/modals/VerifyCode';
 
 import LoginIlustration from '../assets/images/login.svg';
+import { notificationTypes } from '../components/Notification/constants';
 
-const Main = ({ setLoading, signIn }) => {
+const Main = ({ setLoading, signIn, setNotification }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [confirmationCode, setConfirmationCode] = useState('');
@@ -48,26 +49,29 @@ const Main = ({ setLoading, signIn }) => {
         .signInWithPhoneNumber(`+57${phoneNumber}`, recaptcha);
       setVerificationId(confirmationResult.verificationId);
 
+      setNotification(
+        notificationTypes.success,
+        '¡Te enviamos un mensaje!',
+        'Revisa tu teléfono e indícanos el código.',
+      );
+
       if (goNext) {
         setStep(step + 1);
       }
     } catch (err) {
-      return null;
+      setNotification(
+        notificationTypes.error,
+        'Opps!',
+        'Hubo un problema enviando el código. Intenta de nuevo.',
+      );
     } finally {
       setLoading(false);
     }
   };
 
   const handleVerifyCode = async () => {
-    try {
-      setLoading(true);
-      signIn(confirmationCode, verificationId);
-      return <Redirect to="/complete-profile" />;
-    } catch (err) {
-      return null;
-    } finally {
-      setLoading(false);
-    }
+    signIn(confirmationCode, verificationId);
+    return <Redirect to="/complete-profile" />;
   };
 
   const handleBack = () => setStep(step - 1);
@@ -116,12 +120,14 @@ const Main = ({ setLoading, signIn }) => {
 
 Main.propTypes = {
   setLoading: PropTypes.func.isRequired,
+  setNotification: PropTypes.func.isRequired,
   signIn: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
     setLoading: globalActions.setLoading,
+    setNotification: globalActions.setNotification,
     signIn: authActions.signIn,
   },
   dispatch,
