@@ -21,7 +21,7 @@ export const NotificationContainer = styled.div`
   display: flex;
   align-items: center;
   overflow: hidden;
-  transition: top 1s ease-in, left 1s ease;
+  transition: top 2s ease-in, left 2s ease;
   p,
   h3 {
     margin: 0 20px 0;

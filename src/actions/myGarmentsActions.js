@@ -21,7 +21,6 @@ export const listMyGarmentsThunk = () => async (dispatch) => {
       'Hubo un problema trayendo tus prendas',
       'Por favor intentalo de nuevo',
     ));
-    console.error(error);
   } finally {
     dispatch(setLoading(false));
   }

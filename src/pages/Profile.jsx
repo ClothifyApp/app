@@ -15,7 +15,12 @@ import { updateUser } from '../api';
 import { notificationTypes } from '../components/Notification/constants';
 
 const Profile = ({
-  setLoading, setUser, setTags, tags, token, setNotification,
+  setLoading,
+  setUser,
+  setTags,
+  tags,
+  token,
+  setNotification,
 }) => {
   useEffect(() => {
     const getAllTags = async () => {
@@ -32,7 +37,7 @@ const Profile = ({
       }
     };
     getAllTags();
-  }, []);
+  }, [setLoading, setTags, setNotification]);
 
   const [step, setStep] = useState(1);
   const [internalUser, setInternalUser] = useState({ country: 'Colombia' });

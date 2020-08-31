@@ -20,7 +20,7 @@ const Notification = ({ notification }) => {
   useEffect(() => {
     if (notification.message && notification.title) {
       openNotification();
-      setTimeout(closeNotification, 3000);
+      setTimeout(closeNotification, 5000);
     }
     return () => clearTimeout(closeNotification);
   }, [notification]);

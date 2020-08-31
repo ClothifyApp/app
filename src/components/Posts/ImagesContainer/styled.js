@@ -10,34 +10,36 @@ export const Wrapper = styled.div`
 `;
 
 export const Pictures = styled.div`
-  width: 80px;
-  height: 100px;
+  width: ${({ width }) => width || 80}px;
+  height: ${({ height }) => height || 100}px;
+  margin: ${({ margin }) => margin || null};
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
   background: ${({ theme }) => theme.colors.whiteOpacity};
-  border-radius: 8px;
+  border-radius: ${({ borderRadius }) => borderRadius || '8px'};
   box-shadow: 1px 2px 2px rgba(26, 22, 32, 0.25);
   text-align: center;
+  overflow: hidden;
   position: relative;
-  &:hover{
+  &:hover {
     background: rgba(235, 235, 235, 1);
   }
   @media ${device.mobileM} {
-    width: 95px;
-    height: 125px;
+    width: ${({ width }) => width || 95}px;
+    height: ${({ height }) => height || 125}px;
   }
   @media ${device.mobileL} {
-    width: 110px;
-    height: 135px;
+    width: ${({ width }) => width || 110}px;
+    height: ${({ height }) => height || 135}px;
   }
   @media ${device.laptop} {
-    width: 130px;
-    height: 155px;
+    width: ${({ width }) => width || 130}px;
+    height: ${({ height }) => height || 155}px;
   }
   @media ${device.desktop} {
-    width: 140px;
-    height: 160px;
+    width: ${({ width }) => width || 140}px;
+    height: ${({ height }) => height || 160}px;
   }
 `;
 
@@ -83,17 +85,18 @@ export const Icon = styled(FontAwesomeIcon)`
   color: ${({ theme }) => theme.colors.pinkLighter};
   font-size: 24px;
   margin: 0 4px 4px 0;
-  position: absolute;
+  position: fixed;
 `;
 
 export const Preloader = styled.div`
+  position: fixed;
   width: 25px;
   height: 25px;
   z-index: 2;
   margin: 0 4px 4px 0;
   background-color: #eee;
-  border: 10px solid #B71AB7;
-  border-top: 10px solid white;
+  border: 5px solid #b71ab7;
+  border-top: 5px solid white;
   border-radius: 50%;
   justify-content: center;
   align-items: center;
@@ -109,4 +112,4 @@ export const Preloader = styled.div`
       transform: rotate(360deg);
     }
   }
-`
+`;

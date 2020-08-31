@@ -45,7 +45,7 @@ function Swipe({
 Swipe.propTypes = {
   border: PropTypes.number,
   height: PropTypes.string,
-  width: PropTypes.number,
+  width: PropTypes.string,
   onDislike: PropTypes.func,
   onSuperLike: PropTypes.func,
   onLike: PropTypes.func,

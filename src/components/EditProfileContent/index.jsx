@@ -42,7 +42,7 @@ const EditProfileContent = ({
     if (!tags || !tags.length) {
       getAllTags();
     }
-  }, []);
+  }, [setTags, tags, setLoading, setNotification]);
 
   const handleSubmit = async (userPreferences) => {
     try {
@@ -50,9 +50,15 @@ const EditProfileContent = ({
       setLoading(true);
       await updateUser(newUser);
       setUser(newUser);
+      localStorage.setItem('user', JSON.stringify(newUser));
+      setNotification(
+        notificationTypes.success,
+        '¡Guardamos tus cambios!',
+        'Ya actualizamos tu información',
+      );
       return onClose();
     } catch (error) {
-      setNotification(
+      return setNotification(
         notificationTypes.error,
         'No pudimos guardar el usuario :(',
         'Por favor inténtalo de nuevo.',

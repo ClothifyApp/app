@@ -1,6 +1,6 @@
 import { SET_USER, SET_TOKEN, LOGOUT } from './actionTypes';
 import * as api from '../api';
-import { setNotification } from './globalActions';
+import { setNotification, setLoading } from './globalActions';
 import { listMatchesAction } from './matchesActions';
 import { connectToSocket, disconnect } from '../services/socket';
 import { notificationTypes } from '../components/Notification/constants';
@@ -44,6 +44,7 @@ export const signIn = (confirmationCode, verificationId) => async (
   dispatch,
 ) => {
   try {
+    dispatch(setLoading(true));
     const {
       data: { token, user },
     } = await api.verifyUserPhone(confirmationCode, verificationId);
@@ -57,6 +58,8 @@ export const signIn = (confirmationCode, verificationId) => async (
       'Hubo un problema verificando tu número',
       'Por favor intentalo de nuevo',
     ));
+  } finally {
+    dispatch(setLoading(false));
   }
 };
 
