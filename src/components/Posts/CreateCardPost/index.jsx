@@ -62,7 +62,7 @@ function CreateCardPost({ listMyGarments, createMyGarment, onSave, }) {
   const guardarDatos = async (e) => {
     e.preventDefault();
     await createMyGarment({ ...input, photos: arrayImg, tags: userPreferences });
-    onSave()
+    onSave();
     listMyGarments();
   };
   return (

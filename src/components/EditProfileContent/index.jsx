@@ -50,6 +50,7 @@ const EditProfileContent = ({
       setLoading(true);
       await updateUser(newUser);
       setUser(newUser);
+      localStorage.setItem('user', JSON.stringify(newUser));
       return onClose();
     } catch (error) {
       setNotification(

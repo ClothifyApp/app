@@ -7,12 +7,13 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { Button } from '../base/Buttons';
-import { CircularPhotoSelector } from '../base/FormFields';
 import ProfileInput from '../ProfileInput';
+import Pic from '../Posts/Pictures';
 import { DataWrapper } from './styled';
 
 const ProfileCompletion = ({ userData, updateUser, onContinue }) => {
   const [internalUser, setInternaUser] = useState(userData);
+  console.log("ProfileCompletion -> internalUser", internalUser)
   const handleOnChange = ({ target }) => {
     if (onContinue) {
       setInternaUser({ ...internalUser, [target.name]: target.value });
@@ -21,16 +22,37 @@ const ProfileCompletion = ({ userData, updateUser, onContinue }) => {
     }
   };
 
+  const handleSelectImg = (imgArray) => {
+    const photoUrl = imgArray.pop();
+    if (onContinue) {
+      setInternaUser({ ...internalUser, photoUrl });
+    } else {
+      updateUser({ ...userData, photoUrl });
+    }
+  };
+
   const buttonDisabled = onContinue
-    ? !internalUser || !internalUser.fullName || !internalUser.gender || internalUser.gender === 'none'
-    : !userData || !userData.fullName || !userData.gender || userData.gender === 'none';
+    ? !internalUser
+      || !internalUser.fullName
+      || !internalUser.gender
+      || internalUser.gender === 'none'
+    : !userData
+      || !userData.fullName
+      || !userData.gender
+      || userData.gender === 'none';
 
   return (
     <>
       {onContinue && <h2>Completa tu perfil</h2>}
-      <CircularPhotoSelector>
-        <input type="file" />
-      </CircularPhotoSelector>
+      <Pic
+        arrayImg={[internalUser.photoUrl]}
+        selectedImgUrl={internalUser.photoUrl}
+        setArrayImg={handleSelectImg}
+        margin="auto"
+        borderRadius="50%"
+        width={120}
+        height={120}
+      />
       <DataWrapper margin={!!onContinue}>
         <ProfileInput icon={faUser} text="Nombre">
           <input
@@ -66,7 +88,10 @@ const ProfileCompletion = ({ userData, updateUser, onContinue }) => {
         </ProfileInput>
       </DataWrapper>
       {onContinue && (
-        <Button onClick={() => onContinue(internalUser)} disabled={buttonDisabled}>
+        <Button
+          onClick={() => onContinue(internalUser)}
+          disabled={buttonDisabled}
+        >
           Continuar
         </Button>
       )}
