@@ -1,6 +1,6 @@
 import { SET_USER, SET_TOKEN, LOGOUT } from './actionTypes';
 import * as api from '../api';
-import { setNotification } from './globalActions';
+import { setNotification, setLoading } from './globalActions';
 import { listMatchesAction } from './matchesActions';
 import { connectToSocket, disconnect } from '../services/socket';
 import { notificationTypes } from '../components/Notification/constants';
@@ -68,4 +68,20 @@ export const logout = () => (dispatch) => {
   api.setToken(null);
 
   dispatch(_logout());
+};
+
+export const deleteUser = () => async (dispatch) => {
+  try {
+    setLoading(true);
+    await api.deleteUser();
+    dispatch(logout());
+  } catch (error) {
+    dispatch(setNotification(
+      notificationTypes.error,
+      'No pudimos eliminar tu usuario :(',
+      'Por favor intentalo de nuevo',
+    ));
+  } finally {
+    setLoading(false);
+  }
 };
