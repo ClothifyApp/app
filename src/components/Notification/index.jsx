@@ -12,16 +12,21 @@ import options, { notificationTypes } from './constants';
 
 const Notification = ({ notification }) => {
   const [spacing, setSpacing] = useState(-150);
-  const closeNotification = () => setSpacing(-150);
+  const closeNotification = () => {
+    setSpacing(-150);
+    clearTimeout(closeNotification);
+  };
   const openNotification = () => setSpacing(10);
 
   useEffect(() => {
     if (notification.message && notification.title) {
+      closeNotification();
       openNotification();
       setTimeout(closeNotification, 5000);
     }
-    return () => clearTimeout(closeNotification);
+    return () => closeNotification();
   }, [notification]);
+
   return (
     <NotificationContainer type={notification.type} spacing={spacing}>
       <FontAwesomeIcon icon={options[notification.type].icon} size="3x" />

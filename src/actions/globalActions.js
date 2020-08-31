@@ -1,3 +1,4 @@
+import * as api from '../api';
 /* eslint-disable import/prefer-default-export */
 import {
   SET_LOADING,
@@ -11,7 +12,7 @@ export const setLoading = (isLoading) => ({
   payload: isLoading,
 });
 
-export const setTags = (tags) => ({
+const _setTags = (tags) => ({
   type: SET_TAGS,
   payload: tags,
 });
@@ -24,3 +25,10 @@ export const setNotification = (type, title, message) => ({
 export const clearNotification = () => ({
   type: CLEAR_NOTIFICATION,
 });
+
+export const setTags = () => async (dispatch) => {
+  dispatch(setLoading(true));
+  const tagsResponse = await api.getTags();
+  await dispatch(_setTags(tagsResponse));
+  dispatch(setLoading(false));
+};

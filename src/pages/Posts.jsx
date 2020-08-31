@@ -6,23 +6,14 @@ import { bindActionCreators } from 'redux';
 import { listMyGarmentsThunk } from '../actions/myGarmentsActions';
 import ListOfPostCard from '../components/Posts/ListOfPostCard';
 
-// import PostIlustration from '../assets/images/new-post.svg';
-
-/* styles */
-
 function Posts({ listMyGarments, myGarments }) {
   useEffect(() => {
     listMyGarments();
-  }, []);
+  }, [listMyGarments]);
 
   return (
     <div>
       <ListOfPostCard myGarments={myGarments} />
-      {/* <MainWrapper>
-        <MainImage>
-          <img src={PostIlustration} alt="Ilustracion de new post" />
-        </MainImage>
-      </MainWrapper> */}
     </div>
   );
 }
@@ -37,12 +28,11 @@ const mapStateToProps = (state) => ({
   myGarments: state.myGarments,
 });
 
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(
-    {
-      listMyGarments: listMyGarmentsThunk,
-    },
-    dispatch
-  );
+const mapDispatchToProps = (dispatch) => bindActionCreators(
+  {
+    listMyGarments: listMyGarmentsThunk,
+  },
+  dispatch,
+);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);

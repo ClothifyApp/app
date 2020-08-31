@@ -11,7 +11,7 @@ import * as authActions from '../../actions/authActions';
 import ProfileCompletion from '../modals/ProfileCompletion';
 import { Button } from '../base/Buttons';
 import Tags from '../modals/Tags';
-import { getTags, updateUser } from '../../api';
+import { updateUser } from '../../api';
 import { Wrapper, Actions, DeleteAccount } from './styles';
 
 const EditProfileContent = ({
@@ -24,16 +24,8 @@ const EditProfileContent = ({
   logout,
 }) => {
   useEffect(() => {
-    const getAllTags = async () => {
-      setLoading(true);
-      const tagsResponse = await getTags();
-      await setTags(tagsResponse);
-      setLoading(false);
-    };
-    if (!tags || !tags.length) {
-      getAllTags();
-    }
-  }, []);
+    setTags();
+  }, [setTags]);
 
   const handleSubmit = async (userPreferences) => {
     try {
@@ -58,12 +50,7 @@ const EditProfileContent = ({
   return (
     <Wrapper>
       <ProfileCompletion userData={user} updateUser={setUser} />
-      <Tags
-        hideTitle
-        userData={user}
-        tags={tags}
-        onEnds={handleSubmit}
-      />
+      <Tags hideTitle userData={user} tags={tags} onEnds={handleSubmit} />
 
       <Actions>
         <Button color="greyLighter" margin="10px 0 20px" onClick={handleLogout}>

@@ -11,20 +11,14 @@ import * as authActions from '../actions/authActions';
 import ProfileCompletion from '../components/modals/ProfileCompletion';
 import BaseModal from '../components/modals/Base';
 import Tags from '../components/modals/Tags';
-import { getTags, updateUser } from '../api';
+import { updateUser } from '../api';
 
 const Profile = ({
   setLoading, setUser, setTags, tags, token,
 }) => {
   useEffect(() => {
-    const getAllTags = async () => {
-      setLoading(true);
-      const tagsResponse = await getTags();
-      await setTags(tagsResponse);
-      setLoading(false);
-    };
-    getAllTags();
-  }, []);
+    setTags();
+  }, [setTags]);
 
   const [step, setStep] = useState(1);
   const [internalUser, setInternalUser] = useState({ country: 'Colombia' });

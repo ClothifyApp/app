@@ -21,14 +21,19 @@ const routes = ROUTES.map((route) => {
 }).flat();
 
 // eslint-disable-next-line import/prefer-default-export
-const Router = ({ setUser }) => {
+const Router = ({ setUser, setToken }) => {
   useEffect(() => {
     const loggedInUser = localStorage.getItem('user');
     if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser);
       setUser(foundUser);
     }
-  }, []);
+
+    const loggedToken = localStorage.getItem('token');
+    if (loggedToken) {
+      setToken(loggedToken);
+    }
+  }, [setUser, setToken]);
 
   return (
     <Switch>
@@ -53,11 +58,13 @@ const Router = ({ setUser }) => {
 
 Router.propTypes = {
   setUser: PropTypes.func.isRequired,
+  setToken: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
     setUser: authActions.setUser,
+    setToken: authActions.setToken,
   },
   dispatch,
 );
