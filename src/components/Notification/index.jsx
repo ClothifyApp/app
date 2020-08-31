@@ -27,7 +27,7 @@ const Notification = ({ notification }) => {
 
   return (
     <NotificationContainer type={notification.type} spacing={spacing}>
-      <FontAwesomeIcon icon={options[notification.type].icon} size='3x' />
+      <FontAwesomeIcon icon={options[notification.type].icon} size="3x" />
       <div>
         <NotificationCloseIcon icon={faTimes} onClick={closeNotification} />
         <h3>{notification.title}</h3>
