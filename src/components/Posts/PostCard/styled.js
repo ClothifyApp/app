@@ -54,15 +54,20 @@ export const Icon = styled(FontAwesomeIcon)`
   color: rgba(218, 11, 159, .8);
   font-size: 24px;
   margin: 0 4px 4px 0;
+  transition: all .2s ease-in-out;
     &:hover {
       color: rgba(218, 11, 159, 1);
+      transform: scale(1.3);
     }
 `;
 
 export const IconPlus = styled(FontAwesomeIcon)`
-  cursor: pointer;
-  color: ${({ theme }) => theme.colors.pinkLighter};
+  cursor: pointer;  
+  color: rgba(218, 11, 159, .8);
   font-size: 64px;
+  &:hover {
+      color: rgba(218, 11, 159, 1);
+    }
 `;
 
 export const Button = styled.a`
@@ -76,6 +81,11 @@ export const Button = styled.a`
 export const PlusCircle = styled.a`
   width: 64px;
   height: 64px;
+  transition: all .2s ease-in-out;
+  &:hover {
+      transform: scale(1.1);
+    }
+
 `;
 
 export const Title = styled.h1`

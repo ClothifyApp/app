@@ -8,7 +8,7 @@ import TagsPost from '../TagPost';
 // Import ModalBase
 import BaseModalPost from '../BaseModalPost';
 
-export const CreatePost = () => {
+export const CreatePost = ({garment}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCloseModal = () => {
@@ -27,7 +27,7 @@ export const CreatePost = () => {
           isOpen={isModalOpen}
           onClose={handleCloseModal}
           showClose>
-          <CreateCardPost onSave={handleCloseModal} />
+          <CreateCardPost garment={garment} onSave={handleCloseModal} />
         </BaseModalPost>
         <PlusCircle onClick={handleOpenModal}>
           <IconPlus icon={faPlus} />

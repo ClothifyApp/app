@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 /* Redux */
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { createGarmentThunk } from '../../../actions/createGarments';
+import { listMyGarmentsThunk } from '../../../actions/myGarmentsActions'; 
+import * as globalActions from '../../../actions/globalActions';
+import { getTags } from '../../../api'
+
 
 /* Others components */
 import Pic from '../Pictures';
@@ -16,13 +20,28 @@ import { Tag, WrapperTag } from '../TagPost/styled';
 
 import { Button } from '../../base/Buttons';
 
-function CreateCardPost({ createMyGarment, onSave }) {
+function CreateCardPost({ listMyGarments, createMyGarment, onSave, }) {
+  const [tags, setTags] = useState([])
+  let [userPreferences, setUserPreferences] = useState([]);
   const pictures = [1, 2, 3, 4, 5];
   const [arrayImg, setArrayImg] = useState([]);
   const [input, setInput] = useState({
     name: '',
     description: '',
   });
+
+  useEffect(() => {
+    const getAllTags = async () => {
+      const tagsResponse = await getTags();
+      setTags(tagsResponse);
+    };
+    if (!tags || !tags.length) {
+      getAllTags();
+    }
+  }, []);
+
+  
+  
 
   const handleChangeInputChange = (e) => {
     setInput({
@@ -31,10 +50,20 @@ function CreateCardPost({ createMyGarment, onSave }) {
     });
   };
 
-  const guardarDatos = (e) => {
+  const handleClick = (_id) => {
+    if (userPreferences.some((preference) => preference === _id)) {
+      userPreferences = userPreferences.filter((preference) => preference !== _id);
+    } else {
+      userPreferences = [...userPreferences, _id];
+    }
+    setUserPreferences(userPreferences);
+  };
+
+  const guardarDatos = async (e) => {
     e.preventDefault();
-    createMyGarment({ ...input, photos: arrayImg });
+    await createMyGarment({ ...input, photos: arrayImg, tags: userPreferences });
     onSave()
+    listMyGarments();
   };
   return (
     <>
@@ -64,18 +93,18 @@ function CreateCardPost({ createMyGarment, onSave }) {
       </form>
       <h2>Preferencias</h2>
       <WrapperTag>
-        <Tag>whatever</Tag>
-        <Tag>pants</Tag>
-        <Tag active>t-shirt</Tag>
-        <Tag>skirt</Tag>
-        <Tag>shoes</Tag>
-        <Tag>tie</Tag>
-        <Tag>whatever</Tag>
-        <Tag>pants</Tag>
-        <Tag active>t-shirt</Tag>
-        <Tag>skirt</Tag>
-        <Tag>shoes</Tag>
-        <Tag>tie</Tag>
+        { tags 
+          ? tags.map((tag) => ( 
+            <Tag
+              key={tag._id}   
+              active={userPreferences.includes(tag._id)}
+              onClick={() => handleClick(tag._id)}
+            >
+              {tag.name}
+            </Tag>
+          ))
+          : null 
+        }
       </WrapperTag>
       <Button margin="30px 0 0 0"  onClick={guardarDatos}>
         Guardar
@@ -86,16 +115,33 @@ function CreateCardPost({ createMyGarment, onSave }) {
 
 CreateCardPost.propTypes = {
   createMyGarment: PropTypes.func.isRequired,
+  tags: PropTypes.array,
+  setTags: PropTypes.func.isRequired,
+  
 };
 
-const mapStateToProps = (state) => ({
+CreateCardPost.defaultProps = {
+  garment: {
+    name: '',
+    description: '',
+    photos: [],
+    tags: [],
+    userId: {},
+  },
+}
+
+const mapStateToProps = (state, {tags}) => ({
   myGarments: state.myGarments,
+  tags,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       createMyGarment: createGarmentThunk,
+      listMyGarments: listMyGarmentsThunk,
+      setTags: globalActions.setTags,
+      setLoading: globalActions.setLoading,
     },
     dispatch
   );
