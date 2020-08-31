@@ -12,7 +12,7 @@ import { notificationTypes } from '../Notification/constants';
 import ProfileCompletion from '../modals/ProfileCompletion';
 import { Button } from '../base/Buttons';
 import Tags from '../modals/Tags';
-import { getTags, updateUser } from '../../api';
+import { updateUser } from '../../api';
 import { Wrapper, Actions, DeleteAccount } from './styles';
 
 const EditProfileContent = ({
@@ -28,10 +28,7 @@ const EditProfileContent = ({
   useEffect(() => {
     const getAllTags = async () => {
       try {
-        setLoading(true);
-        const tagsResponse = await getTags();
-        await setTags(tagsResponse);
-        setLoading(false);
+        await setTags();
       } catch (error) {
         setNotification(
           notificationTypes.error,
@@ -72,12 +69,7 @@ const EditProfileContent = ({
   return (
     <Wrapper>
       <ProfileCompletion userData={user} updateUser={setUser} />
-      <Tags
-        hideTitle
-        userData={user}
-        tags={tags}
-        onEnds={handleSubmit}
-      />
+      <Tags hideTitle userData={user} tags={tags} onEnds={handleSubmit} />
 
       <Actions>
         <Button color="greyLighter" margin="10px 0 20px" onClick={handleLogout}>

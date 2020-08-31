@@ -41,7 +41,7 @@ function Swipe({
   useEffect(() => {
     getGarments();
     listMatches();
-  }, []);
+  }, [getGarments, listMatches]);
 
   const handleLike = () => {
     makeReaction('like', topGarment._id);

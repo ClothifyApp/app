@@ -11,7 +11,7 @@ import * as authActions from '../actions/authActions';
 import ProfileCompletion from '../components/modals/ProfileCompletion';
 import BaseModal from '../components/modals/Base';
 import Tags from '../components/modals/Tags';
-import { getTags, updateUser } from '../api';
+import { updateUser } from '../api';
 import { notificationTypes } from '../components/Notification/constants';
 
 const Profile = ({
@@ -20,10 +20,7 @@ const Profile = ({
   useEffect(() => {
     const getAllTags = async () => {
       try {
-        setLoading(true);
-        const tagsResponse = await getTags();
-        await setTags(tagsResponse);
-        setLoading(false);
+        await setTags();
       } catch (error) {
         setNotification(
           notificationTypes.error,
