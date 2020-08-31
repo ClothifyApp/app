@@ -24,17 +24,31 @@ export const setToken = (token) => (dispatch, getState, { socket }) => {
   api.setToken(token);
 
   // Connect to socket
-  connectToSocket(token, () => socket.on('match', ({ data }) => {
-    dispatch(
-      setNotification(
-        notificationTypes.match,
-        '¡Hiciste match!',
-        `Tienes ${data.garmets.length} prendas en común con ${data.userMatch.fullName}`,
-      ),
-    );
+  connectToSocket(token, () => {
+    socket.on('match', ({ data }) => {
+      dispatch(
+        setNotification(
+          notificationTypes.match,
+          '¡Hiciste match!',
+          `Tienes ${data.garmets.length} prendas en común con ${data.userMatch.fullName}`,
+        ),
+      );
 
-    dispatch(listMatchesAction());
-  }));
+      dispatch(listMatchesAction());
+    });
+
+    socket.on('superlike', ({ data }) => {
+      dispatch(
+        setNotification(
+          notificationTypes.superlike,
+          '¡SUPERLIKE!',
+          `A ${data.nameUser} le ha encantado tu ${data.garment}`,
+        ),
+      );
+
+      dispatch(listMatchesAction());
+    });
+  });
 
   // Set token (state);
   dispatch(_setToken(token));
@@ -53,11 +67,13 @@ export const signIn = (confirmationCode, verificationId) => async (
     await dispatch(setUser(user));
     dispatch(setToken(token));
   } catch (error) {
-    dispatch(setNotification(
-      notificationTypes.error,
-      'Hubo un problema verificando tu número',
-      'Por favor intentalo de nuevo',
-    ));
+    dispatch(
+      setNotification(
+        notificationTypes.error,
+        'Hubo un problema verificando tu número',
+        'Por favor intentalo de nuevo',
+      ),
+    );
   } finally {
     dispatch(setLoading(false));
   }
@@ -71,4 +87,20 @@ export const logout = () => (dispatch) => {
   api.setToken(null);
 
   dispatch(_logout());
+};
+
+export const deleteUser = () => async (dispatch) => {
+  try {
+    setLoading(true);
+    await api.deleteUser();
+    dispatch(logout());
+  } catch (error) {
+    dispatch(setNotification(
+      notificationTypes.error,
+      'No pudimos eliminar tu usuario :(',
+      'Por favor intentalo de nuevo',
+    ));
+  } finally {
+    setLoading(false);
+  }
 };

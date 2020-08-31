@@ -10,6 +10,27 @@ export const Wrapper = styled.section`
   max-width: 450px;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.white};
+  animation-name: ${({ animate }) => (animate ? 'swipeup' : '')};
+  animation-duration: .5s;
+  animation-timing-function: ease-in;
+  @keyframes swipeup {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    60% {
+      transform: translateY(-50px);
+      opacity: 0;
+    }
+    61% {
+      transform: translateY(25px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
 `;
 
 export const BgCard = styled.div`
