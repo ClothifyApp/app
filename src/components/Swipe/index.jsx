@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { Wrapper, BgCard } from './styled';
@@ -18,11 +18,18 @@ function Swipe({
   initialOpen,
 }) {
   const [isOpen, setIsOpen] = useState(initialOpen);
+  const [isAnimating, setIsAnimating] = useState(false);
+  useEffect(() => {
+    setIsAnimating(true);
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 1000);
+  }, [garment]);
 
   const handleImageClick = () => setIsOpen(!isOpen);
 
-  return (
-    <Wrapper width={width}>
+  return !!garment.photos && (
+    <Wrapper width={width} animate={isAnimating}>
       <Slider
         border={border}
         height={height || '355px'}
