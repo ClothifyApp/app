@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Tag, WrapperTag } from './styled';
-import { Button } from '../../base/Buttons';
 
 const TagsPost = ({ onEnds }) => (
   <>
@@ -21,9 +20,6 @@ const TagsPost = ({ onEnds }) => (
       <Tag>shoes</Tag>
       <Tag>tie</Tag>
     </WrapperTag>
-    <Button margin="10px" onClick={onEnds}>
-      Guardar
-    </Button>
   </>
 );
 
