@@ -31,6 +31,7 @@ export const InfoWrapper = styled.div`
     opacity: ${({ isOpen }) => (!isOpen ? '0' : '1')};
     visibility: ${({ isOpen }) => (!isOpen ? 'hidden' : 'visible')};
     transform: scale(${({ isOpen }) => (isOpen ? '1' : '0')});
+    text-align: center;
   }
 `;
 
@@ -40,6 +41,7 @@ export const Heading = styled.header`
   & h3,
   & p {
     margin: 0;
+    text-align: left;
   }
   & .avatar {
     width: 60px;
