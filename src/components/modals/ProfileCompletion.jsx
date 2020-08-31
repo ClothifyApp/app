@@ -12,9 +12,9 @@ import Pic from '../Posts/Pictures';
 import { DataWrapper } from './styled';
 
 const ProfileCompletion = ({ userData, updateUser, onContinue }) => {
-  const [internalUser, setInternaUser] = useState({ ...userData });
+  const [internalUser, setInternalUser] = useState({ ...userData });
   const handleOnChange = ({ target }) => {
-    setInternaUser({ ...internalUser, [target.name]: target.value });
+    setInternalUser({ ...internalUser, [target.name]: target.value });
     if (!onContinue) {
       updateUser({ ...userData, [target.name]: target.value });
     }

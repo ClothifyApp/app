@@ -11,7 +11,6 @@ import * as swipeActions from '../../actions/swipeActions';
 import { notificationTypes } from '../Notification/constants';
 
 import ProfileCompletion from '../modals/ProfileCompletion';
-import ConfirmDeletion from './components/ConfirmDeletion';
 import { Button } from '../base/Buttons';
 import Tags from '../modals/Tags';
 import { updateUser } from '../../api';
@@ -54,7 +53,6 @@ const EditProfileContent = ({
   const handleOpenConfirmDeletion = () => setIsConfirmDeletionOpen(true);
 
   const areDiferentPreferences = (lastPreferences, newPreferences) => {
-    console.log(lastPreferences, newPreferences);
     if (lastPreferences.length !== newPreferences.length) return true;
     // eslint-disable-next-line no-restricted-syntax
     for (const pref of lastPreferences) {

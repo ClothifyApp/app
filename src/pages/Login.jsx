@@ -22,7 +22,6 @@ import VerifyCode from '../components/modals/VerifyCode';
 import { notificationTypes } from '../components/Notification/constants';
 
 import LoginIlustration from '../assets/images/login.svg';
-import { notificationTypes } from '../components/Notification/constants';
 
 const Main = ({ setLoading, signIn, setNotification }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
