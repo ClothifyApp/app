@@ -35,6 +35,8 @@ const EditProfileContent = ({
           'No pudimos traer las tags',
           'Por favor inténtalo de nuevo.',
         );
+      } finally {
+        setLoading(false);
       }
     };
     if (!tags || !tags.length) {

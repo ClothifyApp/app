@@ -27,6 +27,8 @@ const Profile = ({
           'No pudimos traer las tags',
           'Por favor inténtalo de nuevo.',
         );
+      } finally {
+        setLoading(false);
       }
     };
     getAllTags();
