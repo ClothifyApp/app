@@ -12,16 +12,25 @@ import ProfileCompletion from '../components/modals/ProfileCompletion';
 import BaseModal from '../components/modals/Base';
 import Tags from '../components/modals/Tags';
 import { getTags, updateUser } from '../api';
+import { notificationTypes } from '../components/Notification/constants';
 
 const Profile = ({
-  setLoading, setUser, setTags, tags, token,
+  setLoading, setUser, setTags, tags, token, setNotification,
 }) => {
   useEffect(() => {
     const getAllTags = async () => {
-      setLoading(true);
-      const tagsResponse = await getTags();
-      await setTags(tagsResponse);
-      setLoading(false);
+      try {
+        setLoading(true);
+        const tagsResponse = await getTags();
+        await setTags(tagsResponse);
+        setLoading(false);
+      } catch (error) {
+        setNotification(
+          notificationTypes.error,
+          'No pudimos traer las tags',
+          'Por favor inténtalo de nuevo.',
+        );
+      }
     };
     getAllTags();
   }, []);
@@ -43,8 +52,11 @@ const Profile = ({
       await updateUser(internalUser);
       setUser(internalUser);
     } catch (error) {
-      console.log('handleSubmit -> error', error);
-      return null;
+      setNotification(
+        notificationTypes.error,
+        'No pudimos crear el usuario :(',
+        'Por favor inténtalo de nuevo.',
+      );
     } finally {
       setLoading(false);
     }
@@ -81,6 +93,7 @@ Profile.propTypes = {
   setLoading: PropTypes.func.isRequired,
   setTags: PropTypes.func.isRequired,
   setUser: PropTypes.func.isRequired,
+  setNotification: PropTypes.func.isRequired,
   tags: PropTypes.array,
   token: PropTypes.string,
 };
@@ -102,6 +115,7 @@ const mapStateToProps = ({
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
     setLoading: globalActions.setLoading,
+    setNotification: globalActions.setNotification,
     setTags: globalActions.setTags,
     setUser: authActions.setUser,
     setToken: authActions.setToken,

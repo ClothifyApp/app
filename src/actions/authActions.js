@@ -1,6 +1,8 @@
 import { SET_USER, SET_TOKEN, LOGOUT } from './actionTypes';
 import * as api from '../api';
 import { connectToSocket } from '../services/socket';
+import { notificationTypes } from '../components/Notification/constants';
+import { setNotification } from './globalActions';
 
 export const setUser = (user) => ({
   type: SET_USER,
@@ -30,13 +32,21 @@ export const setToken = (token) => (dispatch) => {
 export const singIn = (confirmationCode, verificationId) => async (
   dispatch,
 ) => {
-  const {
-    data: { token, user },
-  } = await api.verifyUserPhone(confirmationCode, verificationId);
+  try {
+    const {
+      data: { token, user },
+    } = await api.verifyUserPhone(confirmationCode, verificationId);
 
-  // Redux
-  await dispatch(setUser(user));
-  dispatch(setToken(token));
+    // Redux
+    await dispatch(setUser(user));
+    dispatch(setToken(token));
+  } catch (error) {
+    dispatch(setNotification(
+      notificationTypes.error,
+      'Hubo un problema verificando tu número',
+      'Por favor intentalo de nuevo',
+    ));
+  }
 };
 
 export const logout = () => (dispatch) => {

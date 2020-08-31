@@ -7,7 +7,6 @@ import device from '../base/device';
 export const NotificationContainer = styled.div`
   width: 95%;
   max-width: 300px;
-  height: 70px;
   background: ${({ theme, type }) => theme.colors[options[type].color]};
   opacity: 0.8;
   color: ${({ theme }) => theme.colors.white};
@@ -18,7 +17,7 @@ export const NotificationContainer = styled.div`
   border-radius: 8px;
   transform: translateX(-50%);
   z-index: 99;
-  padding: 20px;
+  padding: 10px;
   display: flex;
   align-items: center;
   overflow: hidden;

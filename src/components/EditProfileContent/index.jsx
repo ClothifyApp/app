@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import * as globalActions from '../../actions/globalActions';
 import * as authActions from '../../actions/authActions';
+import { notificationTypes } from '../Notification/constants';
 
 import ProfileCompletion from '../modals/ProfileCompletion';
 import { Button } from '../base/Buttons';
@@ -22,13 +23,22 @@ const EditProfileContent = ({
   tags,
   onClose,
   logout,
+  setNotification,
 }) => {
   useEffect(() => {
     const getAllTags = async () => {
-      setLoading(true);
-      const tagsResponse = await getTags();
-      await setTags(tagsResponse);
-      setLoading(false);
+      try {
+        setLoading(true);
+        const tagsResponse = await getTags();
+        await setTags(tagsResponse);
+        setLoading(false);
+      } catch (error) {
+        setNotification(
+          notificationTypes.error,
+          'No pudimos traer las tags',
+          'Por favor inténtalo de nuevo.',
+        );
+      }
     };
     if (!tags || !tags.length) {
       getAllTags();
@@ -43,7 +53,11 @@ const EditProfileContent = ({
       setUser(newUser);
       return onClose();
     } catch (error) {
-      return null;
+      setNotification(
+        notificationTypes.error,
+        'No pudimos guardar el usuario :(',
+        'Por favor inténtalo de nuevo.',
+      );
     } finally {
       setLoading(false);
     }
@@ -80,6 +94,7 @@ EditProfileContent.propTypes = {
   setTags: PropTypes.func.isRequired,
   setUser: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
+  setNotification: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   tags: PropTypes.array,
@@ -102,6 +117,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
     setLoading: globalActions.setLoading,
     setTags: globalActions.setTags,
+    setNotification: globalActions.setNotification,
     setUser: authActions.setUser,
     setToken: authActions.setToken,
     logout: authActions.logout,
