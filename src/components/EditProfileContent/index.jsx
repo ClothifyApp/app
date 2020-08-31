@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import * as globalActions from '../../actions/globalActions';
 import * as authActions from '../../actions/authActions';
+import * as swipeActions from '../../actions/swipeActions';
 import { notificationTypes } from '../Notification/constants';
 
 import ProfileCompletion from '../modals/ProfileCompletion';
@@ -26,6 +27,7 @@ const EditProfileContent = ({
   logout,
   setNotification,
   deleteUser,
+  getGarments,
 }) => {
   useEffect(() => {
     const getAllTags = async () => {
@@ -51,17 +53,31 @@ const EditProfileContent = ({
   const handleCloseConfirmDeletion = () => setIsConfirmDeletionOpen(false);
   const handleOpenConfirmDeletion = () => setIsConfirmDeletionOpen(true);
 
+  const areDiferentPreferences = (lastPreferences, newPreferences) => {
+    console.log(lastPreferences, newPreferences);
+    if (lastPreferences.length !== newPreferences.length) return true;
+    // eslint-disable-next-line no-restricted-syntax
+    for (const pref of lastPreferences) {
+      if (!newPreferences.some((p) => p === pref)) return true;
+    }
+
+    return false;
+  };
+
   const handleSubmit = async (userPreferences) => {
     try {
       const newUser = { ...user, preferences: userPreferences };
       setLoading(true);
       await updateUser(newUser);
+      if (areDiferentPreferences(user.preferences, userPreferences)) {
+        getGarments();
+      }
       setUser(newUser);
-      return onClose();
+      onClose();
     } catch (error) {
       setNotification(
         notificationTypes.error,
-        'No pudimos guardar el usuario :(',
+        'No pudimos guardar tu usuario :(',
         'Por favor inténtalo de nuevo.',
       );
     } finally {
@@ -109,6 +125,7 @@ EditProfileContent.propTypes = {
   logout: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   deleteUser: PropTypes.func.isRequired,
+  getGarments: PropTypes.func.isRequired,
   tags: PropTypes.array,
 };
 
@@ -134,6 +151,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(
     setToken: authActions.setToken,
     logout: authActions.logout,
     deleteUser: authActions.deleteUser,
+    getGarments: swipeActions.getGarments,
   },
   dispatch,
 );

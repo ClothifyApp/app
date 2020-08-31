@@ -40,9 +40,6 @@ function CreateCardPost({ listMyGarments, createMyGarment, onSave, }) {
     }
   }, []);
 
-  
-  
-
   const handleChangeInputChange = (e) => {
     setInput({
       ...input,
