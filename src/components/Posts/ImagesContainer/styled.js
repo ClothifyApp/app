@@ -20,7 +20,6 @@ export const Pictures = styled.div`
   border-radius: ${({ borderRadius }) => borderRadius || '8px'};
   box-shadow: 1px 2px 2px rgba(26, 22, 32, 0.25);
   text-align: center;
-  overflow: hidden;
   position: relative;
   &:hover {
     background: rgba(235, 235, 235, 1);
@@ -52,7 +51,6 @@ export const Img = styled.img`
   height: 100%;
   object-fit: cover;
   justify-content: center;
-  position: relative;
 `;
 
 export const Input = styled.input`
@@ -85,11 +83,11 @@ export const Icon = styled(FontAwesomeIcon)`
   color: ${({ theme }) => theme.colors.pinkLighter};
   font-size: 24px;
   margin: 0 4px 4px 0;
-  position: fixed;
+  position: absolute;
 `;
 
 export const Preloader = styled.div`
-  position: fixed;
+  position: absolute;
   width: 25px;
   height: 25px;
   z-index: 2;

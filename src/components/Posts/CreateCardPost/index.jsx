@@ -82,7 +82,7 @@ function CreateCardPost({ listMyGarments, createMyGarment, onSave }) {
             name="name"
             onChange={handleChangeInputChange}
             type="text"
-            placeholder="name"
+            placeholder="Introduce el Nombre"
             value={input.name}
             required
           />
@@ -94,7 +94,7 @@ function CreateCardPost({ listMyGarments, createMyGarment, onSave }) {
           />
         </div>
       </form>
-      <h2>Preferencias</h2>
+      <h2>Categorias</h2>
       <WrapperTag>
         {tags
           ? tags.map((tag) => (
