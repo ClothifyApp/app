@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
+import socket from './services/socket';
 
 const initialStore = {
   token: localStorage.getItem('token'),
@@ -13,9 +14,10 @@ const initialStore = {
   myGarments: [],
 };
 
+
 // eslint-disable-next-line import/prefer-default-export
 export const store = createStore(
   rootReducer,
   initialStore,
-  applyMiddleware(thunk),
+  applyMiddleware(thunk.withExtraArgument({ socket })),
 );

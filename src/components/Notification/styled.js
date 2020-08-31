@@ -6,7 +6,7 @@ import device from '../base/device';
 
 export const NotificationContainer = styled.div`
   width: 95%;
-  max-width: 300px;
+  max-width: 350px;
   height: 70px;
   background: ${({ theme, type }) => theme.colors[options[type].color]};
   opacity: 0.8;
@@ -25,7 +25,7 @@ export const NotificationContainer = styled.div`
   transition: top 1s ease-in, left 1s ease;
   p,
   h3 {
-    margin: 0 0 0 20px;
+    margin: 0 20px 0;
   }
   @media ${device.tablet} {
     left: 10px;
@@ -38,6 +38,7 @@ export const NotificationContainer = styled.div`
 
 export const NotificationCloseIcon = styled(FontAwesomeIcon)`
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
 `;

@@ -12,24 +12,22 @@ import options, { notificationTypes } from './constants';
 
 const Notification = ({ notification }) => {
   const [spacing, setSpacing] = useState(-150);
+
+  const openNotification = () => setSpacing(10);
   const closeNotification = () => {
     setSpacing(-150);
-    clearTimeout(closeNotification);
   };
-  const openNotification = () => setSpacing(10);
-
   useEffect(() => {
     if (notification.message && notification.title) {
-      closeNotification();
       openNotification();
-      setTimeout(closeNotification, 5000);
+      setTimeout(closeNotification, 3000);
     }
-    return () => closeNotification();
+    return () => clearTimeout(closeNotification);
   }, [notification]);
 
   return (
     <NotificationContainer type={notification.type} spacing={spacing}>
-      <FontAwesomeIcon icon={options[notification.type].icon} size="3x" />
+      <FontAwesomeIcon icon={options[notification.type].icon} size='3x' />
       <div>
         <NotificationCloseIcon icon={faTimes} onClick={closeNotification} />
         <h3>{notification.title}</h3>
@@ -42,8 +40,8 @@ const Notification = ({ notification }) => {
 Notification.propTypes = {
   notification: PropTypes.shape({
     type: PropTypes.oneOf(Object.keys(notificationTypes)).isRequired,
-    title: PropTypes.string.isRequired,
-    message: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    message: PropTypes.string,
   }),
 };
 
