@@ -12,13 +12,27 @@ import ProfileCompletion from '../components/modals/ProfileCompletion';
 import BaseModal from '../components/modals/Base';
 import Tags from '../components/modals/Tags';
 import { updateUser } from '../api';
+import { notificationTypes } from '../components/Notification/constants';
 
 const Profile = ({
-  setLoading, setUser, setTags, tags, token,
+  setLoading, setUser, setTags, tags, token, setNotification,
 }) => {
   useEffect(() => {
-    setTags();
-  }, [setTags]);
+    const getAllTags = async () => {
+      try {
+        await setTags();
+      } catch (error) {
+        setNotification(
+          notificationTypes.error,
+          'No pudimos traer las tags',
+          'Por favor inténtalo de nuevo.',
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+    getAllTags();
+  }, []);
 
   const [step, setStep] = useState(1);
   const [internalUser, setInternalUser] = useState({ country: 'Colombia' });
@@ -37,8 +51,11 @@ const Profile = ({
       await updateUser(internalUser);
       setUser(internalUser);
     } catch (error) {
-      console.log('handleSubmit -> error', error);
-      return null;
+      setNotification(
+        notificationTypes.error,
+        'No pudimos crear el usuario :(',
+        'Por favor inténtalo de nuevo.',
+      );
     } finally {
       setLoading(false);
     }
@@ -75,6 +92,7 @@ Profile.propTypes = {
   setLoading: PropTypes.func.isRequired,
   setTags: PropTypes.func.isRequired,
   setUser: PropTypes.func.isRequired,
+  setNotification: PropTypes.func.isRequired,
   tags: PropTypes.array,
   token: PropTypes.string,
 };
@@ -96,6 +114,7 @@ const mapStateToProps = ({
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
     setLoading: globalActions.setLoading,
+    setNotification: globalActions.setNotification,
     setTags: globalActions.setTags,
     setUser: authActions.setUser,
     setToken: authActions.setToken,

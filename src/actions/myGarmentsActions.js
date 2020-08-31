@@ -1,8 +1,9 @@
 /* eslint-disable import/prefer-default-export */
 
 import { listMyGarments, deleteGarment } from '../api';
-import { setLoading } from './globalActions';
+import { setLoading, setNotification } from './globalActions';
 import { LIST_MY_GARMENTS, DELETE_GARMENT } from './actionTypes';
+import { notificationTypes } from '../components/Notification/constants';
 
 const listMyGarmentsAction = (payload) => ({
   type: LIST_MY_GARMENTS,
@@ -15,6 +16,11 @@ export const listMyGarmentsThunk = () => async (dispatch) => {
     const garments = await listMyGarments();
     dispatch(listMyGarmentsAction(garments));
   } catch (error) {
+    dispatch(setNotification(
+      notificationTypes.error,
+      'Hubo un problema trayendo tus prendas',
+      'Por favor intentalo de nuevo',
+    ));
     console.error(error);
   } finally {
     dispatch(setLoading(false));
@@ -34,7 +40,11 @@ export const deleteGarmentThunk = (garmentId) => async (dispatch) => {
       dispatch(deleteGarmentAction(garmentId));
     }
   } catch (error) {
-    console.error(error);
+    dispatch(setNotification(
+      notificationTypes.error,
+      'Hubo un problema eliminando tu prenda',
+      'Por favor intentalo de nuevo',
+    ));
   } finally {
     dispatch(setLoading(false));
   }

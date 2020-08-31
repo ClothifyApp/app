@@ -19,7 +19,6 @@ function ListOfPostCard({ myGarments }) {
 }
 
 ListOfPostCard.propTypes = {
-  garment: PropTypes.object,
   myGarments: PropTypes.array.isRequired,
 };
 

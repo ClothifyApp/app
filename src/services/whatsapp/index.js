@@ -16,8 +16,8 @@ const messageBuilder = (userGarments, receiverGarments, receiver, user) => {
 export const urlGenerator = (match, userId) => {
   const userGarments = match.garments.filter((garment) => garment.userId === userId);
   const receiverGarments = match.garments.filter((garment) => garment.userId !== userId);
-  const receiver = match.firstUser === userId ? match.secondUser : match.firstUser;
-  const user = match.firstUser === userId ? match.firstUser : match.secondUser;
+  const receiver = match.firstUser._id === userId ? match.secondUser : match.firstUser;
+  const user = match.firstUser._id === userId ? match.firstUser : match.secondUser;
   const message = messageBuilder(userGarments, receiverGarments, receiver, user);
 
   return ` https://wa.me/${receiver.phone}?text=${message}`;

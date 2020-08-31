@@ -10,7 +10,12 @@ import {
 import { Wrapper, Control, ImageSlider } from './styled';
 import ImageIndicator from './ImageIndicator';
 
-const Slider = ({ imageUrls, onClick, height, border }) => {
+const Slider = ({
+  imageUrls,
+  onClick,
+  height,
+  border,
+}) => {
   const [currentImage, setCurrentImage] = useState(1);
 
   useEffect(() => {
@@ -62,10 +67,12 @@ Slider.propTypes = {
   imageUrls: PropTypes.array,
   height: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  border: PropTypes.any,
 };
 
 Slider.defaultProps = {
   imageUrls: [],
+  border: null,
 };
 
 export default Slider;

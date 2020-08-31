@@ -1,6 +1,7 @@
 import { createMyGarment } from '../api';
-import { setLoading } from './globalActions';
+import { setLoading, setNotification } from './globalActions';
 import { CREATE_MY_GARMENT } from './actionTypes';
+import { notificationTypes } from '../components/Notification/constants';
 
 const createMyGarmentAction = (payload) => ({
   type: CREATE_MY_GARMENT,
@@ -13,12 +14,14 @@ export const createGarmentThunk = (data) => async (dispatch) => {
   try {
     const garment = await createMyGarment(data);
     dispatch(createMyGarmentAction(garment));
-  }catch (error) {
+  } catch (error) {
+    dispatch(setNotification(
+      notificationTypes.error,
+      'No pudimos guardar tu prenda :(',
+      'Por favor intentalo de nuevo',
+    ));
     console.log(error);
-  }
-   finally {
+  } finally {
     dispatch(setLoading(false));
   }
-}; 
-
-  
+};

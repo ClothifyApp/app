@@ -43,13 +43,21 @@ export const setToken = (token) => (dispatch, getState, { socket }) => {
 export const signIn = (confirmationCode, verificationId) => async (
   dispatch,
 ) => {
-  const {
-    data: { token, user },
-  } = await api.verifyUserPhone(confirmationCode, verificationId);
+  try {
+    const {
+      data: { token, user },
+    } = await api.verifyUserPhone(confirmationCode, verificationId);
 
-  // Redux
-  await dispatch(setUser(user));
-  dispatch(setToken(token));
+    // Redux
+    await dispatch(setUser(user));
+    dispatch(setToken(token));
+  } catch (error) {
+    dispatch(setNotification(
+      notificationTypes.error,
+      'Hubo un problema verificando tu número',
+      'Por favor intentalo de nuevo',
+    ));
+  }
 };
 
 export const logout = () => (dispatch) => {

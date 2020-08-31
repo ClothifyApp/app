@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
-export const CardContainer = styled.a`
+export const CardContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.whiteOpacity};
   box-shadow: ${({ theme }) => theme.shadows.regular};
   margin-bottom: 15px;
-  height: 90px;
   padding: 10px;
   display: flex;
   align-items: center;

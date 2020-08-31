@@ -4,8 +4,17 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faVenusMars } from '@fortawesome/free-solid-svg-icons';
 
+import NoProfilePicture from '../../../assets/images/no-profile-picture.jpg';
 import { Tag } from '../../base/Tag';
 import { InfoWrapper, Heading, Body } from './styled';
+
+const genderConverter = (gender) => {
+  switch (gender) {
+    case 'M': return 'Masculino';
+    case 'F': return 'Femenino';
+    default: return 'No binario';
+  }
+};
 
 const Info = ({ isOpen, garment }) => (
   <InfoWrapper isOpen={isOpen}>
@@ -17,7 +26,7 @@ const Info = ({ isOpen, garment }) => (
       <Heading>
         <div className="avatar">
           <img
-            src={garment.userId.photoUrl}
+            src={garment.userId.photoUrl || NoProfilePicture}
             alt={garment.userId.fullName}
           />
         </div>
@@ -29,7 +38,7 @@ const Info = ({ isOpen, garment }) => (
           </h3>
           <p>
             <FontAwesomeIcon icon={faVenusMars} />
-            {garment.userId.gender}
+            {genderConverter(garment.userId.gender)}
           </p>
         </div>
       </Heading>

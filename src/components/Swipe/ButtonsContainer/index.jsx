@@ -21,7 +21,7 @@ const ButtonsContainer = ({
       </WhatsAppButton>
     )}
     {onDislike && (
-      <ReactionButton onClick={onDislike}>
+      <ReactionButton onClick={onDislike} color="secondary">
         <FontAwesomeIcon icon={faTimes} size="2x" />
       </ReactionButton>
     )}
@@ -31,7 +31,7 @@ const ButtonsContainer = ({
       </ReactionButton>
     )}
     {onLike && (
-      <ReactionButton onClick={onLike} color="secondary">
+      <ReactionButton onClick={onLike} color="primary">
         <FontAwesomeIcon icon={faHeart} size="2x" />
       </ReactionButton>
     )}
